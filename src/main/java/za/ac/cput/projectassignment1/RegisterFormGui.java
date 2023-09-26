@@ -107,7 +107,6 @@ public class RegisterFormGui extends Form {
         JButton registerButton = new JButton("Register");
         registerButton.setFont(new Font("Arial", Font.BOLD, 24));
         registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        registerButton.setBackground(CommonConstrants.TEXT_COLOR);
         registerButton.setBounds(205, 630, 250, 40);
         add(registerButton);
 
