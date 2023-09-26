@@ -73,7 +73,6 @@ public class RegisterFormGui extends Form {
         JTextField usernameField = new JTextField();
         usernameField.setBounds(30, 420, 450, 39);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
-        usernameField.setForeground(CommonConstrants.TEXT_COLOR);
         add(usernameField);
 
         // create password label
