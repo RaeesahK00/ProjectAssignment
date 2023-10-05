@@ -174,6 +174,7 @@ public class APSGui extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setForeground(new java.awt.Color(51, 0, 255));
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
