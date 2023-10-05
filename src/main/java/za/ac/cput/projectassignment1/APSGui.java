@@ -71,6 +71,7 @@ public class APSGui extends javax.swing.JFrame {
         jButton4.setText("Profile");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 800));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("APS Score");
