@@ -294,19 +294,19 @@ public class Student {
         this.gardianProvince = gardianProvince;
     }
 
-    public int getGardianPostalCode() {
+    public String getGardianPostalCode() {
         return gardianPostalCode;
     }
 
-    public void setGardianPostalCode(int gardianPostalCode) {
+    public void setGardianPostalCode(String gardianPostalCode) {
         this.gardianPostalCode = gardianPostalCode;
     }
 
-    public int getGardianNumber() {
+    public String getGardianNumber() {
         return gardianNumber;
     }
 
-    public void setGardianNumber(int gardianNumber) {
+    public void setGardianNumber(String gardianNumber) {
         this.gardianNumber = gardianNumber;
     }
 

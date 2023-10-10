@@ -2,10 +2,13 @@ package za.ac.cput.projectassignment1;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RegisterFormGui extends Form {
+
     public RegisterFormGui() {
         super("Register");
         addGuiComponents();
@@ -47,7 +50,7 @@ public class RegisterFormGui extends Form {
         surnameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         surnameField.setForeground(CommonConstrants.TEXT_COLOR);
         add(surnameField);
-        
+
         // create identity label
         JLabel idenityLabel = new JLabel("Identity Number: ");
         idenityLabel.setBounds(140, 270, 200, 25);
@@ -131,7 +134,6 @@ public class RegisterFormGui extends Form {
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         loginLabel.setForeground(CommonConstrants.TEXT_COLOR);
 
-
         // add functionality so that when clicks it will launch it will the register form gui
         registerLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -145,6 +147,17 @@ public class RegisterFormGui extends Form {
         });
         loginLabel.setBounds(185, 670, 250, 30);
         add(loginLabel);
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UniversityGui gui2 = new UniversityGui();
+                gui2.setGUI();
+                setVisible(false);
+
+            }
+
+        });
 
     }
 }

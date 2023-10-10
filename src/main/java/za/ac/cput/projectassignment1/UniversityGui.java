@@ -24,7 +24,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     private final JComboBox<String> comboFaculty;
     private final JLabel lblImage, lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
-    private final JTextField txt1, txt2;
+    public  JTextField txt1, txt2;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
 
@@ -80,7 +80,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblMessage4 = new JLabel("Click Next to take check APS Score ", SwingConstants.CENTER);
         lblMessage4.setFont(ft2);
 
-        ApsScorePage = new ApsScorePage(this);
+        ApsScorePage = new ApsScorePage();
 
         btnExternalTest.setForeground(Color.BLACK);
         btnExternalTest.setBackground(Color.WHITE);

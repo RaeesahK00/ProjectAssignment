@@ -191,8 +191,8 @@ public class DAO {
         statement.setString(6, student.getGardianNationality());
         statement.setString(7, student.getGardianAddress());
         statement.setString(8, student.getGardianProvince());
-        statement.setInt(9, student.getGardianPostalCode());
-        statement.setInt(10, student.getGardianNumber());
+        statement.setString(9, student.getGardianPostalCode());
+        statement.setString(10, student.getGardianNumber());
 
         statement.executeUpdate();
         return student;

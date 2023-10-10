@@ -44,7 +44,7 @@ public class LoginFormGUI extends Form {
         usernameField.setBounds(150, 190, 450, 50);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
-        usernameLabel.setFont(new Font("Arial", Font.PLAIN,24));
+        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
 
         // Add the username label and field to the GUI
         add(usernameLabel);
@@ -61,12 +61,11 @@ public class LoginFormGUI extends Form {
         passwordField.setBounds(150, 365, 450, 50);
         passwordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         passwordField.setForeground(CommonConstrants.TEXT_COLOR);
-        passwordLabel.setFont(new Font("Arial", Font.PLAIN,24));
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
 
         // Add the password label and field to the GUI
         add(passwordLabel);
         add(passwordField);
-
 
         //create login button
         JButton loginButton = new JButton("Login");
@@ -82,7 +81,6 @@ public class LoginFormGUI extends Form {
         registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-
         // add functionality so that when clicks it will launch it will the register form gui
         registerLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -97,6 +95,17 @@ public class LoginFormGUI extends Form {
         });
         registerLabel.setBounds(125, 600, 250, 30);
         add(registerLabel);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UniversityGui gui2 = new UniversityGui();
+                gui2.setGUI();
+                setVisible(false);
+
+            }
+
+        });
 
     }
 }

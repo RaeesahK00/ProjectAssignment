@@ -157,9 +157,9 @@ public class studyChoiceGui extends JFrame {
                 String selected = (String) cmbUniOne.getSelectedItem();
                 txtInfo.setText("");
 
-                String facultyOne = asp.txt1.getText();
+                String facultyOne = uG.txt1.getText();
                 if (facultyOne.equalsIgnoreCase("Faculty of Informatics and Design")) {
-                    
+
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Mobile Application Development");
@@ -186,9 +186,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("Computer Graphics");
                     }
-                }
-                
-                else if (facultyOne.equalsIgnoreCase("Faculty of Applied Sciences")){
+                } else if (facultyOne.equalsIgnoreCase("Faculty of Applied Sciences")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Archaeology");
@@ -199,7 +197,7 @@ public class studyChoiceGui extends JFrame {
 
                     }
                     if (selected.equals("Cape Peninsula University of Technology")) {
-                        
+
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Biotechnology");
                         rbtnCourseTwo.setVisible(true);
@@ -216,8 +214,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("BSc Chemical Sciences");
                     }
-                }
-                else if (facultyOne.equalsIgnoreCase("Faculty of Business and Management Sciences")){
+                } else if (facultyOne.equalsIgnoreCase("Faculty of Business and Management Sciences")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Commerce IT Support");
@@ -228,7 +225,7 @@ public class studyChoiceGui extends JFrame {
 
                     }
                     if (selected.equals("Cape Peninsula University of Technology")) {
-                        
+
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Paralegal");
                         rbtnCourseTwo.setVisible(true);
@@ -245,8 +242,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("BCom in Information Systems");
                     }
-                }
-                else if (facultyOne.equalsIgnoreCase("Faculty of Engineering & the Built Environment")){
+                } else if (facultyOne.equalsIgnoreCase("Faculty of Engineering & the Built Environment")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Architecture and Planning");
@@ -257,7 +253,7 @@ public class studyChoiceGui extends JFrame {
 
                     }
                     if (selected.equals("Cape Peninsula University of Technology")) {
-                        
+
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Chemical Engineering");
                         rbtnCourseTwo.setVisible(true);
@@ -274,7 +270,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("Environmental Science");
                     }
-                }else if (facultyOne.equalsIgnoreCase("")){
+                } else if (facultyOne.equalsIgnoreCase("")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Archaeology");
@@ -285,7 +281,7 @@ public class studyChoiceGui extends JFrame {
 
                     }
                     if (selected.equals("Cape Peninsula University of Technology")) {
-                        
+
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Biotechnology");
                         rbtnCourseTwo.setVisible(true);
@@ -418,6 +414,11 @@ public class studyChoiceGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Goes to Home page");
+                ProjectHomePage faqs = new ProjectHomePage();
+                faqs.setTitle("Home Page");
+                faqs.setVisible(true);
+                faqs.setLocationRelativeTo(null);
+                setVisible(false);
             }
 
         });

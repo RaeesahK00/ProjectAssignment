@@ -257,7 +257,7 @@ public class GuiA extends JFrame implements ActionListener {
                             new String[]{"Yes", "No"}, "Yes");
                     if (result == JOptionPane.YES_OPTION) {
 
-                        try {
+                   //     try {
                             //                        UUID uniqueID = UUID.randomUUID();
 //                        String randomID = uniqueID.toString();
                             String identity = idTxt.getText();
@@ -362,10 +362,10 @@ public class GuiA extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(null, "Please attatch a certified copy of your identification document.");
                             return;
                             }
-                             */
-                            Student stud = new Student(identity, firstName, surname, id, passport1, email, nationality, date, language, address, code, province1, number, male1, female1, subId);
-
-                            stud = dao.addStudentToDB(stud);
+//                             */
+//                            Student stud = new Student(identity, firstName, surname, id, passport1, email, nationality, date, language, address, code, province1, number, male1, female1, subId);
+//
+//                            stud = dao.addStudentToDB(stud);
 
                             GuiB run = new GuiB();
                             run.setTitle("Online Application Section B");
@@ -376,15 +376,16 @@ public class GuiA extends JFrame implements ActionListener {
                             run.setLocationRelativeTo(null);
 
                             setVisible(false);
-                        } catch (IOException ex) {
-                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
                         }
+//                        catch (IOException ex) {
+//                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
                     }
 
                 }
-            }
+          //  }
         }
         );
 
@@ -402,15 +403,11 @@ public class GuiA extends JFrame implements ActionListener {
 
                     if (result == JOptionPane.YES_OPTION) {
 
-                        /*   GuiB run = new GuiB();
-                        run.setTitle("Online Application Section A");
-                        run.setVisible(true);
-                        run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        run.setGuiB();
-                        run.setSize(800, 800);
+                       ProjectHomePage faqs = new ProjectHomePage();
+                        faqs.setTitle("Home Page");
+                        faqs.setVisible(true);
+                        faqs.setLocationRelativeTo(null);
                         setVisible(false);
-                        run.setLocationRelativeTo(null);
-                         */
                     }
                 }
             }

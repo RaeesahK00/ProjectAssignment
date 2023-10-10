@@ -348,13 +348,12 @@ public class GuiC extends JFrame {
                                 return;
                             }
                          */
-                        if (subResults.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Please attatch a certified copy of your results.");
-                            attachmentField.setText("");
-                            attachmentField.requestFocus();
-                            return;
-                        }
-
+//                        if (subResults.isEmpty()) {
+//                            JOptionPane.showMessageDialog(null, "Please attatch a certified copy of your results.");
+//                            attachmentField.setText("");
+//                            attachmentField.requestFocus();
+//                            return;
+//                        }
 //                            
 //                        } catch (IOException ex) {
 //                            JOptionPane.showMessageDialog(null, "cannot write to file");
@@ -362,15 +361,11 @@ public class GuiC extends JFrame {
                         JOptionPane.showMessageDialog(null, "An email confirmation of completion of application has been sent to you.", "Application Completed", JOptionPane.INFORMATION_MESSAGE);
                         System.exit(0);
 
-                        /*   GuiB run = new GuiB();
-                        run.setTitle("Online Application Section B");
-                        run.setVisible(true);
-                        run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        run.setGuiB();
-                        run.setSize(800, 800);
-                        run.setLocationRelativeTo(null);
+                        ProjectHomePage faqs = new ProjectHomePage();
+                        faqs.setTitle("Home Page");
+                        faqs.setVisible(true);
+                        faqs.setLocationRelativeTo(null);
                         setVisible(false);
-                         */
                     }
 
                 }

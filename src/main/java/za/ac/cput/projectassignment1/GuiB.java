@@ -208,7 +208,7 @@ public class GuiB extends JFrame {
 
                     if (result == JOptionPane.YES_OPTION) {
 
-                        try {
+                     
                             // try {
                             String parent1 = parent.getSelectedItem().toString();
                             String surname = surnameTxt.getText();
@@ -223,9 +223,9 @@ public class GuiB extends JFrame {
                             String number = numberTxt.getText();
                             
                             
-                            Student stud = new Student(id,parent1,firstName,surname,email,nationality,address,province,code,number);
-                            stud = dao.addGaurdianToDB(stud);
-                            
+//                            Student stud = new Student(id,parent1,firstName,surname,email,nationality,address,province,code,number);
+//                            stud = dao.addGaurdianToDB(stud);
+//                            
                             /*            if (surname.isEmpty() || !surname.matches("[a-zA-Z]+")) {
                             JOptionPane.showMessageDialog(null, "Please enter a valid last name.");
                             surnameTxt.setText("");
@@ -285,13 +285,10 @@ public class GuiB extends JFrame {
 //                        } catch (IOException ex) {
 //                            JOptionPane.showMessageDialog(null, "Error cannot write to file");
 //                        }
-                        } catch (IOException ex) {
-                            Logger.getLogger(GuiB.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(GuiB.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        } 
+                    
 
-                    }
+                    
                     GuiC run = new GuiC();
                     run.setTitle("Online Application Section C");
                     run.setVisible(true);
