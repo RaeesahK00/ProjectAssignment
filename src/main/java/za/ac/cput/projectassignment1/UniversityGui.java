@@ -5,11 +5,14 @@ package za.ac.cput.projectassignment1;
  *
  * @author Ronald Hercules
  */
-//import StudyChoiceDAO.Study_choiceDAO;
-//import Study_choice.Study_choice;
+
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UniversityGui extends JFrame implements ActionListener {
 
@@ -20,10 +23,10 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final ApsScorePage ApsScorePage;
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     private final JComboBox<String> comboFaculty;
-//    private final JLabel lblImage;
-     private final JLabel  lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
+    private final JLabel lblImage, lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
     private final JTextField txt1, txt2;
     private final Font ft1, ft2, ft3, ft4;
+    private final DAO dao;
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
@@ -55,11 +58,11 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblHeading.setPreferredSize(new Dimension(300, 40));
         lblHeading.setFont(ft1);
 
-//////        ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
-////Image originalImage = originalIcon.getImage();
-////Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-////ImageIcon scaledIcon = new ImageIcon(scaledImage);
-//lblImage = new JLabel(scaledIcon, SwingConstants.CENTER);
+        ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
+        Image originalImage = originalIcon.getImage();
+        Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        lblImage = new JLabel(scaledIcon, SwingConstants.CENTER);
         txt1 = new JTextField(10);
         txt1.setPreferredSize(new Dimension(10, 10));
         txt1Label = new JLabel("First Choice");
@@ -91,7 +94,9 @@ public class UniversityGui extends JFrame implements ActionListener {
         btnNext.setForeground(Color.black);
         btnNext.setBackground(Color.white);
         btnNext.setFont(ft2);
-    
+        
+        dao = new DAO();
+
     }
 
     public void setGUI() {
@@ -112,6 +117,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         comboFaculty.addItem("Faculty of Health and Wellness Sciences");
         comboFaculty.addItem("Faculty of Informatics and Design");
         comboFaculty.addItem("Faculty of Education");
+        comboFaculty.addItem("Faculty of Law");
 
         panelCombo.setLayout(new GridLayout(2, 1, 5, 5));
         panelCombo.add(comboFaculty);
@@ -130,10 +136,10 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblMessage4.setFont(ft4);
         panelLeft.setBackground(Color.LIGHT_GRAY);
 
-//        lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-//
-//        panelRight.add(lblImage);
-//        lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        panelRight.add(lblImage);
+        lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelRight.add(txt1Label);
         txt1Label.setFont(ft2);
         panelRight.add(txt1);
@@ -220,14 +226,15 @@ public class UniversityGui extends JFrame implements ActionListener {
             if (!textField1Text.isEmpty() && !textField2Text.isEmpty()) {
                 btnSave.setEnabled(false);
 
-//        // Save the choices to the database
-//        Study_choice study_choice = new Study_choice(textField1Text, textField2Text);
-//        Study_choiceDAO studyChoiceDAO = new Study_choiceDAO();
-//        try {
-//            studyChoiceDAO.save(study_choice);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UniversityGui.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+                // Save the choices to the database
+                Study_choice study_choice = new Study_choice(textField1Text, textField2Text);
+                
+                try {
+                    dao.save(study_choice);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UniversityGui.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 JOptionPane.showMessageDialog(this, "Study choices saved.");
             }
         } else if (e.getSource() == btnClear) {
