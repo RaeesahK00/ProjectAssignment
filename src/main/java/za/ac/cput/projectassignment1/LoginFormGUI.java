@@ -35,16 +35,16 @@ public class LoginFormGUI extends Form {
 
         // create username label
         JLabel usernameLabel = new JLabel("Username: ");
-        usernameLabel.setBounds(30, 150, 400, 25);
+        usernameLabel.setBounds(150, 150, 400, 25);
         usernameLabel.setForeground(CommonConstrants.TEXT_COLOR);
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         // create username text field
         JTextField usernameField = new JTextField();
-        usernameField.setBounds(30, 190, 450, 50);
+        usernameField.setBounds(150, 190, 450, 50);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
-        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        usernameLabel.setFont(new Font("Arial", Font.PLAIN,24));
 
         // Add the username label and field to the GUI
         add(usernameLabel);
@@ -52,20 +52,21 @@ public class LoginFormGUI extends Form {
 
         // create password label
         JLabel passwordLabel = new JLabel("Password: ");
-        passwordLabel.setBounds(30, 335, 400, 25);
+        passwordLabel.setBounds(150, 335, 400, 25);
         passwordLabel.setForeground(CommonConstrants.TEXT_COLOR);
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
 
         // create password text field
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(30, 365, 450, 50);
+        passwordField.setBounds(150, 365, 450, 50);
         passwordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         passwordField.setForeground(CommonConstrants.TEXT_COLOR);
-        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN,24));
 
         // Add the password label and field to the GUI
         add(passwordLabel);
         add(passwordField);
+
 
         //create login button
         JButton loginButton = new JButton("Login");
@@ -73,34 +74,14 @@ public class LoginFormGUI extends Form {
 
         // change the cursor to a hand when hover over the button
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        loginButton.setBounds(205, 500, 250, 60);
+        loginButton.setBounds(230, 500, 250, 60);
         add(loginButton);
-
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e
-            ) {
-                if (e.getSource() == loginButton) {
-//                    int result = JOptionPane.showOptionDialog(null,
-//                            "LOGIN SUCCESFUL", "Confirmation",
-//                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-////                            new String[]{"Yes", "No"}, "Yes");
-//                    if (result == JOptionPane.YES_OPTION) {
-//                    }
-
-                    UniversityGui gui2 = new UniversityGui();
-                    gui2.setGUI();
-                    setVisible(false);
-
-                }
-            }
-        }
-        );
 
         // create register label (used to load the register GUI
         JLabel registerLabel = new JLabel("Not a user? Register Here!");
         registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 
         // add functionality so that when clicks it will launch it will the register form gui
         registerLabel.addMouseListener(new MouseAdapter() {
