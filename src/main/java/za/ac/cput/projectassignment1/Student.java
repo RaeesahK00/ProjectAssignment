@@ -238,11 +238,11 @@ public class Student {
         this.gardian = gardian;
     }
 
-    public int getGardianId() {
+    public String getGardianId() {
         return gardianId;
     }
 
-    public void setGardianId(int gardianId) {
+    public void setGardianId(String gardianId) {
         this.gardianId = gardianId;
     }
 

@@ -183,7 +183,7 @@ public class DAO {
         String query = "INSERT INTO Student_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
 
-        statement.setInt(1, student.getGardianId());
+        statement.setString(1, student.getGardianId());
         statement.setString(2, student.getGardian());
         statement.setString(3, student.getGardianName());
         statement.setString(4, student.getGardianSurname());
