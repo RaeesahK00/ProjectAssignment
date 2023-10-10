@@ -2,8 +2,11 @@ package za.ac.cput.projectassignment1;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.Connection;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -26,7 +29,8 @@ public class GuiA extends JFrame implements ActionListener {
     private JTextField attachmentField;
     private JButton browseButton;
 
-    private Connection connection;
+    private DAO dao;
+    private Student stud;
 
     public GuiA() {
 //        try {
@@ -164,6 +168,9 @@ public class GuiA extends JFrame implements ActionListener {
         attachmentField.setEditable(false);
         browseButton = new JButton("Browse");
 
+        dao = new DAO();
+        stud = new Student();
+
     }
 
     public void setGuiA() {
@@ -250,147 +257,130 @@ public class GuiA extends JFrame implements ActionListener {
                             new String[]{"Yes", "No"}, "Yes");
                     if (result == JOptionPane.YES_OPTION) {
 
-//                        UUID uniqueID = UUID.randomUUID();
+                        try {
+                            //                        UUID uniqueID = UUID.randomUUID();
 //                        String randomID = uniqueID.toString();
-                        String surname = surnameTxt.getText();
-                        String firstName = nameTxt.getText();
-                        String email = emailTxt.getText();
-                        boolean id = saId.isSelected();
-                        boolean passport1 = passport.isSelected();
-                        String identity = idTxt.getText();
-                        String nationality = nationalityTxt.getText();
-                        String date = dateTxt.getText();
-                        String address = addressTxt1.getText();
-                        String code = codeTxt.getText();
-                        String number = numberTxt.getText();
-                        String province1 = provinceTxt.getText();
-                        boolean male1 = male.isSelected();
-                        boolean female1 = female.isSelected();
-                        String language = homeLanTxt.getText();
-                        String subId = attachmentField.getText();
+                            String identity = idTxt.getText();
+                            String firstName = nameTxt.getText();
+                            String surname = surnameTxt.getText();
+                            boolean id = saId.isSelected();
+                            boolean passport1 = passport.isSelected();
+                            String email = emailTxt.getText();
+                            String nationality = nationalityTxt.getText();
+                            String date = dateTxt.getText();
+                            String address = addressTxt1.getText();
+                            String code = codeTxt.getText();
+                            String number = numberTxt.getText();
+                            String province1 = provinceTxt.getText();
+                            boolean male1 = male.isSelected();
+                            boolean female1 = female.isSelected();
+                            String language = homeLanTxt.getText();
+                            String subId = attachmentField.getText();
 
-                        /*                         if (surname.isEmpty() || !surname.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid last name.");
-                                surnameTxt.setText("");
-                                surnameTxt.requestFocus();
-                                return;
+                            /*                         if (surname.isEmpty() || !surname.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+                            JOptionPane.showMessageDialog(null, "Please enter a valid last name.");
+                            surnameTxt.setText("");
+                            surnameTxt.requestFocus();
+                            return;
                             }
 
                             if (firstName.isEmpty() || !firstName.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
-                                nameTxt.setText("");;
-                                nameTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
+                            nameTxt.setText("");;
+                            nameTxt.requestFocus();
+                            return;
                             }
 
                             if (email.isEmpty() || !email.endsWith("@gmail.com")) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
-                                emailTxt.setText("");;
-                                emailTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+                            emailTxt.setText("");;
+                            emailTxt.requestFocus();
+                            return;
                             }
                             if (saId.isSelected()) {
-                                if (identity.isEmpty() || identity.matches("[a-zA-Z]+") || !identity.matches("\\d{13}")) {
-                                    JOptionPane.showMessageDialog(null, "Please enter a valid ID number.(13 numbers)");
-                                    idTxt.setText("");
-                                    idTxt.requestFocus();
-                                    return;
-                                }
+                            if (identity.isEmpty() || identity.matches("[a-zA-Z]+") || !identity.matches("\\d{13}")) {
+                            JOptionPane.showMessageDialog(null, "Please enter a valid ID number.(13 numbers)");
+                            idTxt.setText("");
+                            idTxt.requestFocus();
+                            return;
+                            }
 
                             }
                             if (passport.isSelected()) {
-                                if (identity.isEmpty() || identity.matches("[a-zA-Z]\\d{9}")) {
-                                    JOptionPane.showMessageDialog(null, "Please enter a valid Passport number.\n(1 letter followed by 8 numbers with no spaces)");
-                                    idTxt.setText("");
-                                    idTxt.requestFocus();
-                                    return;
-                                }
+                            if (identity.isEmpty() || identity.matches("[a-zA-Z]\\d{9}")) {
+                            JOptionPane.showMessageDialog(null, "Please enter a valid Passport number.\n(1 letter followed by 8 numbers with no spaces)");
+                            idTxt.setText("");
+                            idTxt.requestFocus();
+                            return;
+                            }
 
                             }
 
                             if (nationality.isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid nationality.");
-                                nationalityTxt.setText("");
-                                nationalityTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid nationality.");
+                            nationalityTxt.setText("");
+                            nationalityTxt.requestFocus();
+                            return;
                             }
 
                             if (date.isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Please enter your date of birth.");
-                                dateTxt.setText("");;
-                                dateTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter your date of birth.");
+                            dateTxt.setText("");;
+                            dateTxt.requestFocus();
+                            return;
                             }
 
                             if (address.isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid address.");
-                                addressTxt1.setText("");;
-                                addressTxt1.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid address.");
+                            addressTxt1.setText("");;
+                            addressTxt1.requestFocus();
+                            return;
                             }
 
                             if (code.isEmpty() || code.matches("[a-zA-Z]+") || !code.matches("\\d{4}")) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid postal code.");
-                                codeTxt.setText("");
-                                codeTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid postal code.");
+                            codeTxt.setText("");
+                            codeTxt.requestFocus();
+                            return;
                             }
 
                             if (province1.isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid province.");
-                                provinceTxt.setText("");
-                                provinceTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid province.");
+                            provinceTxt.setText("");
+                            provinceTxt.requestFocus();
+                            return;
                             }
 
                             if (number.isEmpty() || number.matches("[a-zA-Z]+") || !number.matches("\\d{10}")) {
-                                JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
-                                numberTxt.setText("");
-                                numberTxt.requestFocus();
-                                return;
+                            JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
+                            numberTxt.setText("");
+                            numberTxt.requestFocus();
+                            return;
                             }
-                        
-                        if (subId.isBlank()) {
+
+                            if (subId.isBlank()) {
                             JOptionPane.showMessageDialog(null, "Please attatch a certified copy of your identification document.");
                             return;
-                        }
-                         */
-//                        String insertQuery = "INSERT INTO Userdata (ID ,surname ,  first_name ,email ,  phone_number,  nationality, address, postal_code, province,DATEOFBIRTH , gender, LANGUAGE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//                        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-//                            preparedStatement.setString(1, identity);
-//                            preparedStatement.setString(2, surname);
-//                            preparedStatement.setString(3, firstName);
-//                            preparedStatement.setString(4, email);
-//                            preparedStatement.setString(5, nationality);
-//                            preparedStatement.setString(6, number);
-//                            preparedStatement.setString(7, address);
-//                            preparedStatement.setString(8, code);
-//                            preparedStatement.setString(9, province1);
-//                            preparedStatement.setString(10, date);
-//                             preparedStatement.setBoolean(12, male1);
-////                            if (male1) {
-////                                preparedStatement.setString(11, "Male");
-////                            } else if (female1) {
-////                                preparedStatement.setString(11, "Female");
-////                            } else {
-////                                preparedStatement.setString(11, null);
-////                            }
-//
-//                            preparedStatement.setString(12, language);
-//
-//                            preparedStatement.executeUpdate();
-//                        } catch (SQLException ex) {
-//                            ex.printStackTrace();
-//                        }
-                        GuiB run = new GuiB();
-                        run.setTitle("Online Application Section B");
-                        run.setVisible(true);
-                        run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        run.setGuiB();
-                        run.setSize(800, 800);
-                        run.setLocationRelativeTo(null);
+                            }
+                             */
+                            Student stud = new Student(identity, firstName, surname, id, passport1, email, nationality, date, language, address, code, province1, number, male1, female1, subId);
 
-                        setVisible(false);
+                            stud = dao.addStudentToDB(stud);
+
+                            GuiB run = new GuiB();
+                            run.setTitle("Online Application Section B");
+                            run.setVisible(true);
+                            run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            run.setGuiB();
+                            run.setSize(800, 800);
+                            run.setLocationRelativeTo(null);
+
+                            setVisible(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GuiA.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
 
                 }
@@ -464,7 +454,7 @@ public class GuiA extends JFrame implements ActionListener {
                             new String[]{"Yes", "No"}, "Yes");
 
                     if (result == JOptionPane.YES_OPTION) {
-                      UserGui gui2 = new UserGui();
+                        UserGui gui2 = new UserGui();
                         gui2.setVisible(true);
                         gui2.setTitle("User Information");
                         gui2.setGui2();

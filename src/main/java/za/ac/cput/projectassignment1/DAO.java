@@ -1,6 +1,6 @@
 package za.ac.cput.projectassignment1;
 
-import Domain.UniversityDomain;
+import java.io.IOException;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -49,9 +49,8 @@ public class DAO {
         }
         return true;
     }
-    
-    //----------------------------------------------------------------------- Masoods methods
 
+    //----------------------------------------------------------------------- Masoods methods
     public UniversityDomain save(UniversityDomain dao) {
 
         String sql = "INSERT INTO UniversityCourseChoice(SubmissionID,ID,University,Course) VALUES('%s','%s','%s','%s')";
@@ -106,6 +105,7 @@ public class DAO {
         return null;
     }
 //----------------------------------------------------------------------- Ronalds methods
+
     public Study_choice getSavedStudyChoices() {
         String sql = "SELECT study_choice1, study_choice2 FROM Study_choice";
         Study_choice study_choice = null;
@@ -153,11 +153,78 @@ public class DAO {
         }
         return null;
     }
-    
-    //----------------------------------------------------------------------- Beurins methods
-    
-    
-    
-    //----------------------------------------------------------------------- Raeesahs methods
 
+    //----------------------------------------------------------------------- Raeesahs methods
+    public Student addStudentToDB(Student student) throws IOException, SQLException {
+        String query = "INSERT INTO Student_Info (Stud_ID, First_Name, Surname, Id, Passport, Email, Nationality, Date_Of_Birth, Home_Language, Address, Postal_Code, Province, Phone_Number, Male, Female, CertifiedID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = con.prepareStatement(query);
+
+        statement.setString(1, student.getId());
+        statement.setString(2, student.getFirstName());
+        statement.setString(3, student.getSurname());
+        statement.setBoolean(4, student.isIdSA());
+        statement.setBoolean(5, student.isPassport());
+        statement.setString(6, student.getEmail());
+        statement.setString(7, student.getNationality());
+        statement.setString(8, student.getDateOfBirth());
+        statement.setString(9, student.getLanguage());
+        statement.setString(10, student.getAddress());
+        statement.setString(11, student.getPostalCode());
+        statement.setString(12, student.getProvince());
+        statement.setString(13, student.getNumber());
+        statement.setBoolean(14, student.isMale());
+        statement.setBoolean(15, student.isFemale());
+        statement.setString(16, student.getSubmittedId());
+        statement.executeUpdate();
+        return student;
+    }
+
+    public Student addGaurdianToDB(Student student) throws IOException, SQLException {
+        String query = "INSERT INTO Student_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = con.prepareStatement(query);
+
+        statement.setInt(1, student.getGardianId());
+        statement.setString(2, student.getGardian());
+        statement.setString(3, student.getGardianName());
+        statement.setString(4, student.getGardianSurname());
+        statement.setString(5, student.getGardianEmail());
+        statement.setString(6, student.getGardianNationality());
+        statement.setString(7, student.getGardianAddress());
+        statement.setString(8, student.getGardianProvince());
+        statement.setInt(9, student.getGardianPostalCode());
+        statement.setInt(10, student.getGardianNumber());
+
+        statement.executeUpdate();
+        return student;
+    }
+
+    public Student addStudSchoolToDB(Student student) throws IOException, SQLException {
+        String query = "INSERT INTO Student_School_Info (Stud_ID, School, Year_Completed, Grade11, Grade12, Subject1, Percent1, Subject2, Percent2, Subject3, Percent3, Subject4, Percent4, Subject5, Percent5, Subject6, Percent6, Subject7, Percent7  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?)";
+        PreparedStatement statement = con.prepareStatement(query);
+
+        statement.setString(1, student.getId());
+        statement.setString(2, student.getSchool());
+        statement.setInt(3, student.getYear());
+        statement.setBoolean(4, student.isGrade11());
+        statement.setBoolean(5, student.isGrade12());
+        statement.setString(6, student.getSubject1());
+        statement.setInt(7, student.getPercent1());
+        statement.setString(8, student.getSubject2());
+        statement.setInt(9, student.getPercent2());
+        statement.setString(10, student.getSubject3());
+        statement.setInt(11, student.getPercent3());
+        statement.setString(12, student.getSubject4());
+        statement.setInt(13, student.getPercent4());
+        statement.setString(14, student.getSubject5());
+        statement.setInt(15, student.getPercent5());
+        statement.setString(16, student.getSubject6());
+        statement.setInt(17, student.getPercent6());
+        statement.setString(18, student.getSubject7());
+        statement.setInt(19, student.getPercent7());
+
+        statement.executeUpdate();
+        return student;
+    }
+
+    //----------------------------------------------------------------------- Beurins methods
 }
