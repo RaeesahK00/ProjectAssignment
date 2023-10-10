@@ -12,130 +12,122 @@ public class RegisterFormGui extends Form {
     }
 
     private void addGuiComponents() {
-         // create register label
+        // create register label
         JLabel registerLabel = new JLabel("Register");
-        registerLabel.setBounds(0, 10, 780, 120); // Adjusted position to be higher
+        registerLabel.setBounds(02, 10, 780, 120); // Adjusted position to be higher
         registerLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        registerLabel.setFont(new Font("Arial", Font.BOLD, 60));
+        registerLabel.setFont(new Font("Arial", Font.BOLD, 50));
         registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(registerLabel);
 
         // create name label
         JLabel nameLabel = new JLabel("Name: ");
-        nameLabel.setBounds(30, 120, 100, 25);
+        nameLabel.setBounds(140, 110, 100, 25);
         nameLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        nameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(nameLabel);
 
         // create name text field
         JTextField nameField = new JTextField();
-        nameField.setBounds(30, 150, 450, 39);
+        nameField.setBounds(140, 140, 450, 30);
         nameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         nameField.setForeground(CommonConstrants.TEXT_COLOR);
         add(nameField);
 
         // create surname label
         JLabel surnameLabel = new JLabel("Surname: ");
-        surnameLabel.setBounds(30, 210, 120, 25);
+        surnameLabel.setBounds(140, 190, 120, 25);
         surnameLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        surnameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        surnameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(surnameLabel);
 
         // create surname text field
         JTextField surnameField = new JTextField();
-        surnameField.setBounds(30, 240, 450, 39);
+        surnameField.setBounds(140, 220, 450, 30);
         surnameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         surnameField.setForeground(CommonConstrants.TEXT_COLOR);
         add(surnameField);
         
         // create identity label
         JLabel idenityLabel = new JLabel("Identity Number: ");
-        idenityLabel.setBounds(30, 300, 200, 25);
+        idenityLabel.setBounds(140, 270, 200, 25);
         idenityLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        idenityLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        idenityLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(idenityLabel);
 
         // create identity text field
         JTextField idenityField = new JTextField();
-        idenityField.setBounds(30, 330, 450, 39);
+        idenityField.setBounds(140, 300, 450, 30);
         idenityField.setBackground(CommonConstrants.SECONDARY_COLOR);
         idenityField.setForeground(CommonConstrants.TEXT_COLOR);
         add(idenityField);
 
         // create email label
         JLabel emailLabel = new JLabel("Email Address: ");
-        emailLabel.setBounds(30, 390, 200, 25);
+        emailLabel.setBounds(140, 350, 200, 25);
         emailLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        emailLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        emailLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(emailLabel);
 
         // create email text field
         JTextField emailField = new JTextField();
-        emailField.setBounds(30, 420, 450, 39);
+        emailField.setBounds(140, 380, 450, 30);
         emailField.setBackground(CommonConstrants.SECONDARY_COLOR);
         emailField.setForeground(CommonConstrants.TEXT_COLOR);
         add(emailField);
 
         // create username label
         JLabel usernameLabel = new JLabel("Username: ");
-        usernameLabel.setBounds(30, 470, 150, 25);
+        usernameLabel.setBounds(140, 420, 150, 25);
         usernameLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(usernameLabel);
 
         // create username text field
         JTextField usernameField = new JTextField();
-        usernameField.setBounds(30, 500, 450, 39);
+        usernameField.setBounds(140, 450, 450, 30);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
         add(usernameField);
 
         // create password label
         JLabel passwordLabel = new JLabel("Password: ");
-        passwordLabel.setBounds(30, 550, 250, 25);
+        passwordLabel.setBounds(140, 490, 250, 25);
         passwordLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(passwordLabel);
 
         // create password text field
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(30, 580, 450, 39);
+        passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+        passwordField.setBounds(140, 520, 450, 30);
         passwordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         passwordField.setForeground(CommonConstrants.TEXT_COLOR);
         add(passwordField);
 
         // create re-enter password label
         JLabel rePasswordLabel = new JLabel("Re-enter Password: ");
-        rePasswordLabel.setBounds(30, 630, 300, 25);
+        rePasswordLabel.setBounds(140, 560, 300, 25);
         rePasswordLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        rePasswordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
+        rePasswordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         add(rePasswordLabel);
 
         // create re-enter password text field
         JPasswordField rePasswordField = new JPasswordField();
-        rePasswordField.setBounds(30, 660, 450, 39);
-        rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
-        rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
-        add(rePasswordField);
-
-
-        // create re-enter password text field
-        JPasswordField rePasswordField2 = new JPasswordField();
-        rePasswordField.setBounds(30, 580, 450, 39);
+        rePasswordField.setBounds(140, 600, 450, 30);
         rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
         add(rePasswordField);
 
         // Create the "Register" button
         JButton registerButton = new JButton("Register");
-        registerButton.setFont(new Font("Arial", Font.BOLD, 24));
+        registerButton.setFont(new Font("Arial", Font.BOLD, 18));
         registerButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        registerButton.setBounds(205, 630, 250, 40);
+        registerButton.setBounds(150, 650, 250, 40);
         add(registerButton);
 
         // create login label
         JLabel loginLabel = new JLabel("Have an account? Login Here!");
-        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
         loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         loginLabel.setForeground(CommonConstrants.TEXT_COLOR);
 
