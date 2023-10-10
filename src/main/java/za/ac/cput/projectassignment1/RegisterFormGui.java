@@ -120,7 +120,7 @@ public class RegisterFormGui extends Form {
 
 
         // create re-enter password text field
-        JPasswordField rePasswordField = new JPasswordField();
+        JPasswordField rePasswordField2 = new JPasswordField();
         rePasswordField.setBounds(30, 580, 450, 39);
         rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
