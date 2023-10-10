@@ -73,7 +73,6 @@ public class LoginFormGUI extends Form {
 
         // change the cursor to a hand when hover over the button
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        loginButton.setBackground(CommonConstrants.TEXT_COLOR);
         loginButton.setBounds(205, 500, 250, 60);
         add(loginButton);
 
