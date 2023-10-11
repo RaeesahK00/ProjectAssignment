@@ -33,7 +33,7 @@ public class UserGui extends JFrame {
     JTextField txtName, txtEmail, txtSchool, txtEmergConName, txtEmergConNum;
 
     UniversityDomain domain;
-    CourseDao dao;
+    DAO dao;
 
     public UserGui() {
         
@@ -90,7 +90,7 @@ public class UserGui extends JFrame {
 //        lblUserEmergConName = new JLabel("Mogammad");
 //        lblUserEmergConNum = new JLabel("0211234567");
 
-//        dao = new CourseDao();
+        dao = new DAO();
     }
 
     public void setGui2() {
@@ -153,7 +153,7 @@ public class UserGui extends JFrame {
                 String emergName = txtEmergConName.getText();
                 String emergNum = txtEmergConNum.getText();
                 
-                UniversityDomain dom= new UniversityDomain( name, email, school, nickname,emergName,emergNum);
+                UniversityDomain dom= new UniversityDomain( name, email, school,emergName,emergNum);
                  domain = dao.updateUserInfo(dom);
                 if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Your update has been completed. Please Click OK below to proceed ");
@@ -197,9 +197,6 @@ public class UserGui extends JFrame {
 
         pnlC.add(lblSchool);
         pnlC.add(txtSchool);
-
-        pnlC.add(lblNickname);
-        pnlC.add(txtNickname);
 
         pnlC.add(lblEmergConName);
         pnlC.add(txtEmergConName);

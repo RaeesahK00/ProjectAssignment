@@ -83,7 +83,7 @@ public class DAO {
         String sql = "INSERT INTO UserInformation(name,email,school,nickname,emergCon,Emerg_Con_Num) VALUES('%s','%s','%s','%s','%s','%s')";
 
         try {
-            sql = String.format(sql, dao.getName(), dao.getEmail(), dao.getSchool(), dao.getNickname(), dao.getEmergConName(), dao.getEmergConNum());
+            sql = String.format(sql, dao.getName(), dao.getEmail(), dao.getSchool(), dao.getEmergConName(), dao.getEmergConNum());
             pstmt = this.con.prepareStatement(sql);
             ok = pstmt.executeUpdate();
             if (ok > 0) {

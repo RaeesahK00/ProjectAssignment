@@ -17,18 +17,17 @@ public class UniversityDomain {
     private String name ;
     private String email;
     private String school;
-    private String nickname;
     private String emergConName;
     private String emergConNum;
 
     public UniversityDomain() {
     }
 
-    public UniversityDomain(String name, String email, String school, String nickname, String emergConName, String emergConNum) {
+    public UniversityDomain(String name, String email, String school , String emergConName, String emergConNum) {
         this.name = name;
         this.email = email;
         this.school = school;
-        this.nickname = nickname;
+ 
         this.emergConName = emergConName;
         this.emergConNum = emergConNum;
     }
@@ -57,13 +56,7 @@ public class UniversityDomain {
         this.school = school;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+ 
 
     public String getEmergConName() {
         return emergConName;
@@ -122,7 +115,7 @@ public class UniversityDomain {
 
     @Override
     public String toString() {
-        return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + name + ", email=" + email + ", school=" + school + ", nickname=" + nickname + ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
+        return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + name + ", email=" + email + ", school=" + school +  ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
     }
 
 }
