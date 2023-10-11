@@ -28,12 +28,12 @@ public class UserGui extends JFrame {
     Border border = BorderFactory.createBevelBorder(WIDTH, Color.black, Color.black);
 
     JLabel lblUserImage, lblSchoolImage, lblNicknameImage, lblEmergConImage;
-    JLabel lblName, lblEmail, lblSchool, lblNickname, lblEmergConName, lblEmergConNum;
-    JLabel lblUserName, lblUserEmail, lblUserSchool, lblUserNickname, lblUserEmergConName, lblUserEmergConNum;
-    JTextField txtName, txtEmail, txtSchool, txtNickname, txtEmergConName, txtEmergConNum;
+    JLabel lblName, lblEmail, lblSchool, lblEmergConName, lblEmergConNum;
+    JLabel lblUserName, lblUserEmail, lblUserSchool, lblUserEmergConName, lblUserEmergConNum;
+    JTextField txtName, txtEmail, txtSchool, txtEmergConName, txtEmergConNum;
 
-//    UniversityDomain domain;
-//    CourseDao dao;
+    UniversityDomain domain;
+    CourseDao dao;
 
     public UserGui() {
         
@@ -63,9 +63,7 @@ public class UserGui extends JFrame {
         txtSchool = new JTextField("Spine Road High School");
         txtSchool.setEditable(false);
         txtSchool.setBorder(null);
-        txtNickname = new JTextField("Dalla");
-        txtNickname.setEditable(false);
-        txtNickname.setBorder(null);
+        
         txtEmergConName = new JTextField("Faried");
         txtEmergConName.setEditable(false);
         txtEmergConName.setBorder(null);
@@ -82,7 +80,6 @@ public class UserGui extends JFrame {
         lblName = new JLabel("Name");
         lblEmail = new JLabel("Email");
         lblSchool = new JLabel("School Attended");
-        lblNickname = new JLabel("Nickname");
         lblEmergConName = new JLabel("Emergency Contact Name");
         lblEmergConNum = new JLabel("Emergency Contact Number");
 
@@ -133,10 +130,6 @@ public class UserGui extends JFrame {
                 txtSchool.setBorder(border);
                 txtSchool.setText("Spine Road High");
 
-                txtNickname.setEditable(true);
-                txtNickname.setBorder(border);
-                txtNickname.setText("Dalla");
-
                 txtEmergConName.setEditable(true);
                 txtEmergConName.setBorder(border);
                 txtEmergConName.setText("Faried");
@@ -150,52 +143,49 @@ public class UserGui extends JFrame {
 
         });
 
-//        btnUpdate.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                String name = txtName.getText();
-//                String email = txtEmail.getText();
-//                String school = txtSchool.getText();
-//                String nickname = txtNickname.getText();
-//                String emergName = txtEmergConName.getText();
-//                String emergNum = txtEmergConNum.getText();
-//                
-//                UniversityDomain dom= new UniversityDomain( name, email, school, nickname,emergName,emergNum);
-//                 domain = dao.updateUserInfo(dom);
-//                if (domain.equals(dom)) {
-//                            JOptionPane.showMessageDialog(null, "Your update has been completed. Please Click OK below to proceed ");
-//                            //Move to Raeesah's SubSystem
-//                        }else {
-//                    JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
-//                }
-//               
-//                
-//                txtName.setEditable(false);
-//                txtName.setBorder(null);
-//
-//                txtEmail.setBorder(null);
-//                txtEmail.setEditable(false);
-//
-//                txtSchool.setEditable(false);
-//                txtSchool.setBorder(null);
-//
-//                txtNickname.setEditable(false);
-//                txtNickname.setBorder(null);
-//
-//                txtEmergConName.setEditable(false);
-//                txtEmergConName.setBorder(null);
-//
-//                txtEmergConNum.setEditable(false);
-//                txtEmergConNum.setBorder(null);
-//
-//                btnUpdate.setVisible(false);
-//            }
-//            
-//
-//        });
-//        // pnlW.setLayout(new GridLayout(9 ,3));
-//
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String name = txtName.getText();
+                String email = txtEmail.getText();
+                String school = txtSchool.getText();
+                String emergName = txtEmergConName.getText();
+                String emergNum = txtEmergConNum.getText();
+                
+                UniversityDomain dom= new UniversityDomain( name, email, school, nickname,emergName,emergNum);
+                 domain = dao.updateUserInfo(dom);
+                if (domain.equals(dom)) {
+                            JOptionPane.showMessageDialog(null, "Your update has been completed. Please Click OK below to proceed ");
+                            //Move to Raeesah's SubSystem
+                        }else {
+                    JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
+                }
+               
+                
+                txtName.setEditable(false);
+                txtName.setBorder(null);
+
+                txtEmail.setBorder(null);
+                txtEmail.setEditable(false);
+
+                txtSchool.setEditable(false);
+                txtSchool.setBorder(null);
+
+
+                txtEmergConName.setEditable(false);
+                txtEmergConName.setBorder(null);
+
+                txtEmergConNum.setEditable(false);
+                txtEmergConNum.setBorder(null);
+
+                btnUpdate.setVisible(false);
+            }
+            
+
+        });
+        // pnlW.setLayout(new GridLayout(9 ,3));
+
         pnlN.add(heading);
         pnlN.add(lblUserImage);
 
