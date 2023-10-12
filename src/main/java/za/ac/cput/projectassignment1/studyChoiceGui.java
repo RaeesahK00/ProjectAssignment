@@ -30,6 +30,7 @@ public class studyChoiceGui extends JFrame {
     JTextArea txtInfo;
     JLabel lblSelect, lblSpace;
     JLabel lblDiploma;
+    private static JTextField choice1, choice2;
     JComboBox cmbUniOne;
     JButton btnFaq, btnProfile, btnHome, btnSave, btnSpace, btnSpace2;
     JRadioButton rbtnCourseOne, rbtnCourseOne1, rbtnCourseTwo, rbtnCourseTwo2, rbtnCourseThree, rbtnCourseThree3, rbtnCourseThree4, rbtnCourseThree5, rbtnCourseThree6;
@@ -45,6 +46,10 @@ public class studyChoiceGui extends JFrame {
         pnlN.setBackground(Color.LIGHT_GRAY);
         pnlC = new JPanel();
         pnlS = new JPanel();
+
+        uG = new UniversityGui();
+        choice1 = new JTextField();
+        choice2 = new JTextField();
 
         cmbUniOne = new JComboBox();
         cmbUniOne.setFont(font2);
@@ -70,6 +75,7 @@ public class studyChoiceGui extends JFrame {
         lblDiploma.setFont(font1);
         lblDiploma.setHorizontalAlignment(JLabel.CENTER);
         lblDiploma.setForeground(Color.blue);
+
         lblSpace = new JLabel();
         txtInfo = new JTextArea(30, 50);
         txtInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -94,7 +100,7 @@ public class studyChoiceGui extends JFrame {
 
         domain = new UniversityDomain();
         dao = new DAO();
-        uG = new UniversityGui();
+
     }
     String id;
     int submissionID;
@@ -111,7 +117,7 @@ public class studyChoiceGui extends JFrame {
             id = JOptionPane.showInputDialog("Please enter your ID to continue");
 
         }
-        submissionID = dao.submission();
+       submissionID = dao.submission();
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
             cmbUniOne.addItem(universities[i]);
@@ -414,15 +420,20 @@ public class studyChoiceGui extends JFrame {
             }
 
         });
+
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 String facultyOne = uG.txt1.getText();
+
                 System.out.println(facultyOne);
                 submissionID++;
-                System.out.println("Submission ID: " + submissionID);
+                System.out.println(
+                        "Submission ID: " + submissionID);
                 String University = (String) cmbUniOne.getSelectedItem();
                 String course = "";
+
                 if (rbtnCourseOne.isSelected()) {
                     course = (String) rbtnCourseOne.getText();
                 } else if (rbtnCourseTwo.isSelected()) {
@@ -433,7 +444,8 @@ public class studyChoiceGui extends JFrame {
                 String[] options = new String[2];
                 options[0] = "Save and Continue";
                 options[1] = "Save";
-                if (rbtnCourseOne.isSelected() || rbtnCourseTwo.isSelected() || rbtnCourseThree.isSelected()) {
+                if (rbtnCourseOne.isSelected()
+                        || rbtnCourseTwo.isSelected() || rbtnCourseThree.isSelected()) {
                     // int response = JOptionPane.showConfirmDialog(null, "If you are satisfied with the chosen universities, click 'Save'." + " If you would like to choose more, click 'Save and Continue'");
                     int response = JOptionPane.showOptionDialog(null, "If you are satisfied with the chosen universities, click 'Save and continue'." + " If you would like to choose more, click 'Save'", "Save ", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
                     if (response == JOptionPane.YES_OPTION) {
@@ -465,11 +477,12 @@ public class studyChoiceGui extends JFrame {
                     JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
                 }
             }
-        });
+        }
+        );
 //        
 
         pnlN.setLayout(
-                new GridLayout(4, 1));
+                new GridLayout(6, 1));
         pnlC.setLayout(
                 new GridLayout(8, 3));
         pnlS.setLayout(
@@ -477,7 +490,10 @@ public class studyChoiceGui extends JFrame {
         pnlC.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
         pnlN.setBorder(BorderFactory.createEmptyBorder(40, 20, 0, 20));
         pnlN.add(lblDiploma);
+
         pnlN.add(btnSpace);
+        pnlN.add(choice1);
+        pnlN.add(choice2);
         pnlN.add(lblSelect);
 
         pnlC.add(cmbUniOne);
@@ -511,8 +527,18 @@ public class studyChoiceGui extends JFrame {
 
     }
 
+    public static void displayText(String text) {
+
+//        choice1.setText(text);
+//        choice2.setText(text);
+        System.out.println("Text received: " + text);
+
+    }
+
     public static void main(String[] args) {
+
         studyChoiceGui scg = new studyChoiceGui();
         scg.setGui();
+
     }
 }

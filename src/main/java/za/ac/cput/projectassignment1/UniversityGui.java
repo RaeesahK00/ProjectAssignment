@@ -26,6 +26,8 @@ public class UniversityGui extends JFrame implements ActionListener {
     public JTextField txt1, txt2;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
+    private studyChoiceGui classB;
+    private String choice1, choice2;
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
@@ -109,7 +111,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         panelNorth.setBackground(Color.LIGHT_GRAY);
         lblHeading.setForeground(Color.black);
         lblHeading.setFont(ft1);
-        
+
         comboFaculty.addItem("Choose a faculty of your choice");
         comboFaculty.addItem("Faculty of Applied Sciences");
         comboFaculty.addItem("Faculty of Business and Management Sciences");
@@ -196,7 +198,7 @@ public class UniversityGui extends JFrame implements ActionListener {
             public void itemStateChanged(ItemEvent e) {
                 btnSave.setEnabled(true);
             }
-         
+
         });
 
     }
@@ -205,14 +207,17 @@ public class UniversityGui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnNext) {
             // Get the text from the text fields
-            String choice1 = txt1.getText();
-            String choice2 = txt2.getText();
+            choice1 = txt1.getText();
+            choice2 = txt2.getText();
 
+            studyChoiceGui.displayText(choice1);
+            studyChoiceGui.displayText(choice2);
             // Show the ApsScorePage
             ApsScorePage.setVisible(true);
             ApsScorePage.updateChoiceLabels(choice1, choice2);
 
             setEnabled(false);
+            setVisible(false);
         } else if (e.getSource() == btnExternalTest) {
 
             try {
@@ -265,7 +270,7 @@ public class UniversityGui extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         UniversityGui gui = new UniversityGui();
-        gui.setLocationRelativeTo(null);
         gui.setGUI();
+        gui.setLocationRelativeTo(null);
     }
 }

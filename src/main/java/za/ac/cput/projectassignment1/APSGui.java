@@ -19,9 +19,11 @@ public class APSGui extends javax.swing.JFrame {
 //    private static    APSDomain domain;
     private static String ID;
 
+    private final ApsScorePage ApsScorePage;
+
     public APSGui() {
         initComponents();
-
+        ApsScorePage = new ApsScorePage();
 //        dao = new APSdao();
     }
 
@@ -406,11 +408,9 @@ public class APSGui extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField13ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        ApsScorePage gui = new ApsScorePage();
-//        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        gui.setSize(800, 800);
-//        gui.setLocationRelativeTo(null);
-//        setVisible(false);
+        ApsScorePage.setVisible(true);
+        setVisible(false);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

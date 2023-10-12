@@ -13,10 +13,12 @@ public class ApsScorePage extends JFrame {
     private Font ft1, ft2, ft3, ft4;
 //    private UniversityGui universityGui;
 
-
     public void updateChoiceLabels(String choice1, String choice2) {
         lblChoice1.setText("Choice 1: " + choice1);
         lblChoice2.setText("Choice 2: " + choice2);
+
+       
+
     }
 
     public ApsScorePage() {
@@ -78,7 +80,6 @@ public class ApsScorePage extends JFrame {
         panelSouth.setBackground(Color.LIGHT_GRAY);
 
 //        this.universityGui = universityGui;
-
         btnBack.addActionListener((ActionEvent e) -> {
             UniversityGui GUI = new UniversityGui();
             setVisible(false);
@@ -88,12 +89,12 @@ public class ApsScorePage extends JFrame {
         btnNext.addActionListener((ActionEvent e) -> {
 
             studyChoiceGui gui = new studyChoiceGui();
-            gui.setVisible(true);
             gui.setTitle("University Selection");
             gui.setGui();
-            gui.setSize(800, 800);
-            gui.setLocationRelativeTo(null);
             gui.setDefaultCloseOperation(gui.EXIT_ON_CLOSE);
+            gui.setSize(800, 800);
+            gui.setVisible(true);
+            gui.setLocationRelativeTo(null);
 
             setVisible(false);
 
