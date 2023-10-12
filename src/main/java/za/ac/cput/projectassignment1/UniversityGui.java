@@ -23,7 +23,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final ApsScorePage ApsScorePage;
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     private final JComboBox<String> comboFaculty;
-    private final JLabel lblImage, lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
+    private final JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
     public  JTextField txt1, txt2;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
@@ -58,11 +58,11 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblHeading.setPreferredSize(new Dimension(300, 40));
         lblHeading.setFont(ft1);
 
-        ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
-        Image originalImage = originalIcon.getImage();
-        Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        lblImage = new JLabel(scaledIcon, SwingConstants.CENTER);
+//    //    ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
+//        Image originalImage = originalIcon.getImage();
+//        Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+//        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+//        lblImage = new JLabel(scaledIcon, SwingConstants.CENTER);
         txt1 = new JTextField(10);
         txt1.setPreferredSize(new Dimension(10, 10));
         txt1Label = new JLabel("First Choice");
@@ -136,10 +136,10 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblMessage4.setFont(ft4);
         panelLeft.setBackground(Color.LIGHT_GRAY);
 
-        lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+      //  lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        panelRight.add(lblImage);
-        lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
+      //  panelRight.add(lblImage);
+      //  lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelRight.add(txt1Label);
         txt1Label.setFont(ft2);
         panelRight.add(txt1);

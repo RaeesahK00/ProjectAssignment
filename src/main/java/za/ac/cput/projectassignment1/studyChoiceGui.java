@@ -15,8 +15,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.swing.*;
 
-//import Dao.CourseDao;
-//import Domain.UniversityDomain;
+
 /**
  *
  * @author 221376321 Mogammad Mas'ood Lamera
@@ -38,7 +37,9 @@ public class studyChoiceGui extends JFrame {
     FileWriter fw;
     BufferedWriter bw;
     String txtFileHeadingOne, txtFileHeadingTwo;
-    UniversityGui uG = new UniversityGui();
+  //  UniversityGui uG = new UniversityGui();
+    UniversityDomain domain ;   
+    DAO dao;
 
     public studyChoiceGui() {
         pnlN = new JPanel();
@@ -92,10 +93,12 @@ public class studyChoiceGui extends JFrame {
         group.add(rbtnCourseTwo);
         group.add(rbtnCourseThree);
 
-//        dao = new CourseDao();
+       
+         domain  = new  UniversityDomain();
+         dao = new DAO();
     }
     String id;
-    int submissionID = 0000001;
+    int submissionID ;
 
     public void setGui() {
         id = JOptionPane.showInputDialog("Please enter your ID to continue");
@@ -109,7 +112,7 @@ public class studyChoiceGui extends JFrame {
             id = JOptionPane.showInputDialog("Please enter your ID to continue");
 
         }
-
+        submissionID = dao.submission();
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
             cmbUniOne.addItem(universities[i]);
@@ -157,8 +160,8 @@ public class studyChoiceGui extends JFrame {
                 String selected = (String) cmbUniOne.getSelectedItem();
                 txtInfo.setText("");
 
-                String facultyOne = uG.txt1.getText();
-                if (facultyOne.equalsIgnoreCase("Faculty of Informatics and Design")) {
+////                String facultyOne = uG.txt1.getText();
+////                if (facultyOne.equalsIgnoreCase("Faculty of Informatics and Design")) {
 
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
@@ -186,7 +189,9 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("Computer Graphics");
                     }
-                } else if (facultyOne.equalsIgnoreCase("Faculty of Applied Sciences")) {
+              //  }
+            else 
+//                if (facultyOne.equalsIgnoreCase("Faculty of Applied Sciences")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Archaeology");
@@ -196,7 +201,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Environmental And Geographical Science");
 
                     }
-                    if (selected.equals("Cape Peninsula University of Technology")) {
+                    else if (selected.equals("Cape Peninsula University of Technology")) {
 
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Biotechnology");
@@ -206,7 +211,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Environmental Health");
 
                     }
-                    if (selected.equals("University of Western Cape")) {
+                   else if (selected.equals("University of Western Cape")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Bachelor of Pharmacy");
                         rbtnCourseTwo.setVisible(true);
@@ -214,7 +219,9 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("BSc Chemical Sciences");
                     }
-                } else if (facultyOne.equalsIgnoreCase("Faculty of Business and Management Sciences")) {
+              //  } 
+else 
+                        //if (facultyOne.equalsIgnoreCase("Faculty of Business and Management Sciences")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Commerce IT Support");
@@ -224,7 +231,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("College of Accounting");
 
                     }
-                    if (selected.equals("Cape Peninsula University of Technology")) {
+                 else   if (selected.equals("Cape Peninsula University of Technology")) {
 
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Paralegal");
@@ -234,7 +241,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Tourism and Sports");
 
                     }
-                    if (selected.equals("University of Western Cape")) {
+                   else if (selected.equals("University of Western Cape")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Bachelor of Administration");
                         rbtnCourseTwo.setVisible(true);
@@ -242,7 +249,9 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("BCom in Information Systems");
                     }
-                } else if (facultyOne.equalsIgnoreCase("Faculty of Engineering & the Built Environment")) {
+          //      }
+            else 
+        //    if (facultyOne.equalsIgnoreCase("Faculty of Engineering & the Built Environment")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Architecture and Planning");
@@ -252,7 +261,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Electronic Engineering");
 
                     }
-                    if (selected.equals("Cape Peninsula University of Technology")) {
+                  else  if (selected.equals("Cape Peninsula University of Technology")) {
 
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Chemical Engineering");
@@ -262,7 +271,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Mechanical and Mechatronic Engineering");
 
                     }
-                    if (selected.equals("University of Western Cape")) {
+                  else  if (selected.equals("University of Western Cape")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Electrical Engineering");
                         rbtnCourseTwo.setVisible(true);
@@ -270,7 +279,9 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("Environmental Science");
                     }
-                } else if (facultyOne.equalsIgnoreCase("")) {
+              //  } 
+else 
+//if (facultyOne.equalsIgnoreCase("")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Archaeology");
@@ -280,7 +291,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Environmental And Geographical Science");
 
                     }
-                    if (selected.equals("Cape Peninsula University of Technology")) {
+                  else  if (selected.equals("Cape Peninsula University of Technology")) {
 
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Biotechnology");
@@ -290,7 +301,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("Environmental Health");
 
                     }
-                    if (selected.equals("University of Western Cape")) {
+                  else  if (selected.equals("University of Western Cape")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Bachelor of Pharmacy");
                         rbtnCourseTwo.setVisible(true);
@@ -299,7 +310,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("BSc Chemical Sciences");
                     }
                 }
-            }
+           // }
         }
         );
         //radio button one action listener
@@ -434,48 +445,48 @@ public class studyChoiceGui extends JFrame {
                 run.setSize(890, 700);
                 run.setLocationRelativeTo(null);
                 setVisible(false);
-//                submissionID++;
-//                System.out.println("Submission ID: " + submissionID);
-//                String University = (String) cmbUniOne.getSelectedItem();
-//                String course = "";
-//                if (rbtnCourseOne.isSelected()) {
-//                    course = (String) rbtnCourseOne.getText();
-//                } else if (rbtnCourseTwo.isSelected()) {
-//                    course = (String) rbtnCourseTwo.getText();
-//                } else if (rbtnCourseThree.isSelected()) {
-//                    course = (String) rbtnCourseThree.getText();
-//                }
-//                String[] options = new String[2];
-//                options[0] = "Save and Continue";
-//                options[1] = "Save";
-//                if (rbtnCourseOne.isSelected() || rbtnCourseTwo.isSelected() || rbtnCourseThree.isSelected()) {
-//                    // int response = JOptionPane.showConfirmDialog(null, "If you are satisfied with the chosen universities, click 'Save'." + " If you would like to choose more, click 'Save and Continue'");
-//                    int response = JOptionPane.showOptionDialog(null, "If you are satisfied with the chosen universities, click 'Save and continue'." + " If you would like to choose more, click 'Save'", "Save ", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
-//                    if (response == JOptionPane.YES_OPTION) {
-//                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
-//
-//                        domain = dao.save(dom);
-//                        if (domain.equals(dom)) {
-//                            JOptionPane.showMessageDialog(null, "Information Saved, please proceed");
-//                            JOptionPane.showMessageDialog(null, "Goes to Application Page");
-//                            //Move to Raeesah's SubSystem
-//                        }
-//                    } else {
-//                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
-//                        domain = dao.save(dom);
-//                        if (domain.equals(dom)) {
-//                            JOptionPane.showMessageDialog(null, "Information Saved");
-//                            
-//                            
-//                        }
-//                    }
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
-//                }
-//            }
+                submissionID++;
+                System.out.println("Submission ID: " + submissionID);
+                String University = (String) cmbUniOne.getSelectedItem();
+                String course = "";
+                if (rbtnCourseOne.isSelected()) {
+                    course = (String) rbtnCourseOne.getText();
+                } else if (rbtnCourseTwo.isSelected()) {
+                    course = (String) rbtnCourseTwo.getText();
+                } else if (rbtnCourseThree.isSelected()) {
+                    course = (String) rbtnCourseThree.getText();
+                }
+                String[] options = new String[2];
+                options[0] = "Save and Continue";
+                options[1] = "Save";
+                if (rbtnCourseOne.isSelected() || rbtnCourseTwo.isSelected() || rbtnCourseThree.isSelected()) {
+                    // int response = JOptionPane.showConfirmDialog(null, "If you are satisfied with the chosen universities, click 'Save'." + " If you would like to choose more, click 'Save and Continue'");
+                    int response = JOptionPane.showOptionDialog(null, "If you are satisfied with the chosen universities, click 'Save and continue'." + " If you would like to choose more, click 'Save'", "Save ", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
+                    if (response == JOptionPane.YES_OPTION) {
+                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
+
+                        domain = dao.save(dom);
+                        if (domain.equals(dom)) {
+                            JOptionPane.showMessageDialog(null, "Information Saved, please proceed");
+                            JOptionPane.showMessageDialog(null, "Goes to Application Page");
+                            //Move to Raeesah's SubSystem
+                        }
+                    } else {
+                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
+                        domain = dao.save(dom);
+                        if (domain.equals(dom)) {
+                            JOptionPane.showMessageDialog(null, "Information Saved");
+                            
+                            
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
+                }
             }
-        }
-        );
+            });
+//        
+        
 
         pnlN.setLayout(
                 new GridLayout(4, 1));
@@ -517,5 +528,9 @@ public class studyChoiceGui extends JFrame {
 
         add(pnlC, BorderLayout.CENTER);
         // add(pnlC, BorderLayout.CENTER);
+    }
+    public static void main(String[] args) {
+        studyChoiceGui scg = new studyChoiceGui();
+        scg.setGui();
     }
 }

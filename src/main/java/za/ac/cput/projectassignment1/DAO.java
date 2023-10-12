@@ -2,6 +2,8 @@ package za.ac.cput.projectassignment1;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,6 +105,27 @@ public class DAO {
             }
         }
         return null;
+    }
+
+    public Integer submission() {
+        int lastValue = 0;
+        try {
+            //        String sql = "SELECT SubmissionID FROM UniversityCourseGui";
+            String sql = "SELECT SubmissionID FROM UniversityCourseChoice WHERE SubmissionID = (SELECT MAX(SubmissionID) FROM UniversityCourseChoice)";
+            pstmt = con.prepareStatement(sql);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            if (resultSet.next()) {
+                // Retrieve the last value of the specified column
+                lastValue = resultSet.getInt("SubmissionID");
+            } else {
+                System.out.println("No data found in the table.");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastValue;
+
     }
 //----------------------------------------------------------------------- Ronalds methods
 
