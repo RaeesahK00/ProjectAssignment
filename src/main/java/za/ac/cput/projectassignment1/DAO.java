@@ -82,10 +82,10 @@ public class DAO {
 
     public UniversityDomain updateUserInfo(UniversityDomain dao) {
 
-        String sql = "INSERT INTO UserInformation(name,email,school,nickname,emergCon,Emerg_Con_Num) VALUES('%s','%s','%s','%s','%s','%s')";
+        String sql = "UPDATE User_Table SET User_name=?, User_email=?, User_school=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
 
         try {
-            sql = String.format(sql, dao.getName(), dao.getEmail(), dao.getSchool(), dao.getEmergConName(), dao.getEmergConNum());
+            sql = String.format(sql , dao.getName(), dao.getEmail(), dao.getSchool(), dao.getEmergConName(), dao.getEmergConNum());
             pstmt = this.con.prepareStatement(sql);
             ok = pstmt.executeUpdate();
             if (ok > 0) {
