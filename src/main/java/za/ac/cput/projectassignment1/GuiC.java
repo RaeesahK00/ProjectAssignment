@@ -2,6 +2,10 @@ package za.ac.cput.projectassignment1;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -21,6 +25,7 @@ public class GuiC extends JFrame {
     private JTextField attachmentField;
     private JButton browseButton;
     private JTextArea text;
+    private DAO dao;
 
     public GuiC() {
         font1 = new Font("Arial", Font.BOLD, 16);
@@ -141,6 +146,8 @@ public class GuiC extends JFrame {
         grade12 = new JCheckBox("Grade 12 Results");
         grade12.setFont(font3);
 
+        dao = new DAO();
+
     }
 
     public void setGuiC() {
@@ -226,6 +233,7 @@ public class GuiC extends JFrame {
                     if (result == JOptionPane.YES_OPTION) {
 
                         //       try {
+                        String id = "get id";
                         String school = schoolTxt.getText();
                         String year = yearTxt.getText();
                         String subj1 = sub1.getText();
@@ -246,6 +254,16 @@ public class GuiC extends JFrame {
                         boolean grade1 = grade11.isSelected();
                         boolean grade2 = grade12.isSelected();
                         String subResults = attachmentField.getText();
+
+                        Student stud = new Student(id, school, year, grade1, grade2, subj1, percents1, subj2, percents2, subj3, percents3, subj4, percents4, subj5, percents5, subj6, percents6, subj7, percents7, subResults);
+
+                        try {
+                            stud = dao.addStudSchoolToDB(stud);
+                        } catch (IOException ex) {
+                            Logger.getLogger(GuiC.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GuiC.class.getName()).log(Level.SEVERE, null, ex);
+                        }
 
                         /*            if (school.isEmpty()) {
                                 JOptionPane.showMessageDialog(null, "Please enter your High school name.");

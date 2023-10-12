@@ -229,23 +229,23 @@ public class DAO {
 
         statement.setString(1, student.getId());
         statement.setString(2, student.getSchool());
-        statement.setInt(3, student.getYear());
+        statement.setString(3, student.getYear());
         statement.setBoolean(4, student.isGrade11());
         statement.setBoolean(5, student.isGrade12());
         statement.setString(6, student.getSubject1());
-        statement.setInt(7, student.getPercent1());
+        statement.setString(7, student.getPercent1());
         statement.setString(8, student.getSubject2());
-        statement.setInt(9, student.getPercent2());
+        statement.setString(9, student.getPercent2());
         statement.setString(10, student.getSubject3());
-        statement.setInt(11, student.getPercent3());
+        statement.setString(11, student.getPercent3());
         statement.setString(12, student.getSubject4());
-        statement.setInt(13, student.getPercent4());
+        statement.setString(13, student.getPercent4());
         statement.setString(14, student.getSubject5());
-        statement.setInt(15, student.getPercent5());
+        statement.setString(15, student.getPercent5());
         statement.setString(16, student.getSubject6());
-        statement.setInt(17, student.getPercent6());
+        statement.setString(17, student.getPercent6());
         statement.setString(18, student.getSubject7());
-        statement.setInt(19, student.getPercent7());
+        statement.setString(19, student.getPercent7());
 
         statement.executeUpdate();
         return student;
