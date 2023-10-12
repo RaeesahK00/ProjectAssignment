@@ -72,23 +72,12 @@ public class UserGui extends JFrame {
         txtEmergConNum.setBorder(null);
 
 
-        /* lblSchoolImage.setIcon(new ImageIcon("SchoolImage.jpg"));
-        lblNicknameImage = new JLabel();
-        lblNicknameImage.setIcon(new ImageIcon("NicknameImage.png"));
-        lblEmergConImage = new JLabel();
-        lblEmergConImage.setIcon(new ImageIcon("EmergConImage.jpg"));*/
         lblName = new JLabel("Name");
         lblEmail = new JLabel("Email");
         lblSchool = new JLabel("School Attended");
         lblEmergConName = new JLabel("Emergency Contact Name");
         lblEmergConNum = new JLabel("Emergency Contact Number");
 
-//        lblUserName = new JLabel("Mogammad Mas'ood");
-//        lblUserEmail = new JLabel("masood@email.com");
-//        lblUserSchool = new JLabel("Cape Peninsula University of Technology");
-//        lblUserNickname = new JLabel("Mas'ood");
-//        lblUserEmergConName = new JLabel("Mogammad");
-//        lblUserEmergConNum = new JLabel("0211234567");
 
         dao = new DAO();
     }

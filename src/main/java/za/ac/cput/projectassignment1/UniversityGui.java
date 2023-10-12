@@ -109,7 +109,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         panelNorth.setBackground(Color.LIGHT_GRAY);
         lblHeading.setForeground(Color.black);
         lblHeading.setFont(ft1);
-       
+        
         comboFaculty.addItem("Choose a faculty of your choice");
         comboFaculty.addItem("Faculty of Applied Sciences");
         comboFaculty.addItem("Faculty of Business and Management Sciences");

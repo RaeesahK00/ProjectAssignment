@@ -36,7 +36,7 @@ public class studyChoiceGui extends JFrame {
     FileWriter fw;
     BufferedWriter bw;
     String txtFileHeadingOne, txtFileHeadingTwo;
-    //  UniversityGui uG = new UniversityGui();
+    UniversityGui uG;
     UniversityDomain domain;
     DAO dao;
 
@@ -94,6 +94,7 @@ public class studyChoiceGui extends JFrame {
 
         domain = new UniversityDomain();
         dao = new DAO();
+        uG = new UniversityGui();
     }
     String id;
     int submissionID;
@@ -158,7 +159,6 @@ public class studyChoiceGui extends JFrame {
                 String selected = (String) cmbUniOne.getSelectedItem();
                 txtInfo.setText("");
 
-////                String facultyOne = uG.txt1.getText();
 ////                if (facultyOne.equalsIgnoreCase("Faculty of Informatics and Design")) {
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
@@ -417,7 +417,8 @@ public class studyChoiceGui extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String facultyOne = uG.txt1.getText();
+                System.out.println(facultyOne);
                 submissionID++;
                 System.out.println("Submission ID: " + submissionID);
                 String University = (String) cmbUniOne.getSelectedItem();
@@ -441,7 +442,8 @@ public class studyChoiceGui extends JFrame {
                         domain = dao.save(dom);
                         if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Information Saved, please proceed");
-                             GuiPOP1 run = new GuiPOP1();
+                            GuiPOP1 run = new GuiPOP1();
+                            setVisible(false);
                             run.setTitle("CONSENT TO PROCESS PERSONAL INFORMATION");
                             run.setVisible(true);
                             run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -456,7 +458,6 @@ public class studyChoiceGui extends JFrame {
                         domain = dao.save(dom);
                         if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Information Saved");
-                           
 
                         }
                     }
@@ -507,6 +508,7 @@ public class studyChoiceGui extends JFrame {
 
         add(pnlC, BorderLayout.CENTER);
         // add(pnlC, BorderLayout.CENTER);
+
     }
 
     public static void main(String[] args) {
