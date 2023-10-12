@@ -109,7 +109,8 @@ public class UniversityGui extends JFrame implements ActionListener {
         panelNorth.setBackground(Color.LIGHT_GRAY);
         lblHeading.setForeground(Color.black);
         lblHeading.setFont(ft1);
-
+       
+        comboFaculty.addItem("Choose a faculty of your choice");
         comboFaculty.addItem("Faculty of Applied Sciences");
         comboFaculty.addItem("Faculty of Business and Management Sciences");
         comboFaculty.addItem("Faculty of Engineering & the Built Environment");
@@ -193,11 +194,9 @@ public class UniversityGui extends JFrame implements ActionListener {
         comboFaculty.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    // Item selected, so show the button
-                    btnSave.setVisible(true);
-                }
+                btnSave.setEnabled(true);
             }
+         
         });
 
     }
