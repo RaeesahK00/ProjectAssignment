@@ -20,6 +20,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final JPanel panelCenter, panelCombo, panelLeft, panelRight;
     private final ApsScorePage ApsScorePage;
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
+    String selectedOption;
     private final JComboBox<String> comboFaculty;
     private final JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
     public JTextField txt1, txt2;
@@ -187,6 +188,18 @@ public class UniversityGui extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
         setVisible(true);
+        btnSave.setEnabled(false);
+
+        comboFaculty.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    // Item selected, so show the button
+                    btnSave.setVisible(true);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -200,7 +213,7 @@ public class UniversityGui extends JFrame implements ActionListener {
             ApsScorePage.setVisible(true);
             ApsScorePage.updateChoiceLabels(choice1, choice2);
 
-            setVisible(false);
+            setEnabled(false);
         } else if (e.getSource() == btnExternalTest) {
 
             try {
@@ -209,7 +222,8 @@ public class UniversityGui extends JFrame implements ActionListener {
                 System.out.println(ex.getMessage());
             }
         } else if (e.getSource() == btnSave) {
-            String selectedOption = (String) comboFaculty.getSelectedItem();
+
+            selectedOption = (String) comboFaculty.getSelectedItem();
             JOptionPane.showMessageDialog(this, "Choice of study: " + selectedOption);
             btnNext.setVisible(true);
 
@@ -222,9 +236,9 @@ public class UniversityGui extends JFrame implements ActionListener {
                 txt2.setText(selectedOption);
             }
             if (selectedOption != null) {
-                    // Disable the selected item to prevent it from being chosen again
-                    comboFaculty.removeItem(selectedOption);
-                }
+                // Disable the selected item to prevent it from being chosen again
+                comboFaculty.removeItem(selectedOption);
+            }
 
             if (!textField1Text.isEmpty() && !textField2Text.isEmpty()) {
                 btnSave.setEnabled(false);
