@@ -94,7 +94,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         btnNext.setForeground(Color.black);
         btnNext.setBackground(Color.white);
         btnNext.setFont(ft2);
-        
+        btnNext.setVisible(false);
         dao = new DAO();
 
     }
@@ -213,7 +213,8 @@ public class UniversityGui extends JFrame implements ActionListener {
         } else if (e.getSource() == btnSave) {
             String selectedOption = (String) comboFaculty.getSelectedItem();
             JOptionPane.showMessageDialog(this, "Choice of study: " + selectedOption);
-
+            btnNext.setVisible(true);
+            
             String textField1Text = txt1.getText();
             String textField2Text = txt2.getText();
 
