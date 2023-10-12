@@ -5,8 +5,6 @@ package za.ac.cput.projectassignment1;
  *
  * @author Ronald Hercules
  */
-
-
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -24,7 +22,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     private final JComboBox<String> comboFaculty;
     private final JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
-    public  JTextField txt1, txt2;
+    public JTextField txt1, txt2;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
 
@@ -136,10 +134,9 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblMessage4.setFont(ft4);
         panelLeft.setBackground(Color.LIGHT_GRAY);
 
-      //  lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-      //  panelRight.add(lblImage);
-      //  lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //  lblImage.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        //  panelRight.add(lblImage);
+        //  lblImage.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelRight.add(txt1Label);
         txt1Label.setFont(ft2);
         panelRight.add(txt1);
@@ -150,7 +147,8 @@ public class UniversityGui extends JFrame implements ActionListener {
 
         txt1.setPreferredSize(new Dimension(20, 20));
         txt2.setPreferredSize(new Dimension(20, 20));
-
+        txt1.setEditable(false);
+        txt2.setEditable(false);
         txt1Label.setFont(ft3);
         txt2Label.setFont(ft3);
 
@@ -214,7 +212,7 @@ public class UniversityGui extends JFrame implements ActionListener {
             String selectedOption = (String) comboFaculty.getSelectedItem();
             JOptionPane.showMessageDialog(this, "Choice of study: " + selectedOption);
             btnNext.setVisible(true);
-            
+
             String textField1Text = txt1.getText();
             String textField2Text = txt2.getText();
 
@@ -223,13 +221,17 @@ public class UniversityGui extends JFrame implements ActionListener {
             } else if (textField2Text.isEmpty()) {
                 txt2.setText(selectedOption);
             }
+            if (selectedOption != null) {
+                    // Disable the selected item to prevent it from being chosen again
+                    comboFaculty.removeItem(selectedOption);
+                }
 
             if (!textField1Text.isEmpty() && !textField2Text.isEmpty()) {
                 btnSave.setEnabled(false);
 
                 // Save the choices to the database
                 Study_choice study_choice = new Study_choice(textField1Text, textField2Text);
-                
+
                 try {
                     dao.save(study_choice);
                 } catch (SQLException ex) {
@@ -250,6 +252,7 @@ public class UniversityGui extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         UniversityGui gui = new UniversityGui();
+        gui.setLocationRelativeTo(null);
         gui.setGUI();
     }
 }
