@@ -5,43 +5,44 @@ package za.ac.cput.projectassignment1;
  * @author Desktop
  */
 public class Student {
-    private static String id;
-    private static String firstName, surname;
-    private static boolean idSA;
-    private static boolean passport;
-    private static String email, nationality, dateOfBirth;
-    private static String language, address;
-    private static String postalCode;
-    private static String province;
-    private static String number;
-    private static boolean male;
-    private static boolean female;
-    private static String submittedId;
 
-    
+    private String id;
+    private String firstName, surname;
+    private boolean idSA;
+    private boolean passport;
+    private String email, nationality, dateOfBirth;
+    private String language, address;
+    private String postalCode;
+    private String province;
+    private String number;
+    private boolean male;
+    private boolean female;
+    private String submittedId;
+    private String submittedResults;
+
     private String gardianId;
     private String gardian;
     private String gardianName, gardianSurname, gardianEmail, gardianNationality, gardianAddress, gardianProvince;
     private String gardianPostalCode, gardianNumber;
 
     private String school;
-    private int year;
+    private String year;
     private boolean grade11;
     private boolean grade12;
     private String subject1;
-    private int percent1;
+    private String percent1;
     private String subject2;
-    private int percent2;
+    private String percent2;
     private String subject3;
-    private int percent3;
+    private String percent3;
     private String subject4;
-    private int percent4;
+    private String percent4;
     private String subject5;
-    private int percent5;
+    private String percent5;
     private String subject6;
-    private int percent6;
+    private String percent6;
     private String subject7;
-    private int percent7;
+    private String percent7;
 
     public Student() {
     }
@@ -78,9 +79,7 @@ public class Student {
         this.gardianNumber = gardianNumber;
     }
 
-   
-
-    public Student(String id, String school, int year, boolean grade11, boolean grade12, String subject1, int percent1, String subject2, int percent2, String subject3, int percent3, String subject4, int percent4, String subject5, int percent5, String subject6, int percent6, String subject7, int percent7) {
+    public Student(String id, String school, String year, boolean grade11, boolean grade12, String subject1, String percent1, String subject2, String percent2, String subject3, String percent3, String subject4, String percent4, String subject5, String percent5, String subject6, String percent6, String subject7, String percent7, String submittedResults) {
         this.id = id;
         this.school = school;
         this.year = year;
@@ -100,6 +99,8 @@ public class Student {
         this.percent6 = percent6;
         this.subject7 = subject7;
         this.percent7 = percent7;
+        this.submittedResults = submittedResults;
+
     }
 
     public String getId() {
@@ -230,12 +231,12 @@ public class Student {
         this.submittedId = submittedId;
     }
 
-    public String getGardian() {
-        return gardian;
+    public String getSubmittedResults() {
+        return submittedResults;
     }
 
-    public void setGardian(String gardian) {
-        this.gardian = gardian;
+    public void setSubmittedResults(String submittedResults) {
+        this.submittedResults = submittedResults;
     }
 
     public String getGardianId() {
@@ -244,6 +245,14 @@ public class Student {
 
     public void setGardianId(String gardianId) {
         this.gardianId = gardianId;
+    }
+
+    public String getGardian() {
+        return gardian;
+    }
+
+    public void setGardian(String gardian) {
+        this.gardian = gardian;
     }
 
     public String getGardianName() {
@@ -318,11 +327,11 @@ public class Student {
         this.school = school;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -350,11 +359,11 @@ public class Student {
         this.subject1 = subject1;
     }
 
-    public int getPercent1() {
+    public String getPercent1() {
         return percent1;
     }
 
-    public void setPercent1(int percent1) {
+    public void setPercent1(String percent1) {
         this.percent1 = percent1;
     }
 
@@ -366,11 +375,11 @@ public class Student {
         this.subject2 = subject2;
     }
 
-    public int getPercent2() {
+    public String getPercent2() {
         return percent2;
     }
 
-    public void setPercent2(int percent2) {
+    public void setPercent2(String percent2) {
         this.percent2 = percent2;
     }
 
@@ -382,11 +391,11 @@ public class Student {
         this.subject3 = subject3;
     }
 
-    public int getPercent3() {
+    public String getPercent3() {
         return percent3;
     }
 
-    public void setPercent3(int percent3) {
+    public void setPercent3(String percent3) {
         this.percent3 = percent3;
     }
 
@@ -398,11 +407,11 @@ public class Student {
         this.subject4 = subject4;
     }
 
-    public int getPercent4() {
+    public String getPercent4() {
         return percent4;
     }
 
-    public void setPercent4(int percent4) {
+    public void setPercent4(String percent4) {
         this.percent4 = percent4;
     }
 
@@ -414,11 +423,11 @@ public class Student {
         this.subject5 = subject5;
     }
 
-    public int getPercent5() {
+    public String getPercent5() {
         return percent5;
     }
 
-    public void setPercent5(int percent5) {
+    public void setPercent5(String percent5) {
         this.percent5 = percent5;
     }
 
@@ -430,11 +439,11 @@ public class Student {
         this.subject6 = subject6;
     }
 
-    public int getPercent6() {
+    public String getPercent6() {
         return percent6;
     }
 
-    public void setPercent6(int percent6) {
+    public void setPercent6(String percent6) {
         this.percent6 = percent6;
     }
 
@@ -446,16 +455,15 @@ public class Student {
         this.subject7 = subject7;
     }
 
-    public int getPercent7() {
+    public String getPercent7() {
         return percent7;
     }
 
-    public void setPercent7(int percent7) {
+    public void setPercent7(String percent7) {
         this.percent7 = percent7;
     }
 
-    
-    
+   
 
 //    public boolean writeToFile1() {
 //        FileHandler file = new FileHandler();
@@ -495,10 +503,9 @@ public class Student {
 //
 //        return true;
 //    }
-
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", idSA=" + idSA + ", passport=" + passport + ", email=" + email + ", nationality=" + nationality + ", dateOfBirth=" + dateOfBirth + ", language=" + language + ", address=" + address + ", postalCode=" + postalCode + ", province=" + province + ", number=" + number + ", male=" + male + ", female=" + female + ", submittedId=" + submittedId + ", gardian=" + gardian + ", gardianId=" + gardianId + ", gardianName=" + gardianName + ", gardianSurname=" + gardianSurname + ", gardianEmail=" + gardianEmail + ", gardianNationality=" + gardianNationality + ", gardianAddress=" + gardianAddress + ", gardianProvince=" + gardianProvince + ", gardianPostalCode=" + gardianPostalCode + ", gardianNumber=" + gardianNumber + ", school=" + school + ", year=" + year + ", grade11=" + grade11 + ", grade12=" + grade12 + ", subject1=" + subject1 + ", percent1=" + percent1 + ", subject2=" + subject2 + ", percent2=" + percent2 + ", subject3=" + subject3 + ", percent3=" + percent3 + ", subject4=" + subject4 + ", percent4=" + percent4 + ", subject5=" + subject5 + ", percent5=" + percent5 + ", subject6=" + subject6 + ", percent6=" + percent6 + ", subject7=" + subject7 + ", percent7=" + percent7 + '}';
     }
-    
+
 }
