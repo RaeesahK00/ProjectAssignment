@@ -109,6 +109,8 @@ public class DAO {
 
     public Integer submission() {
         int lastValue = 0;
+        
+        
         try {
             //        String sql = "SELECT SubmissionID FROM UniversityCourseGui";
             String sql = "SELECT SubmissionID FROM UniversityCourseChoice WHERE SubmissionID = (SELECT MAX(SubmissionID) FROM UniversityCourseChoice)";
