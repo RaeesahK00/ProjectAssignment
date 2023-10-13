@@ -117,7 +117,7 @@ public class studyChoiceGui extends JFrame {
             id = JOptionPane.showInputDialog("Please enter your ID to continue");
 
         }
-       submissionID = dao.submission();
+//       submissionID = dao.submission();
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
             cmbUniOne.addItem(universities[i]);
