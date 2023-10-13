@@ -17,12 +17,14 @@ za\ac\cput\projectassignment1\AppLauncher.class
 za\ac\cput\projectassignment1\About$4.class
 za\ac\cput\projectassignment1\RegisterFormGui$2.class
 za\ac\cput\projectassignment1\studyChoiceGui$8.class
+za\ac\cput\projectassignment1\HomePage$2.class
 za\ac\cput\projectassignment1\UserGui$3.class
 za\ac\cput\projectassignment1\DBConnection.class
 za\ac\cput\projectassignment1\APSGui$1.class
 za\ac\cput\projectassignment1\GuiA$2.class
 za\ac\cput\projectassignment1\Form.class
 za\ac\cput\projectassignment1\APSGui$8.class
+za\ac\cput\projectassignment1\HomePage$1.class
 za\ac\cput\projectassignment1\UserGui.class
 za\ac\cput\projectassignment1\UniversityGui$1.class
 za\ac\cput\projectassignment1\AppLauncher$1.class
@@ -37,6 +39,7 @@ za\ac\cput\projectassignment1\CommonConstrants.class
 za\ac\cput\projectassignment1\FAQ$2.class
 za\ac\cput\projectassignment1\APSGui$4.class
 za\ac\cput\projectassignment1\GuiB$4.class
+za\ac\cput\projectassignment1\HomePage.class
 za\ac\cput\projectassignment1\About$3.class
 za\ac\cput\projectassignment1\FAQ.class
 za\ac\cput\projectassignment1\GuiB$1.class
@@ -63,7 +66,6 @@ za\ac\cput\projectassignment1\DAO.class
 za\ac\cput\projectassignment1\GuiC.class
 za\ac\cput\projectassignment1\GuiB$2.class
 za\ac\cput\projectassignment1\studyChoiceGui$4.class
-za\ac\cput\homepage\NewHomePage$1.class
 za\ac\cput\projectassignment1\LoginFormGUI$1.class
 za\ac\cput\projectassignment1\APSGui$12.class
 za\ac\cput\projectassignment1\RegisterFormGui.class
@@ -82,7 +84,6 @@ za\ac\cput\projectassignment1\RegisterFormGui$1.class
 za\ac\cput\projectassignment1\studyChoiceGui$7.class
 za\ac\cput\projectassignment1\GuiB.class
 za\ac\cput\projectassignment1\GuiA$1.class
-za\ac\cput\homepage\NewHomePage.class
 za\ac\cput\projectassignment1\GuiC$4.class
 za\ac\cput\projectassignment1\GuiPOP1$1.class
 za\ac\cput\projectassignment1\RunProject.class
