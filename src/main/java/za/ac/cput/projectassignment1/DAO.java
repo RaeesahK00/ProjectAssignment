@@ -2,6 +2,8 @@ package za.ac.cput.projectassignment1;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -67,7 +69,7 @@ public class DAO {
                 return null;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: Please ensure everything is correct" );
+            JOptionPane.showMessageDialog(null, "Error: Please ensure everything is correct");
         } finally {
             try {
                 if (pstmt != null) {
@@ -79,38 +81,120 @@ public class DAO {
         }
         return null;
     }
+    
+    public void getUserProfileInfo(String User_ID) throws SQLException {
+        nope
+        UniversityDomain ud = null; // Initialize the object
 
+        String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";
+
+        PreparedStatement statement = this.con.prepareStatement(query);
+        statement.setString(1, User_ID);
+
+        ResultSet result = statement.executeQuery();
+
+        while (result.next()) {
+            String name = result.getString("USER_NAME");
+            String surname = result.getString("USER_SURNAME");
+            String email = result.getString("USER_EMAIL");
+            String emergName = result.getString("USER_EMERGENCY_CON_NAME");
+            String emergNum = result.getString("USER_EMERGENCY_CON_NUM");
+
+            ud = new UniversityDomain(name, surname, email, emergName, emergNum);
+        }
+
+        // Make sure to handle the case where no records were found in the database
+        if (ud == null) {
+            System.out.println("Error doing this sql statement");
+        }
+    }
+
+//    public void getUserProfileInfo(String User_ID) throws SQLException {
+//        UniversityDomain ud ;
+//        String query = "SELECT FROM USER_TABLE WHERE USER_ID = ?";
+//
+//        PreparedStatement statement = this.con.prepareStatement(query);
+//        ResultSet result = statement.executeQuery();
+//
+//        statement.setString(1, User_ID);
+//        while (result.next()) {
+//            String name = result.getString("USER_NAME");
+//            String surname = result.getString("USER_SURNAME");
+//            
+//            String email = result.getString("USER_EMAIL");
+//            String emergName = result.getString("USER_EMERGENCY_CON_NAME");
+//            String emergNum = result.getString("USER_EMERGENCY_CON_NUM");
+//            
+//
+//            ud =  new UniversityDomain( name, surname, email,emergName ,emergNum );
+//             
+//        }
+//
+//    }
+//    public UniversityDomain EmptyUserInfo(UniversityDomain dao) {
+//
+//        String sql = "UPDATE User_Table SET USER_ID= NULL, USER_NAME= NULL,USER_SURNAME = NULL,  USER_EMAIL = NULL ,User_emergency_Con_Name= NULL, User_Emergency_Con_Num = NULL WHERE User_ID = ?";
+//
+//        try {
+//            sql = String.format(sql, dao.getfName(), dao.getlName(), dao.getEmergConName(), dao.getEmergConNum());
+//            pstmt = this.con.prepareStatement(sql);
+//            ok = pstmt.executeUpdate();
+//            if (ok > 0) {
+//                return dao;
+//            } else {
+//                return null;
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error: Cannot save your update ");
+//        } finally {
+//            try {
+//                if (pstmt != null) {
+//                    pstmt.close();
+//                }
+//            } catch (Exception exc) {
+//                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
+//            }
+//        }
+//        return null;
+//    }
+    
     public UniversityDomain updateUserInfo(UniversityDomain dao) {
+    String sql = "UPDATE User_Table SET User_name=?, USER_SURNAME = ?,  User_email=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
 
-        String sql = "UPDATE User_Table SET User_name=?, User_email=?,  User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
+    try {
+        pstmt = this.con.prepareStatement(sql);
+        pstmt.setString(1, dao.getfName());
+        pstmt.setString(2, dao.getlName());
+        pstmt.setString(3, dao.getMail());
+        pstmt.setString(4, dao.getEmergConName());
+        pstmt.setString(5, dao.getEmergConNum());
+        pstmt.setString(6, "9907015149088");//id where to read the ID from to make dem edits
 
-        try {
-            sql = String.format(sql , dao.getName(), dao.getEmail(),  dao.getEmergConName(), dao.getEmergConNum());
-            pstmt = this.con.prepareStatement(sql);
-            ok = pstmt.executeUpdate();
-            if (ok > 0) {
-                return dao;
-            } else {
-                return null;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: Cannot save your update " );
-        } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
-            }
+        int rowsUpdated = pstmt.executeUpdate();
+
+        if (rowsUpdated > 0) {
+            return dao;
+        } else {
+            return null;
         }
-        return null;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error: Cannot save your update");
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        } catch (Exception exc) {
+            JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
+        }
     }
+    return null;
+}
 
     public Integer submission() {
         int lastValue = 0;
-        
-        
+
         try {
             //        String sql = "SELECT SubmissionID FROM UniversityCourseGui";
             String sql = "SELECT SubmissionID FROM UniversityCourseChoice WHERE SubmissionID = (SELECT MAX(SubmissionID) FROM UniversityCourseChoice)";

@@ -14,46 +14,54 @@ public class UniversityDomain {
     private String id;
     private String university;
     private String course;
-    private String name ;
-    private String email;
-    private String school;
+    private String fName ;
+    private String lName;
+    private String mail;
     private String emergConName;
     private String emergConNum;
 
     public UniversityDomain() {
     }
-
-    public UniversityDomain(String name, String email, String school , String emergConName, String emergConNum) {
-        this.name = name;
-        this.email = email;
-        this.school = school;
+    public UniversityDomain(String name, String surname, String mail , String emergConName, String emergConNum) {
+        this.fName = name;
+        this.lName = surname;
+        this.mail = mail;
  
         this.emergConName = emergConName;
         this.emergConNum = emergConNum;
     }
+ public UniversityDomain(String id, String fName, String lName, String mail, String emergConName, String emergConNum) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.mail = mail;
+        this.emergConName = emergConName;
+        this.emergConNum = emergConNum;
+    }
+    
 
-    public String getName() {
-        return name;
+    public String getfName() {
+        return fName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getlName() {
+        return lName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setlName(String lName) {
+        this.lName = lName;
     }
 
-    public String getSchool() {
-        return school;
+    public String getMail() {
+        return mail;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
  
@@ -80,6 +88,8 @@ public class UniversityDomain {
         this.university = university;
         this.course = course;
     }
+
+   
 
     public int getSubID() {
         return subID;
@@ -115,7 +125,7 @@ public class UniversityDomain {
 
     @Override
     public String toString() {
-        return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + name + ", email=" + email + ", school=" + school +  ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
+        return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + fName + ", email=" + lName + ", school=" + mail +  ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
     }
 
 }

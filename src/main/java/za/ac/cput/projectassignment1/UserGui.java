@@ -12,6 +12,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -27,16 +30,16 @@ public class UserGui extends JFrame {
 
     Border border = BorderFactory.createBevelBorder(WIDTH, Color.black, Color.black);
 
-    JLabel lblUserImage, lblSchoolImage, lblNicknameImage, lblEmergConImage;
-    JLabel lblName, lblEmail, lblSchool, lblEmergConName, lblEmergConNum;
-    JLabel lblUserName, lblUserEmail, lblUserSchool, lblUserEmergConName, lblUserEmergConNum;
-    JTextField txtName, txtEmail, txtSchool, txtEmergConName, txtEmergConNum;
+    JLabel lblName, lblUserSurname, lblMail, lblEmergConName, lblEmergConNum;
+
+    JTextField txtName, txtSurname, txtMail, txtEmergConName, txtEmergConNum;
 
     UniversityDomain domain;
     DAO dao;
+    RegisterFormGui rfg;
 
     public UserGui() {
-        
+
         pnlN = new JPanel();
         pnlC = new JPanel();
         pnlS = new JPanel();
@@ -49,36 +52,19 @@ public class UserGui extends JFrame {
         btnUpdate.setVisible(false);
 
         heading.setFont(new Font("Calibri", Font.BOLD, 30));
-        lblUserImage = new JLabel();
-        lblUserImage.setIcon(new ImageIcon("C:\\Users\\cash\\Documents\\NetBeansProjects\\RunProject2_221376321\\src\\main\\java\\runproject\\UserImage1.jpg"));
-        lblUserImage.setSize(5, 5);
-        lblSchoolImage = new JLabel();
+//        lblUserImage = new JLabel();
+//        lblUserImage.setIcon(new ImageIcon("C:\\Users\\cash\\Documents\\NetBeansProjects\\RunProject2_221376321\\src\\main\\java\\runproject\\UserImage1.jpg"));
+//        lblUserImage.setSize(5, 5);
+//        lblSchoolImage = new JLabel();
 
-        txtName = new JTextField();
-        txtName.setEditable(false);
-        txtName.setBorder(null);
-        txtEmail = new JTextField();
-        txtEmail.setBorder(null);
-        txtEmail.setEditable(false);
-        txtSchool = new JTextField();
-        txtSchool.setEditable(false);
-        txtSchool.setBorder(null);
-        
-        txtEmergConName = new JTextField();
-        txtEmergConName.setEditable(false);
-        txtEmergConName.setBorder(null);
-        txtEmergConNum = new JTextField();
-        txtEmergConNum.setEditable(false);
-        txtEmergConNum.setBorder(null);
-
+         
 
         lblName = new JLabel("Name");
-        lblEmail = new JLabel("Email");
-        lblSchool = new JLabel("School Attended");
+        lblUserSurname = new JLabel("Email");
+        lblMail = new JLabel("Email: ");
         lblEmergConName = new JLabel("Emergency Contact Name");
         lblEmergConNum = new JLabel("Emergency Contact Number");
-
-
+        rfg = new RegisterFormGui();
         dao = new DAO();
     }
 
@@ -102,6 +88,46 @@ public class UserGui extends JFrame {
             }
 
         });
+        dao = new DAO();
+         domain = new UniversityDomain();
+        try {
+            String id = "9907015149088";
+           
+            dao.getUserProfileInfo(id);
+            
+            txtName = new JTextField();
+            txtName.setText(domain.getfName());
+            txtName.setEditable(false);
+            txtName.setBorder(null);
+            
+            
+            txtSurname = new JTextField();
+            txtSurname.setText(domain.getlName());
+            txtSurname.setBorder(null);
+            txtSurname.setEditable(false);
+             
+                     
+            txtMail = new JTextField();
+            txtMail.setText(domain.getMail());     
+            txtMail.setEditable(false);
+            txtMail.setBorder(null);
+            
+
+            txtEmergConName = new JTextField();
+            txtEmergConName.setText(domain.getEmergConName());
+            txtEmergConName.setEditable(false);
+            txtEmergConName.setBorder(null);
+             
+            
+            txtEmergConNum = new JTextField();
+            txtEmergConNum.setText(domain.getEmergConNum());
+            txtEmergConNum.setEditable(false);
+            txtEmergConNum.setBorder(null);
+            
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "SQL ERROR ");
+        }
 
         btnEdit.addActionListener(new ActionListener() {
             @Override
@@ -109,23 +135,23 @@ public class UserGui extends JFrame {
 
                 txtName.setEditable(true);
                 txtName.setBorder(border);
-                txtName.setText("Abdul Isaacs");
+           //     txtName.setText("Abdul Isaacs");
 
-                txtEmail.setBorder(border);
-                txtEmail.setEditable(true);
-                txtEmail.setText("aisaacs@gmail.com");
+                txtSurname.setBorder(border);
+                txtSurname.setEditable(true);
+             //   txtSurname.setText("aisaacs@gmail.com");
 
-                txtSchool.setEditable(true);
-                txtSchool.setBorder(border);
-                txtSchool.setText("Spine Road High");
+                txtMail.setEditable(true);
+                txtMail.setBorder(border);
+             //   txtMail.setText("Spine Road High");
 
                 txtEmergConName.setEditable(true);
                 txtEmergConName.setBorder(border);
-                txtEmergConName.setText("Faried");
+             //   txtEmergConName.setText("Faried");
 
                 txtEmergConNum.setEditable(true);
                 txtEmergConNum.setBorder(border);
-                txtEmergConNum.setText("0718529654");
+               // txtEmergConNum.setText("0718529654");
 
                 btnUpdate.setVisible(true);
             }
@@ -137,30 +163,28 @@ public class UserGui extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 String name = txtName.getText();
-                String email = txtEmail.getText();
-                String school = txtSchool.getText();
+                String surname = txtSurname.getText();
+                String mail = txtMail.getText();
                 String emergName = txtEmergConName.getText();
                 String emergNum = txtEmergConNum.getText();
-                
-                UniversityDomain dom= new UniversityDomain( name, email, school,emergName,emergNum);
-                 domain = dao.updateUserInfo(dom);
+
+                UniversityDomain dom = new UniversityDomain(name, surname, mail, emergName, emergNum);
+                domain = dao.updateUserInfo(dom);
                 if (domain.equals(dom)) {
-                            JOptionPane.showMessageDialog(null, "Your update has been completed. Please Click OK below to proceed ");
-                            //Move to Raeesah's SubSystem
-                        }else {
+                    JOptionPane.showMessageDialog(null, "Your update has been completed. Please Click OK below to proceed ");
+                    //Move to Raeesah's SubSystem
+                } else {
                     JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
                 }
-               
-                
+
                 txtName.setEditable(false);
                 txtName.setBorder(null);
 
-                txtEmail.setBorder(null);
-                txtEmail.setEditable(false);
+                txtSurname.setBorder(null);
+                txtSurname.setEditable(false);
 
-                txtSchool.setEditable(false);
-                txtSchool.setBorder(null);
-
+                txtMail.setEditable(false);
+                txtMail.setBorder(null);
 
                 txtEmergConName.setEditable(false);
                 txtEmergConName.setBorder(null);
@@ -170,22 +194,21 @@ public class UserGui extends JFrame {
 
                 btnUpdate.setVisible(false);
             }
-            
 
         });
         // pnlW.setLayout(new GridLayout(9 ,3));
 
         pnlN.add(heading);
-        pnlN.add(lblUserImage);
+//      pnlN.add(lblUserImage);
 
         pnlC.add(lblName);
         pnlC.add(txtName);
 
-        pnlC.add(lblEmail);
-        pnlC.add(txtEmail);
+        pnlC.add(lblUserSurname);
+        pnlC.add(txtSurname);
 
-        pnlC.add(lblSchool);
-        pnlC.add(txtSchool);
+        pnlC.add(lblMail);
+        pnlC.add(txtMail);
 
         pnlC.add(lblEmergConName);
         pnlC.add(txtEmergConName);
@@ -200,7 +223,7 @@ public class UserGui extends JFrame {
         add(pnlN, BorderLayout.NORTH);
         add(pnlS, BorderLayout.SOUTH);
         add(pnlC, BorderLayout.CENTER);
-    
+
     }
 
 }

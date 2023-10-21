@@ -8,10 +8,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class RegisterFormGui extends Form {
-
+JTextField idenityField;
     public RegisterFormGui() {
         super("Register");
         addGuiComponents();
+        
     }
 
     private void addGuiComponents() {
@@ -59,7 +60,7 @@ public class RegisterFormGui extends Form {
         add(idenityLabel);
 
         // create identity text field
-        JTextField idenityField = new JTextField();
+          idenityField = new JTextField();
         idenityField.setBounds(140, 300, 450, 30);
         idenityField.setBackground(CommonConstrants.SECONDARY_COLOR);
         idenityField.setForeground(CommonConstrants.TEXT_COLOR);
