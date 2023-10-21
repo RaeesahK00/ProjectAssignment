@@ -412,11 +412,20 @@ public class studyChoiceGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Goes to Home page");
-                ProjectHomePage faqs = new ProjectHomePage();
-                faqs.setTitle("Home Page");
-                faqs.setVisible(true);
-                faqs.setLocationRelativeTo(null);
+                
+                HomePage home = new HomePage();
+                home.setSize(800, 800);
+                home.setGui();
+                home.setVisible(true);
+                home.setTitle("Home Page");
+                home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                home.setLocationRelativeTo(null);
                 setVisible(false);
+//                ProjectHomePage faqs = new ProjectHomePage();
+//                faqs.setTitle("Home Page");
+//                faqs.setVisible(true);
+//                faqs.setLocationRelativeTo(null);
+//                setVisible(false);
             }
 
         });
