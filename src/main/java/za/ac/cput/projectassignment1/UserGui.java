@@ -57,8 +57,6 @@ public class UserGui extends JFrame {
 //        lblUserImage.setSize(5, 5);
 //        lblSchoolImage = new JLabel();
 
-         
-
         lblName = new JLabel("Name");
         lblUserSurname = new JLabel("Email");
         lblMail = new JLabel("Email: ");
@@ -89,45 +87,33 @@ public class UserGui extends JFrame {
 
         });
         dao = new DAO();
-         domain = new UniversityDomain();
+        domain = new UniversityDomain();
+        String id = "9907015149088";
         try {
-            String id = "9907015149088";
-           
             dao.getUserProfileInfo(id);
             
             txtName = new JTextField();
             txtName.setText(domain.getfName());
             txtName.setEditable(false);
             txtName.setBorder(null);
-            
-            
             txtSurname = new JTextField();
             txtSurname.setText(domain.getlName());
             txtSurname.setBorder(null);
             txtSurname.setEditable(false);
-             
-                     
             txtMail = new JTextField();
-            txtMail.setText(domain.getMail());     
+            txtMail.setText(domain.getMail());
             txtMail.setEditable(false);
             txtMail.setBorder(null);
-            
-           
-
             txtEmergConName = new JTextField();
             txtEmergConName.setText(domain.getEmergConName());
             txtEmergConName.setEditable(false);
             txtEmergConName.setBorder(null);
-             
-            
             txtEmergConNum = new JTextField();
             txtEmergConNum.setText(domain.getEmergConNum());
             txtEmergConNum.setEditable(false);
             txtEmergConNum.setBorder(null);
-            
-
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "SQL ERROR ");
+            Logger.getLogger(UserGui.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         btnEdit.addActionListener(new ActionListener() {
@@ -136,23 +122,23 @@ public class UserGui extends JFrame {
 
                 txtName.setEditable(true);
                 txtName.setBorder(border);
-           //     txtName.setText("Abdul Isaacs");
+                //     txtName.setText("Abdul Isaacs");
 
                 txtSurname.setBorder(border);
                 txtSurname.setEditable(true);
-             //   txtSurname.setText("aisaacs@gmail.com");
+                //   txtSurname.setText("aisaacs@gmail.com");
 
                 txtMail.setEditable(true);
                 txtMail.setBorder(border);
-             //   txtMail.setText("Spine Road High");
+                //   txtMail.setText("Spine Road High");
 
                 txtEmergConName.setEditable(true);
                 txtEmergConName.setBorder(border);
-             //   txtEmergConName.setText("Faried");
+                //   txtEmergConName.setText("Faried");
 
                 txtEmergConNum.setEditable(true);
                 txtEmergConNum.setBorder(border);
-               // txtEmergConNum.setText("0718529654");
+                // txtEmergConNum.setText("0718529654");
 
                 btnUpdate.setVisible(true);
             }
@@ -177,7 +163,8 @@ public class UserGui extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
                 }
-
+                
+              
                 txtName.setEditable(false);
                 txtName.setBorder(null);
 

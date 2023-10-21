@@ -80,12 +80,9 @@ public class DAO {
         return null;
     }
     
-<<<<<<< HEAD
+
     public void getUserProfileInfo(String User_ID) throws SQLException {        
-=======
-    public void getUserProfileInfo(String User_ID) throws SQLException {
-       
->>>>>>> d351eb0f8818882b250699b951910b17e92823ab
+
         UniversityDomain ud = null; // Initialize the object
 
         String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";
@@ -104,61 +101,13 @@ public class DAO {
 
             ud = new UniversityDomain(name, surname, email, emergName, emergNum);
         }
-
+        
         // Make sure to handle the case where no records were found in the database
         if (ud == null) {
             System.out.println("Error doing this sql statement");
         }
     }
 
-//    public void getUserProfileInfo(String User_ID) throws SQLException {
-//        UniversityDomain ud ;
-//        String query = "SELECT FROM USER_TABLE WHERE USER_ID = ?";
-//
-//        PreparedStatement statement = this.con.prepareStatement(query);
-//        ResultSet result = statement.executeQuery();
-//
-//        statement.setString(1, User_ID);
-//        while (result.next()) {
-//            String name = result.getString("USER_NAME");
-//            String surname = result.getString("USER_SURNAME");
-//            
-//            String email = result.getString("USER_EMAIL");
-//            String emergName = result.getString("USER_EMERGENCY_CON_NAME");
-//            String emergNum = result.getString("USER_EMERGENCY_CON_NUM");
-//            
-//
-//            ud =  new UniversityDomain( name, surname, email,emergName ,emergNum );
-//             
-//        }
-//
-//    }
-//    public UniversityDomain EmptyUserInfo(UniversityDomain dao) {
-//
-//        String sql = "UPDATE User_Table SET USER_ID= NULL, USER_NAME= NULL,USER_SURNAME = NULL,  USER_EMAIL = NULL ,User_emergency_Con_Name= NULL, User_Emergency_Con_Num = NULL WHERE User_ID = ?";
-//
-//        try {
-//            sql = String.format(sql, dao.getfName(), dao.getlName(), dao.getEmergConName(), dao.getEmergConNum());
-//            pstmt = this.con.prepareStatement(sql);
-//            ok = pstmt.executeUpdate();
-//            if (ok > 0) {
-//                return dao;
-//            } else {
-//                return null;
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error: Cannot save your update ");
-//        } finally {
-//            try {
-//                if (pstmt != null) {
-//                    pstmt.close();
-//                }
-//            } catch (Exception exc) {
-//                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
-//            }
-//        }
-//        return null;
-//    }
     
     public UniversityDomain updateUserInfo(UniversityDomain dao) {
     String sql = "UPDATE User_Table SET User_name=?, USER_SURNAME = ?,  User_email=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
