@@ -23,7 +23,7 @@ public class UserGui extends JFrame {
 
     JPanel pnlN, pnlC, pnlS;
     JButton btnEdit, btnOK, btnUpdate, btnSpace;
-    JLabel heading = new JLabel("This is Your Profile ");
+    JLabel heading = new JLabel("Profile ");
 
     Border border = BorderFactory.createBevelBorder(WIDTH, Color.black, Color.black);
 
@@ -54,20 +54,20 @@ public class UserGui extends JFrame {
         lblUserImage.setSize(5, 5);
         lblSchoolImage = new JLabel();
 
-        txtName = new JTextField("Abdul Isaacs");
+        txtName = new JTextField();
         txtName.setEditable(false);
         txtName.setBorder(null);
-        txtEmail = new JTextField("aisaacs@gmail.com");
+        txtEmail = new JTextField();
         txtEmail.setBorder(null);
         txtEmail.setEditable(false);
-        txtSchool = new JTextField("Spine Road High School");
+        txtSchool = new JTextField();
         txtSchool.setEditable(false);
         txtSchool.setBorder(null);
         
-        txtEmergConName = new JTextField("Faried");
+        txtEmergConName = new JTextField();
         txtEmergConName.setEditable(false);
         txtEmergConName.setBorder(null);
-        txtEmergConNum = new JTextField("0718529654");
+        txtEmergConNum = new JTextField();
         txtEmergConNum.setEditable(false);
         txtEmergConNum.setBorder(null);
 
@@ -202,4 +202,5 @@ public class UserGui extends JFrame {
         add(pnlC, BorderLayout.CENTER);
     
     }
+
 }

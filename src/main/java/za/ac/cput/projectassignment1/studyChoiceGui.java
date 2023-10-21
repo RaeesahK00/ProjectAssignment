@@ -106,17 +106,17 @@ public class studyChoiceGui extends JFrame {
     int submissionID;
 
     public void setGui() {
-        id = JOptionPane.showInputDialog("Please enter your ID to continue");
-
-        if (id.equals(JOptionPane.CANCEL_OPTION)) {
-            System.exit(0);
-        }
-        while (id.length() != 13 || !(id.matches("[0-9]+"))) {
-
-            JOptionPane.showMessageDialog(null, "Please enter a valid ID");
-            id = JOptionPane.showInputDialog("Please enter your ID to continue");
-
-        }
+//        id = JOptionPane.showInputDialog("Please enter your ID to continue");
+//
+//        if (id.equals(JOptionPane.CANCEL_OPTION)) {
+//            System.exit(0);
+//        }
+//        while (id.length() != 13 || !(id.matches("[0-9]+"))) {
+//
+//            JOptionPane.showMessageDialog(null, "Please enter a valid ID");
+//            id = JOptionPane.showInputDialog("Please enter your ID to continue");
+//
+//        }
 //       submissionID = dao.submission();
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
@@ -479,7 +479,7 @@ public class studyChoiceGui extends JFrame {
             }
         }
         );
-//        
+      
 
         pnlN.setLayout(
                 new GridLayout(6, 1));

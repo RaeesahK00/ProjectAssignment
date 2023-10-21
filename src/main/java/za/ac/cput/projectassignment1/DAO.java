@@ -67,14 +67,14 @@ public class DAO {
                 return null;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: Cannot save1" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: Please ensure everything is correct" );
         } finally {
             try {
                 if (pstmt != null) {
                     pstmt.close();
                 }
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "error closing");
+                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
             }
         }
         return null;
@@ -82,10 +82,10 @@ public class DAO {
 
     public UniversityDomain updateUserInfo(UniversityDomain dao) {
 
-        String sql = "UPDATE User_Table SET User_name=?, User_email=?, User_school=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
+        String sql = "UPDATE User_Table SET User_name=?, User_email=?,  User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
 
         try {
-            sql = String.format(sql , dao.getName(), dao.getEmail(), dao.getSchool(), dao.getEmergConName(), dao.getEmergConNum());
+            sql = String.format(sql , dao.getName(), dao.getEmail(),  dao.getEmergConName(), dao.getEmergConNum());
             pstmt = this.con.prepareStatement(sql);
             ok = pstmt.executeUpdate();
             if (ok > 0) {
@@ -94,14 +94,14 @@ public class DAO {
                 return null;
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error: Cannot save2: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: Cannot save your update " );
         } finally {
             try {
                 if (pstmt != null) {
                     pstmt.close();
                 }
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "error closing");
+                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
             }
         }
         return null;
