@@ -2,6 +2,8 @@ package za.ac.cput.projectassignment1;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -81,9 +83,9 @@ public class DAO {
     }
     
 
-    public void getUserProfileInfo(String User_ID) throws SQLException {        
-
-        UniversityDomain ud = null; // Initialize the object
+    public ArrayList<UniversityDomain> getUserProfileInfo(String User_ID) throws SQLException {        
+        ArrayList<UniversityDomain> userInfo = new ArrayList<>();
+        
 
         String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";
 
@@ -99,13 +101,9 @@ public class DAO {
             String emergName = result.getString("USER_EMERGENCY_CON_NAME");
             String emergNum = result.getString("USER_EMERGENCY_CON_NUM");
 
-            ud = new UniversityDomain(name, surname, email, emergName, emergNum);
+             userInfo.add(new UniversityDomain(name, surname, email, emergName, emergNum));
         }
-        
-        // Make sure to handle the case where no records were found in the database
-        if (ud == null) {
-            System.out.println("Error doing this sql statement");
-        }
+        return userInfo;
     }
 
     
