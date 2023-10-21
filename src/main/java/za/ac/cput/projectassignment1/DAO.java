@@ -287,7 +287,7 @@ public class DAO {
     }
 
     public Student addGaurdianToDB(Student student) throws IOException, SQLException {
-        String query = "INSERT INTO Student_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Stud_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
 
         statement.setString(1, student.getGardianId());

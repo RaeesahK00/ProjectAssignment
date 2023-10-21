@@ -11,8 +11,7 @@ public class RegisterFormGui extends Form {
 JTextField idenityField;
     public RegisterFormGui() {
         super("Register");
-        addGuiComponents();
-        
+        addGuiComponents();    
     }
 
     private void addGuiComponents() {
@@ -60,7 +59,7 @@ JTextField idenityField;
         add(idenityLabel);
 
         // create identity text field
-          idenityField = new JTextField();
+        idenityField = new JTextField();
         idenityField.setBounds(140, 300, 450, 30);
         idenityField.setBackground(CommonConstrants.SECONDARY_COLOR);
         idenityField.setForeground(CommonConstrants.TEXT_COLOR);
