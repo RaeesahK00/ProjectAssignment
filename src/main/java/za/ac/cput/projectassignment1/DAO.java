@@ -240,7 +240,7 @@ public class DAO {
     }
 
     public Student addGaurdianToDB(Student student) throws IOException, SQLException {
-        String query = "INSERT INTO Stud_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Stud_Guardian_Info (ID, LEGAL_GUARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
 
         statement.setString(1, student.getGardianId());
@@ -259,7 +259,7 @@ public class DAO {
     }
 
     public Student addStudSchoolToDB(Student student) throws IOException, SQLException {
-        String query = "INSERT INTO Student_School_Info (Stud_ID, School, Year_Completed, Grade11, Grade12, Subject1, Percent1, Subject2, Percent2, Subject3, Percent3, Subject4, Percent4, Subject5, Percent5, Subject6, Percent6, Subject7, Percent7  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?)";
+        String query = "INSERT INTO Stud_School_Info (Stud_ID, School, Year_Completed, Grade11, Grade12, Subject1, Percent1, Subject2, Percent2, Subject3, Percent3, Subject4, Percent4, Subject5, Percent5, Subject6, Percent6, Subject7, Percent7  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,? ,? ,?)";
         PreparedStatement statement = con.prepareStatement(query);
 
         statement.setString(1, student.getId());
