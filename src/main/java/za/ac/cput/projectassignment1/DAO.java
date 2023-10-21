@@ -2,8 +2,6 @@ package za.ac.cput.projectassignment1;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -82,7 +80,12 @@ public class DAO {
         return null;
     }
     
+<<<<<<< HEAD
     public void getUserProfileInfo(String User_ID) throws SQLException {        
+=======
+    public void getUserProfileInfo(String User_ID) throws SQLException {
+       
+>>>>>>> d351eb0f8818882b250699b951910b17e92823ab
         UniversityDomain ud = null; // Initialize the object
 
         String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";
@@ -288,7 +291,7 @@ public class DAO {
     }
 
     public Student addGaurdianToDB(Student student) throws IOException, SQLException {
-        String query = "INSERT INTO Student_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Stud_Gardian_Info (ID, LEGAL_GARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
 
         statement.setString(1, student.getGardianId());
