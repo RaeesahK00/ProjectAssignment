@@ -17,7 +17,7 @@ import javax.swing.*;
 public class HomePage extends JFrame {
 
     private JPanel panelN, panelS, panelE, panelC, panelheading;
-    private JLabel picture, heading, username, applied, links, outcome, outcomeTxt;
+    private JLabel picture, heading, username, applied, links,link1,link2,link3, outcome, outcomeTxt;
     private JLabel usernameTxt, appliedTxt1, appliedTxt2, appliedTxt3, linkTxt;
     private JButton home, faq, profile;
     private JTextArea text, text1;
@@ -33,7 +33,7 @@ public class HomePage extends JFrame {
         panelN = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelN.setBackground(Color.LIGHT_GRAY);
         panelS = new JPanel(new GridLayout(1, 3, 5, 5));
-        panelC = new JPanel(new GridLayout(10, 1, 5, 5));
+        panelC = new JPanel(new GridLayout(13, 1, 5, 5));
 
         picture = new JLabel(new ImageIcon("1.jpg"));
         heading = new JLabel("Hello, Username");
@@ -47,6 +47,15 @@ public class HomePage extends JFrame {
 
         links = new JLabel("Links to bursary opprtunities: ");
         links.setFont(font2);
+        
+        link1 = new JLabel("Link1 ");
+        link1.setFont(font3);
+        
+        link2 = new JLabel("Link2 ");
+        link2.setFont(font3);
+        
+        link3 = new JLabel("Link3 ");
+        link3.setFont(font3);
 
         outcome = new JLabel("Outcome of application status: ");
         outcome.setFont(font2);
@@ -70,8 +79,11 @@ public class HomePage extends JFrame {
         linkTxt.setFont(font3);
 
         home = new JButton("Home Page");
+        home.setFont(font2);
         faq = new JButton("FAQ Page");
+        faq.setFont(font2);
         profile = new JButton("Profile Page");
+        profile.setFont(font2);
 
 //        text = new JTextArea(""" 
 //                            Online Application 
@@ -124,6 +136,9 @@ public class HomePage extends JFrame {
         panelC.add(appliedTxt2);
         panelC.add(appliedTxt3);
         panelC.add(links);
+        panelC.add(link1);
+        panelC.add(link2);
+        panelC.add(link3);
         panelC.add(linkTxt);
         panelC.add(outcome);
         panelC.add(outcomeTxt);
@@ -138,7 +153,7 @@ public class HomePage extends JFrame {
 
         scrollPane = new JScrollPane(panelC);
 
-        scrollPane.setPreferredSize(new Dimension(700, 600));
+        scrollPane.setPreferredSize(new Dimension(800, 800));
 
         add(getContentPane().add(scrollPane));
 
