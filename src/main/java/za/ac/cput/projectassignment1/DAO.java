@@ -80,8 +80,12 @@ public class DAO {
         return null;
     }
     
+<<<<<<< HEAD
+    public void getUserProfileInfo(String User_ID) throws SQLException {        
+=======
     public void getUserProfileInfo(String User_ID) throws SQLException {
        
+>>>>>>> d351eb0f8818882b250699b951910b17e92823ab
         UniversityDomain ud = null; // Initialize the object
 
         String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";

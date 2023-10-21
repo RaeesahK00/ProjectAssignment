@@ -112,6 +112,7 @@ public class UserGui extends JFrame {
             txtMail.setEditable(false);
             txtMail.setBorder(null);
             
+           
 
             txtEmergConName = new JTextField();
             txtEmergConName.setText(domain.getEmergConName());
