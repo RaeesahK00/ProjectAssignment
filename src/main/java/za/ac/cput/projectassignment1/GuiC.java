@@ -402,13 +402,12 @@ public class GuiC extends JFrame {
                             new String[]{"Yes", "No"}, "Yes");
 
                     if (result == JOptionPane.YES_OPTION) {
-                        GuiB run = new GuiB();
-                        run.setTitle("Online Application Section A");
+                        HomePage run = new HomePage();
+                        run.setSize(750, 750);
+                        run.setTitle("Home Page");
                         run.setVisible(true);
+                        run.setGui();
                         run.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        run.setGuiB();
-                        run.setSize(800, 800);
-                        setVisible(false);
                         run.setLocationRelativeTo(null);
                     }
                 }

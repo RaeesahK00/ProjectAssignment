@@ -363,6 +363,7 @@ public class GuiA extends JFrame implements ActionListener {
                             return;
                             }
 //                             */
+                            
 //                            Student stud = new Student(identity, firstName, surname, id, passport1, email, nationality, date, language, address, code, province1, number, male1, female1, subId);
 //
 //                            stud = dao.addStudentToDB(stud);
