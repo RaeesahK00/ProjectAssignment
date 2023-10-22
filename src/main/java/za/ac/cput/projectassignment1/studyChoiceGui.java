@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import static java.awt.SystemColor.text;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -30,7 +31,7 @@ public class studyChoiceGui extends JFrame {
     JTextArea txtInfo;
     JLabel lblSelect, lblSpace;
     JLabel lblDiploma;
-    private JTextField choice1, choice2;
+   // private JTextField choice1, choice2;
     JComboBox cmbUniOne;
     //JButton btnFaq, btnProfile, btnHome, btnSave, btnSpace, btnSpace2
     JButton btnSave, btnSpace, btnSpace2;
@@ -51,9 +52,9 @@ public class studyChoiceGui extends JFrame {
 
         uG = new UniversityGui();
         
-        choice1 = new JTextField(50);
-        
-        choice2 = new JTextField();
+////        choice1 = new JTextField(50);
+////        
+////        choice2 = new JTextField();
 
         cmbUniOne = new JComboBox();
         cmbUniOne.setFont(font2);
@@ -652,7 +653,7 @@ public class studyChoiceGui extends JFrame {
         );
 
         pnlN.setLayout(
-                new GridLayout(6, 1));
+                new GridLayout(4, 1));
         pnlC.setLayout(
                 new GridLayout(8, 3));
         pnlS.setLayout(
@@ -662,8 +663,8 @@ public class studyChoiceGui extends JFrame {
         pnlN.add(lblDiploma);
 
         pnlN.add(btnSpace);
-        pnlN.add(choice1);
-        pnlN.add(choice2);
+//        pnlN.add(choice1);
+//        pnlN.add(choice2);
         pnlN.add(lblSelect);
 
         pnlC.add(cmbUniOne);
@@ -698,14 +699,18 @@ public class studyChoiceGui extends JFrame {
         
     }
 
-    public  void displayText( String text) {
-
-        
-        choice1.setText(text);
-        System.out.println("Text received: " + text);
-      
-    }
-    
+//    public void displayText(String text) {
+//
+////        choice1.setText(text);
+//        System.out.println("Text received: " + text);
+//        lblDiploma.setText(text);
+//    }
+    public void displayText(String text) {
+    System.out.println("Text received: " + text);
+    SwingUtilities.invokeLater(() -> {
+        lblDiploma.setText(text);
+    });
+}
     
 
     public static void main(String[] args) {

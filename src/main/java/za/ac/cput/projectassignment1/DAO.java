@@ -82,6 +82,19 @@ public void enrollStudent(String id, String name,String surname, String email, S
         
         statement.executeUpdate();
     }
+public void saveUserProfile(String id, String name,String surname) throws SQLException{
+        String query = "INSERT INTO USER_TABLE(USER_ID,USER_NAME,USER_SURNAME) VALUES (?, ?, ? )";
+        
+        PreparedStatement statement = this.con.prepareStatement(query);
+        
+        statement.setString(1, id);
+        statement.setString(2, name);
+        statement.setString(3, surname);
+        
+        
+        statement.executeUpdate();
+    }
+    
 //    public static boolean checkUser(String username) {
 //        try {
 //            Connection connection = DriverManager.getConnection(CommonConstrants.DB_URL,

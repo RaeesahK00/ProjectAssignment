@@ -18,7 +18,7 @@ public class RegisterFormGui extends Form {
     JTextField surnameField;
     JTextField emailField;
     JPasswordField passwordField;
-    JPasswordField rePasswordField;
+    //JPasswordField rePasswordField;
     DAO dao;
 
     public RegisterFormGui() {
@@ -121,19 +121,18 @@ public class RegisterFormGui extends Form {
         add(passwordField);
 
         // create re-enter password label
-        JLabel rePasswordLabel = new JLabel("Re-enter Password: ");
-        rePasswordLabel.setBounds(140, 560, 300, 25);
-        rePasswordLabel.setForeground(CommonConstrants.TEXT_COLOR);
-        rePasswordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        add(rePasswordLabel);
-
-        // create re-enter password text field
-        rePasswordField = new JPasswordField();
-        rePasswordField.setBounds(140, 600, 450, 30);
-        rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
-        rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
-        add(rePasswordField);
-
+//        JLabel rePasswordLabel = new JLabel("Re-enter Password: ");
+//        rePasswordLabel.setBounds(140, 560, 300, 25);
+//        rePasswordLabel.setForeground(CommonConstrants.TEXT_COLOR);
+//        rePasswordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+//        add(rePasswordLabel);
+//
+//        // create re-enter password text field
+//        rePasswordField = new JPasswordField();
+//        rePasswordField.setBounds(140, 600, 450, 30);
+//        rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
+//        rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
+//        add(rePasswordField);
         // Create the "Register" button
         JButton registerButton = new JButton("Register");
         registerButton.setFont(new Font("Arial", Font.BOLD, 18));
@@ -169,13 +168,8 @@ public class RegisterFormGui extends Form {
                 String username = usernameField.getText();
                 String email = emailField.getText();
                 char[] password = passwordField.getPassword();
-                char[] rePassword = rePasswordField.getPassword();
-                if (id.isEmpty() || id.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid ID.");
-                    idenityField.setText("");
-                    idenityField.requestFocus();
-                    return;
-                } else if (name.isEmpty() || !name.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+//                char[] rePassword = rePasswordField.getPassword();
+                if (name.isEmpty() || !name.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
                     JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
                     nameField.setText("");;
                     nameField.requestFocus();
@@ -184,6 +178,11 @@ public class RegisterFormGui extends Form {
                     JOptionPane.showMessageDialog(null, "Please enter a valid surname.");
                     surnameField.setText("");;
                     surnameField.requestFocus();
+                    return;
+                } else if (id.isEmpty() || id.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid ID.");
+                    idenityField.setText("");
+                    idenityField.requestFocus();
                     return;
                 } else if (password.equals("")) {
                     JOptionPane.showMessageDialog(null, "Please enter a valid password.");
@@ -196,27 +195,19 @@ public class RegisterFormGui extends Form {
                     JOptionPane.showMessageDialog(null, "This username has already been taken");
                     usernameField.setText("");
                 } else {
-                    if (rePassword != password) {
+                    try {
                         JOptionPane.showMessageDialog(null, "You have been successfully registered. Please Log In.");
+                        dao.enrollStudent(id, name, surname, username, email, String.valueOf(password));
+                        dao.saveUserProfile(id, name, surname);
                         new LoginFormGUI().setVisible(true);
-                        try {
-                            dao.enrollStudent(id, name, surname, username, email, String.valueOf(password));
-                        } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(null, "Your information could not be saved");
-                        }
-//                        LoginFormGUI gui2 = new LoginFormGUI();
-//                        gui2.addGuiComponents();
                         setVisible(false);
-                    } else {
-                        SwingUtilities.invokeLater(() -> {
-                            JOptionPane.showMessageDialog(null, "The password does not match");
-                            rePasswordField.setText("");
-                            rePasswordField.requestFocus();
-                        });
-                    }
-                    return;
-                }
 
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Your information could not be saved");
+                    }
+
+                }
+                return;
             }
 
         });

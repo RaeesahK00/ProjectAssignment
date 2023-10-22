@@ -27,7 +27,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
     private studyChoiceGui classB;
-    private String choice1, choice2;
+    public String choice1, choice2;
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
@@ -208,7 +208,7 @@ public class UniversityGui extends JFrame implements ActionListener {
              choice1 = txt1.getText();
             choice2 = txt2.getText();
             studyChoiceGui scg = new studyChoiceGui();
-//            studyChoiceGui.displayText(choice1);
+            scg.displayText(choice1);
 //            studyChoiceGui.displayText(choice2);
             // Show the ApsScorePage
             ApsScorePage.setVisible(true);

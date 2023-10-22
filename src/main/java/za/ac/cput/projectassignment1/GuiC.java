@@ -233,7 +233,8 @@ public class GuiC extends JFrame {
                     if (result == JOptionPane.YES_OPTION) {
 
                         //       try {
-                        String id = "get id";
+                        GuiA gui = new GuiA();
+                        String id = gui.idTxt.getText();
                         String school = schoolTxt.getText();
                         String year = yearTxt.getText();
                         String subj1 = sub1.getText();

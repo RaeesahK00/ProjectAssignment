@@ -23,7 +23,8 @@ public class GuiA extends JFrame implements ActionListener {
     private JComboBox status;
     private JTextArea text;
     private JButton home, faq, profile, next, back;
-    private JTextField surnameTxt, nameTxt, emailTxt, idTxt, fPassportTxt, nationalityTxt, dateTxt, addressTxt1, addressTxt2, codeTxt, provinceTxt, numberTxt, homeLanTxt;
+    private JTextField surnameTxt, nameTxt, emailTxt,  fPassportTxt, nationalityTxt, dateTxt, addressTxt1, addressTxt2, codeTxt, provinceTxt, numberTxt, homeLanTxt;
+    JTextField idTxt;
     private JScrollPane scrollPane;
     private Font font1, font2, font3;
     private JTextField attachmentField;
