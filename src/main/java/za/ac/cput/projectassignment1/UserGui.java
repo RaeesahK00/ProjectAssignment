@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -90,28 +91,48 @@ public class UserGui extends JFrame {
         domain = new UniversityDomain();
         String id = "9907015149088";
         try {
-            dao.getUserProfileInfo(id);
-            
+            ArrayList<UniversityDomain> arrInfo = dao.getUserProfileInfo(id);
+            UniversityDomain fname = arrInfo.get(0);
+            String name = fname.getfName();
             txtName = new JTextField();
-            txtName.setText(domain.getfName());
+            txtName.setText(name);
             txtName.setEditable(false);
             txtName.setBorder(null);
+
+            UniversityDomain surname = arrInfo.get(0);
+            String lastName = surname.getlName();
             txtSurname = new JTextField();
-            txtSurname.setText(domain.getlName());
+            txtSurname.setText(lastName);
             txtSurname.setBorder(null);
             txtSurname.setEditable(false);
+
+            UniversityDomain Mail = arrInfo.get(0);
+            String email = Mail.getMail();
             txtMail = new JTextField();
-            txtMail.setText(domain.getMail());
+            txtMail.setText(email);
             txtMail.setEditable(false);
             txtMail.setBorder(null);
-            txtEmergConName = new JTextField();
-            txtEmergConName.setText(domain.getEmergConName());
-            txtEmergConName.setEditable(false);
-            txtEmergConName.setBorder(null);
-            txtEmergConNum = new JTextField();
-            txtEmergConNum.setText(domain.getEmergConNum());
-            txtEmergConNum.setEditable(false);
-            txtEmergConNum.setBorder(null);
+
+            UniversityDomain emergName = arrInfo.get(0);
+            String emergConName = emergName.getEmergConName();
+//            if (emergConName.isBlank()) {
+//                txtEmergConName.setText("Please enter your details");
+//            } else {
+                txtEmergConName = new JTextField();
+                txtEmergConName.setText(emergConName);
+                txtEmergConName.setEditable(false);
+                txtEmergConName.setBorder(null);
+//            }
+            UniversityDomain emergNum = arrInfo.get(0);
+            String emergConNum = emergNum.getEmergConNum();
+            if (emergConNum.isEmpty()) {
+                txtEmergConName.setText("Please enter your details");
+            } else {
+                txtEmergConNum = new JTextField();
+                txtEmergConNum.setText(emergConNum);
+                txtEmergConNum.setEditable(false);
+                txtEmergConNum.setBorder(null);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UserGui.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,12 +155,14 @@ public class UserGui extends JFrame {
 
                 txtEmergConName.setEditable(true);
                 txtEmergConName.setBorder(border);
-                //   txtEmergConName.setText("Faried");
-
+//                if (txtEmergConName.getText().equalsIgnoreCase("Please enter your details")) {
+//                    txtEmergConName.setText("");
+//                }
                 txtEmergConNum.setEditable(true);
                 txtEmergConNum.setBorder(border);
-                // txtEmergConNum.setText("0718529654");
-
+//                
+//                if (txtEmergConNum.getText().equalsIgnoreCase("Please enter your details"))
+//                txtEmergConNum.setText("");
                 btnUpdate.setVisible(true);
             }
 
@@ -163,8 +186,7 @@ public class UserGui extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
                 }
-                
-              
+
                 txtName.setEditable(false);
                 txtName.setBorder(null);
 

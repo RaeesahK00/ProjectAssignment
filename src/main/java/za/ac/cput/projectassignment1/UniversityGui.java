@@ -116,11 +116,9 @@ public class UniversityGui extends JFrame implements ActionListener {
         comboFaculty.addItem("Faculty of Applied Sciences");
         comboFaculty.addItem("Faculty of Business and Management Sciences");
         comboFaculty.addItem("Faculty of Engineering & the Built Environment");
-        comboFaculty.addItem("Faculty of Health and Wellness Sciences");
         comboFaculty.addItem("Faculty of Informatics and Design");
         comboFaculty.addItem("Faculty of Education");
-        comboFaculty.addItem("Faculty of Law");
-
+        
         panelCombo.setLayout(new GridLayout(2, 1, 5, 5));
         panelCombo.add(comboFaculty);
         panelCombo.setBackground(Color.LIGHT_GRAY);

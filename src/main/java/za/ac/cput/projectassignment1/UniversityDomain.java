@@ -122,10 +122,14 @@ public class UniversityDomain {
     public void setCourse(String course) {
         this.course = course;
     }
+    public String toString2(){
+        return fName + " " + lName + " " + mail + " "  + emergConName + " " + emergConNum ;
+        
+}
 
     @Override
     public String toString() {
         return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + fName + ", email=" + lName + ", school=" + mail +  ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
     }
-
+    
 }

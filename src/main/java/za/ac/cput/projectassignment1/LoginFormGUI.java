@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LoginFormGUI extends Form {
-
+JTextField usernameField;
     public LoginFormGUI() {
         super("Login"); // This sets the title of the JFrame
         addGuiComponents();
@@ -40,7 +40,7 @@ public class LoginFormGUI extends Form {
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         // create username text field
-        JTextField usernameField = new JTextField();
+         usernameField = new JTextField();
         usernameField.setBounds(150, 190, 450, 50);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -102,6 +102,8 @@ public class LoginFormGUI extends Form {
                 UniversityGui gui2 = new UniversityGui();
                 gui2.setGUI();
                 setVisible(false);
+                usernameField.setText("MBlack");
+                
 
             }
 
