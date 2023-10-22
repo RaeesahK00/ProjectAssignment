@@ -53,8 +53,22 @@ public class DAO {
         }
         return true;
     }
-
+    
+    
     //----------------------------------------------------------------------- Masoods methods
+    
+    public List<String> getID(String username) throws SQLException{
+      List<String> userID = new ArrayList<>();
+        String query = "SELECT ID FROM STUD_LOGIN_INFO WHERE USERNAME = ?";
+        PreparedStatement statement = this.con.prepareStatement(query);
+        statement.setString(1, username);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            String id = result.getString("ID");
+            userID.add(id);
+        }
+        return userID;
+    }
     public UniversityDomain save(UniversityDomain dao) {
 
         String sql = "INSERT INTO UniversityCourseChoice(SubmissionID,ID,University,Course) VALUES('%s','%s','%s','%s')";

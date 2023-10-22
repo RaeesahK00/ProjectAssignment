@@ -40,6 +40,7 @@ public class studyChoiceGui extends JFrame {
     UniversityGui uG;
     UniversityDomain domain;
     DAO dao;
+    LoginFormGUI lfg;
 
     public studyChoiceGui() {
         pnlN = new JPanel();
@@ -100,6 +101,7 @@ public class studyChoiceGui extends JFrame {
 
         domain = new UniversityDomain();
         dao = new DAO();
+        lfg = new LoginFormGUI();
 
     }
     String id;
@@ -118,6 +120,7 @@ public class studyChoiceGui extends JFrame {
 //
 //        }
 //       submissionID = dao.submission();
+
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
             cmbUniOne.addItem(universities[i]);
@@ -284,7 +287,7 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Biotechnology");
                     rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Marine Science");
+                    rbtnCourseTwo.setText("Marine Sc");
                     rbtnCourseThree.setVisible(true);
                     rbtnCourseThree.setText("Environmental Health");
 
@@ -321,11 +324,62 @@ public class studyChoiceGui extends JFrame {
                                            Application developers employ various programming languages, development frameworks, and software development methodologies to efficiently and effectively build robust and 
                                            user-friendly applications.""");
                     txtInfo.setEditable(false);
-                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Artificial Intelligence")) {
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Archaeology")) {
                     txtInfo.setVisible(true);
-                    txtInfo.setText("Artificial Intelligence:\nThis course provides an introduction to artificial intelligence, covering topics such as problem-solving,\nknowledge representation,machine learning, and natural language processing.");
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Biotechnology")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Bachelor of Pharmacy")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Commerce IT Support")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Paralegal")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Bachelor of Administration")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Architecture and Planning")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
                     txtInfo.setEditable(false);
                 }
+                else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Chemical Engineering")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Electrical Engineering")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Archaeology")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Biotechnology")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Bachelor of Pharmacy")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+         
+                
             }
         }
         );
@@ -356,6 +410,67 @@ public class studyChoiceGui extends JFrame {
                     txtInfo.setText("Information Security:\nAn exploration of the principles and practices of information security, including cryptography, network\nsecurity, secure coding, and risk management to protect data and systems.");
                     txtInfo.setEditable(false);
                 }
+                 else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Chemistry")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Marine Science")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("BSc Biotechnology")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Management Studies")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Hospitality")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Financial Accounting")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Construction Economics and Management")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Civil Engineering")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Environmental Health")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Chemistry")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("Marine Sc")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseTwo.isSelected() && rbtnCourseTwo.getText().equals("BSc Biotechnology")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                
             }
         }
         );
@@ -381,6 +496,66 @@ public class studyChoiceGui extends JFrame {
                 } else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Computer Graphics")) {
                     txtInfo.setVisible(true);
                     txtInfo.setText("Computer Graphics:\nStudents learn the principles and techniques behind computer-generated imagery,including 2D and 3D graphics rendering,\n animation, and graphics programming.");
+                    txtInfo.setEditable(false);
+                }
+                 else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Environmental And Geographical Science")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Environmental Health")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("BCom in Information Systems")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("College of Accounting")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Tourism and Sports")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("BCom in Information Systems")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Electronic Engineering")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Mechanical and Mechatronic Engineering")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Environmental Science")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Environmental And Geographical Science")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("Environmental Health")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
+                    txtInfo.setEditable(false);
+                }
+                else if (rbtnCourseThree.isSelected() && rbtnCourseThree.getText().equals("BSc Chemical Sciences")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("");
                     txtInfo.setEditable(false);
                 }
             }
@@ -412,7 +587,7 @@ public class studyChoiceGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Goes to Home page");
-                
+
                 HomePage home = new HomePage();
                 home.setSize(800, 800);
                 home.setGui();
@@ -488,7 +663,6 @@ public class studyChoiceGui extends JFrame {
             }
         }
         );
-      
 
         pnlN.setLayout(
                 new GridLayout(6, 1));
