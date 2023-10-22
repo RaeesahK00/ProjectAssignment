@@ -8,13 +8,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class LoginFormGUI extends Form {
-JTextField usernameField;
+
+    JTextField usernameField;
+    JTextField passwordField;
+    DAO dao;
+
     public LoginFormGUI() {
         super("Login"); // This sets the title of the JFrame
         addGuiComponents();
+        dao = new DAO();
     }
 
-    private void addGuiComponents() {
+    public void addGuiComponents() {
         // create login label
         JLabel loginLabel = new JLabel("Login");
 
@@ -40,7 +45,7 @@ JTextField usernameField;
         usernameLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         // create username text field
-         usernameField = new JTextField();
+        usernameField = new JTextField();
         usernameField.setBounds(150, 190, 450, 50);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -57,7 +62,7 @@ JTextField usernameField;
         passwordLabel.setFont(new Font("Arial", Font.PLAIN, 24));
 
         // create password text field
-        JPasswordField passwordField = new JPasswordField();
+        passwordField = new JPasswordField();
         passwordField.setBounds(150, 365, 450, 50);
         passwordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         passwordField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -99,11 +104,18 @@ JTextField usernameField;
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UniversityGui gui2 = new UniversityGui();
-                gui2.setGUI();
-                setVisible(false);
-                usernameField.setText("MBlack");
-                
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+
+                if (dao.authenticateUser(username, password)) {
+                    JOptionPane.showMessageDialog(null, "Login Successful");
+                    UniversityGui gui2 = new UniversityGui();
+                    gui2.setGUI();
+                    setVisible(false);
+                    
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
+                }
 
             }
 

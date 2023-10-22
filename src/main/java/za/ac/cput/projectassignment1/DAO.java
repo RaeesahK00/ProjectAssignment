@@ -26,35 +26,110 @@ public class DAO {
         }
     }
     //----------------------------------------------------------------------- Lindas methods
+    
+    public boolean authenticateID(String id) {
 
-    public static boolean checkUser(String username) {
+        String query = "SELECT * FROM STUD_LOGIN_INFO WHERE ID=?";
         try {
-            Connection connection = DriverManager.getConnection(CommonConstrants.DB_URL,
-                    CommonConstrants.DB_USERNAME, CommonConstrants.DB_PASSWORD);
+            PreparedStatement statement = this.con.prepareStatement(query);
+            statement.setString(1,id );
 
-            PreparedStatement checkUsersExists = connection.prepareStatement(
-                    "SELECT * FROM" + CommonConstrants.DB_USERSIGNUP_TABLE_NAME
-                    + " WHERE USERNAME = ?"
-            );
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                } else {
+                    return false;
+                }
 
-            checkUsersExists.setString(1, username);
-
-            ResultSet resultSet = checkUsersExists.executeQuery();
-
-            //check to see if the result set is empty
-            //if it is empty it means that there was no data row that contains the username
-            //(i.e = user does not exist
-            if (!resultSet.isBeforeFirst()) {
-                return false;
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            return false;
         }
-        return true;
     }
+public boolean authenticateUsername(String username) {
+
+        String query = "SELECT * FROM STUD_LOGIN_INFO WHERE USERNAME=?";
+        try {
+            PreparedStatement statement = this.con.prepareStatement(query);
+            statement.setString(1,username );
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            return false;
+        }
+    }
+public void enrollStudent(String id, String name,String surname, String email, String username, String password) throws SQLException{
+        String query = "INSERT INTO STUD_LOGIN_INFO(ID,NAME,SURNAME,EMAIL,USERNAME,PASSWORD) VALUES (?, ?, ? , ? , ?,?)";
+        
+        PreparedStatement statement = this.con.prepareStatement(query);
+        
+        statement.setString(1, id);
+        statement.setString(2, name);
+        statement.setString(3, surname);
+        statement.setString(4, email);
+        statement.setString(5, username);
+        statement.setString(6, password);
+        
+        
+        statement.executeUpdate();
+    }
+//    public static boolean checkUser(String username) {
+//        try {
+//            Connection connection = DriverManager.getConnection(CommonConstrants.DB_URL,
+//                    CommonConstrants.DB_USERNAME, CommonConstrants.DB_PASSWORD);
+//
+//            PreparedStatement checkUsersExists = connection.prepareStatement(
+//                    "SELECT * FROM" + CommonConstrants.DB_USERSIGNUP_TABLE_NAME
+//                    + " WHERE USERNAME = ?"
+//            );
+//
+//            checkUsersExists.setString(1, username);
+//
+//            ResultSet resultSet = checkUsersExists.executeQuery();
+//
+//            //check to see if the result set is empty
+//            //if it is empty it means that there was no data row that contains the username
+//            //(i.e = user does not exist
+//            if (!resultSet.isBeforeFirst()) {
+//                return false;
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return true;
+//    }
     
-    
+    public boolean authenticateUser(String username, String password) {
+
+        String query = "SELECT * FROM STUD_LOGIN_INFO WHERE USERNAME=? AND PASSWORD=?";
+        try {
+            PreparedStatement statement = this.con.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.getMessage());
+            return false;
+        }
+    }
     //----------------------------------------------------------------------- Masoods methods
     
     public List<String> getID(String username) throws SQLException{

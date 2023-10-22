@@ -205,11 +205,11 @@ public class UniversityGui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnNext) {
             // Get the text from the text fields
-            choice1 = txt1.getText();
+             choice1 = txt1.getText();
             choice2 = txt2.getText();
-
-            studyChoiceGui.displayText(choice1);
-            studyChoiceGui.displayText(choice2);
+            studyChoiceGui scg = new studyChoiceGui();
+//            studyChoiceGui.displayText(choice1);
+//            studyChoiceGui.displayText(choice2);
             // Show the ApsScorePage
             ApsScorePage.setVisible(true);
             ApsScorePage.updateChoiceLabels(choice1, choice2);

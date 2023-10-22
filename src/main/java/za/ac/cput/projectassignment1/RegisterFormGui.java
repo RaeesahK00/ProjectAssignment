@@ -6,12 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegisterFormGui extends Form {
-JTextField idenityField;
+
+    JTextField idenityField;
+    JTextField nameField;
+    JTextField usernameField;
+    JTextField surnameField;
+    JTextField emailField;
+    JPasswordField passwordField;
+    JPasswordField rePasswordField;
+    DAO dao;
+
     public RegisterFormGui() {
         super("Register");
-        addGuiComponents();    
+        addGuiComponents();
+        dao = new DAO();
     }
 
     private void addGuiComponents() {
@@ -31,7 +44,7 @@ JTextField idenityField;
         add(nameLabel);
 
         // create name text field
-        JTextField nameField = new JTextField();
+        nameField = new JTextField();
         nameField.setBounds(140, 140, 450, 30);
         nameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         nameField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -45,7 +58,7 @@ JTextField idenityField;
         add(surnameLabel);
 
         // create surname text field
-        JTextField surnameField = new JTextField();
+        surnameField = new JTextField();
         surnameField.setBounds(140, 220, 450, 30);
         surnameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         surnameField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -73,7 +86,7 @@ JTextField idenityField;
         add(emailLabel);
 
         // create email text field
-        JTextField emailField = new JTextField();
+        emailField = new JTextField();
         emailField.setBounds(140, 380, 450, 30);
         emailField.setBackground(CommonConstrants.SECONDARY_COLOR);
         emailField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -87,7 +100,7 @@ JTextField idenityField;
         add(usernameLabel);
 
         // create username text field
-        JTextField usernameField = new JTextField();
+        usernameField = new JTextField();
         usernameField.setBounds(140, 450, 450, 30);
         usernameField.setBackground(CommonConstrants.SECONDARY_COLOR);
         usernameField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -101,8 +114,7 @@ JTextField idenityField;
         add(passwordLabel);
 
         // create password text field
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+        passwordField = new JPasswordField();
         passwordField.setBounds(140, 520, 450, 30);
         passwordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         passwordField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -116,7 +128,7 @@ JTextField idenityField;
         add(rePasswordLabel);
 
         // create re-enter password text field
-        JPasswordField rePasswordField = new JPasswordField();
+        rePasswordField = new JPasswordField();
         rePasswordField.setBounds(140, 600, 450, 30);
         rePasswordField.setBackground(CommonConstrants.SECONDARY_COLOR);
         rePasswordField.setForeground(CommonConstrants.TEXT_COLOR);
@@ -151,9 +163,59 @@ JTextField idenityField;
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UniversityGui gui2 = new UniversityGui();
-                gui2.setGUI();
-                setVisible(false);
+                String id = idenityField.getText();
+                String name = nameField.getText();
+                String surname = surnameField.getText();
+                String username = usernameField.getText();
+                String email = emailField.getText();
+                char[] password = passwordField.getPassword();
+                char[] rePassword = rePasswordField.getPassword();
+                if (id.isEmpty() || id.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid ID.");
+                    idenityField.setText("");
+                    idenityField.requestFocus();
+                    return;
+                } else if (name.isEmpty() || !name.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
+                    nameField.setText("");;
+                    nameField.requestFocus();
+                    return;
+                } else if (surname.isEmpty() || !surname.matches("[a-zA-Z]+(\\s[a-zA-Z]+)?")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid surname.");
+                    surnameField.setText("");;
+                    surnameField.requestFocus();
+                    return;
+                } else if (password.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid password.");
+                    passwordField.setText("");;
+                    passwordField.requestFocus();
+                    return;
+                } else if (dao.authenticateID(id)) {
+                    JOptionPane.showMessageDialog(null, "This ID has already been registered");
+                } else if (dao.authenticateUsername(username)) {
+                    JOptionPane.showMessageDialog(null, "This username has already been taken");
+                    usernameField.setText("");
+                } else {
+                    if (rePassword != password) {
+                        JOptionPane.showMessageDialog(null, "You have been successfully registered. Please Log In.");
+                        new LoginFormGUI().setVisible(true);
+                        try {
+                            dao.enrollStudent(id, name, surname, username, email, String.valueOf(password));
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(null, "Your information could not be saved");
+                        }
+//                        LoginFormGUI gui2 = new LoginFormGUI();
+//                        gui2.addGuiComponents();
+                        setVisible(false);
+                    } else {
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(null, "The password does not match");
+                            rePasswordField.setText("");
+                            rePasswordField.requestFocus();
+                        });
+                    }
+                    return;
+                }
 
             }
 
