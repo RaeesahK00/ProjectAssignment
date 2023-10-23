@@ -110,18 +110,9 @@ public class LoginFormGUI extends Form {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
-
-                if (dao.authenticateUser(username, password)) {
-                    try {
-                        //                    String user = usernameField.getText();
-//                    studyChoiceGui sc = new studyChoiceGui();
-//                    sc.lblDiploma.setText(user);
-                         idd = (ArrayList)dao.getID(username);
-                         APSGui g = new APSGui();
-                        
-                    } catch (SQLException ex) {
-                        Logger.getLogger(LoginFormGUI.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                UniversityGui ug = new UniversityGui();
+                ug.txt2Label.setText(username);
+                if (dao.authenticateUser(username, password)) {    
                     JOptionPane.showMessageDialog(null, "Login Successful");
                     UniversityGui gui2 = new UniversityGui();
                     gui2.setGUI();

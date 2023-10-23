@@ -110,14 +110,6 @@ public class studyChoiceGui extends JFrame {
     String id;
     int submissionID;
 
-    public void updateChoiceLabe(String choice1, String choice2) {
-        lblDiploma.setText( choice1);
-        System.out.println("Choice 1:er " + choice2);
-
-    }
-//    public void setDiplomaText(String text) {
-//        lblDiploma.setText(text);
-//    }
 
     public void setGui() {
 //        id = JOptionPane.showInputDialog("Please enter your ID to continue");
@@ -714,18 +706,6 @@ public class studyChoiceGui extends JFrame {
 
     }
 
-//    public void displayText(String text) {
-//
-////        choice1.setText(text);
-//        System.out.println("Text received: " + text);
-//        lblDiploma.setText(text);
-//    }
-    public void displayText(String text) {
-        System.out.println("Text received: " + text);
-        SwingUtilities.invokeLater(() -> {
-            lblDiploma.setText(text);
-        });
-    }
 
     public static void main(String[] args) {
 

@@ -22,20 +22,19 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     String selectedOption;
     private final JComboBox<String> comboFaculty;
-    private final JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
+     JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
     public JTextField txt1, txt2;
+    public JLabel lblUser;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
     private studyChoiceGui classB;
     public String choice1, choice2;
-     
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
-      
+
     }
-    
-    
+
     public UniversityGui() {
         super("University Gui");
 
@@ -61,6 +60,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblHeading = new JLabel("UNILINK Career Options", SwingConstants.CENTER);
         lblHeading.setPreferredSize(new Dimension(300, 40));
         lblHeading.setFont(ft1);
+        lblUser = new JLabel();
 
 //    //    ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
 //        Image originalImage = originalIcon.getImage();
@@ -73,7 +73,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         txt1Label.setFont(ft2);
         txt2 = new JTextField(10);
         txt2.setPreferredSize(new Dimension(10, 10));
-        txt2Label = new JLabel("Second Choice");
+        txt2Label = new JLabel();
         txt2Label.setFont(ft2);
         lblMessage1 = new JLabel("Not Sure What To Study?", SwingConstants.CENTER);
         lblMessage1.setFont(ft2);
@@ -104,6 +104,9 @@ public class UniversityGui extends JFrame implements ActionListener {
     }
 
     public void setGUI() {
+        
+        String test = txt2Label.getText();
+        System.out.println(test);
         panelNorth.setLayout(new GridLayout(1, 1));
         panelCenter.setLayout(new GridLayout(1, 2));
         panelLeft.setLayout(new GridLayout(7, 1));
@@ -121,7 +124,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         comboFaculty.addItem("Faculty of Engineering & the Built Environment");
         comboFaculty.addItem("Faculty of Informatics and Design");
         comboFaculty.addItem("Faculty of Education");
-        
+
         panelCombo.setLayout(new GridLayout(2, 1, 5, 5));
         panelCombo.add(comboFaculty);
         panelCombo.setBackground(Color.LIGHT_GRAY);
@@ -210,12 +213,10 @@ public class UniversityGui extends JFrame implements ActionListener {
             // Get the text from the text fields
             choice1 = txt1.getText();
             choice2 = txt2.getText();
-            studyChoiceGui scg = new studyChoiceGui();
-            scg.displayText(choice1);
+
             // Show the ApsScorePage
             ApsScorePage.setVisible(true);
             ApsScorePage.updateChoiceLabels(choice1, choice2);
-            
 
             setEnabled(false);
             setVisible(false);
@@ -264,6 +265,7 @@ public class UniversityGui extends JFrame implements ActionListener {
             txt2.setText("");
         }
     }
+   
 
     public void showMainPage() {
         setVisible(true);
