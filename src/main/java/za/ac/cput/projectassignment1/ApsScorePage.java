@@ -14,11 +14,8 @@ public class ApsScorePage extends JFrame {
 //    private UniversityGui universityGui;
 
     public void updateChoiceLabels(String choice1, String choice2) {
-        lblChoice1.setText("Choice 1: " + choice1);
-        lblChoice2.setText("Choice 2: " + choice2);
-
-       
-
+        lblChoice1.setText(  choice1);
+        lblChoice2.setText( choice2);
     }
 
     public ApsScorePage() {
@@ -87,8 +84,10 @@ public class ApsScorePage extends JFrame {
         });
 
         btnNext.addActionListener((ActionEvent e) -> {
-
+            String c1 = lblChoice1.getText();
+            String c2 = lblChoice2.getText();
             studyChoiceGui gui = new studyChoiceGui();
+            gui.lblDiploma.setText(c1);
             gui.setTitle("University Selection");
             gui.setGui();
             gui.setDefaultCloseOperation(gui.EXIT_ON_CLOSE);

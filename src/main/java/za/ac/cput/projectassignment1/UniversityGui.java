@@ -28,11 +28,14 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final DAO dao;
     private studyChoiceGui classB;
     public String choice1, choice2;
+     
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
+      
     }
-
+    
+    
     public UniversityGui() {
         super("University Gui");
 
@@ -205,14 +208,14 @@ public class UniversityGui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnNext) {
             // Get the text from the text fields
-             choice1 = txt1.getText();
+            choice1 = txt1.getText();
             choice2 = txt2.getText();
             studyChoiceGui scg = new studyChoiceGui();
             scg.displayText(choice1);
-//            studyChoiceGui.displayText(choice2);
             // Show the ApsScorePage
             ApsScorePage.setVisible(true);
             ApsScorePage.updateChoiceLabels(choice1, choice2);
+            
 
             setEnabled(false);
             setVisible(false);

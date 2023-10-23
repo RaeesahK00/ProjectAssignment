@@ -6,13 +6,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LoginFormGUI extends Form {
 
     JTextField usernameField;
     JTextField passwordField;
     DAO dao;
-
+    ArrayList<String> idd = new ArrayList<>();
     public LoginFormGUI() {
         super("Login"); // This sets the title of the JFrame
         addGuiComponents();
@@ -108,11 +112,21 @@ public class LoginFormGUI extends Form {
                 String password = passwordField.getText();
 
                 if (dao.authenticateUser(username, password)) {
+                    try {
+                        //                    String user = usernameField.getText();
+//                    studyChoiceGui sc = new studyChoiceGui();
+//                    sc.lblDiploma.setText(user);
+                         idd = (ArrayList)dao.getID(username);
+                         APSGui g = new APSGui();
+                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoginFormGUI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     JOptionPane.showMessageDialog(null, "Login Successful");
                     UniversityGui gui2 = new UniversityGui();
                     gui2.setGUI();
                     setVisible(false);
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
                 }

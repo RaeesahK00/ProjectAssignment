@@ -196,8 +196,9 @@ public class RegisterFormGui extends Form {
                     usernameField.setText("");
                 } else {
                     try {
+
                         JOptionPane.showMessageDialog(null, "You have been successfully registered. Please Log In.");
-                        dao.enrollStudent(id, name, surname, username, email, String.valueOf(password));
+                        dao.enrollStudent(id, name, surname, email, username, String.valueOf(password));
                         dao.saveUserProfile(id, name, surname);
                         new LoginFormGUI().setVisible(true);
                         setVisible(false);

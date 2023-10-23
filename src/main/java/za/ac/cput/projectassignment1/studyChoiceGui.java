@@ -31,10 +31,10 @@ public class studyChoiceGui extends JFrame {
     JTextArea txtInfo;
     JLabel lblSelect, lblSpace;
     JLabel lblDiploma;
-   // private JTextField choice1, choice2;
+    // private JTextField choice1, choice2;
     JComboBox cmbUniOne;
-    //JButton btnFaq, btnProfile, btnHome, btnSave, btnSpace, btnSpace2
-    JButton btnSave, btnSpace, btnSpace2;
+    //JButton btnFaq, btnProfile,  btnSave, btnSpace, btnSpace2
+    JButton btnSave, btnSpace, btnSpace2,btnHome;
     JRadioButton rbtnCourseOne, rbtnCourseOne1, rbtnCourseTwo, rbtnCourseTwo2, rbtnCourseThree, rbtnCourseThree3, rbtnCourseThree4, rbtnCourseThree5, rbtnCourseThree6;
     FileWriter fw;
     BufferedWriter bw;
@@ -51,11 +51,10 @@ public class studyChoiceGui extends JFrame {
         pnlS = new JPanel();
 
         uG = new UniversityGui();
-        
+
 ////        choice1 = new JTextField(50);
 ////        
 ////        choice2 = new JTextField();
-
         cmbUniOne = new JComboBox();
         cmbUniOne.setFont(font2);
         cmbUniOne.setPreferredSize(new Dimension(60, 60));
@@ -64,8 +63,8 @@ public class studyChoiceGui extends JFrame {
 //        btnFaq.setFont(font2);
 //        btnProfile = new JButton("Profile");
 //        btnProfile.setFont(font2);
-//        btnHome = new JButton("Home");
-//        btnHome.setFont(font2);
+        btnHome = new JButton("Home");
+        btnHome.setFont(font2);
         btnSave = new JButton("Save");
         btnSave.setFont(font2);
         btnSpace = new JButton();
@@ -80,9 +79,9 @@ public class studyChoiceGui extends JFrame {
         lblDiploma.setFont(font1);
         lblDiploma.setHorizontalAlignment(JLabel.CENTER);
         lblDiploma.setForeground(Color.blue);
-        
+
         lblSpace = new JLabel();
-        txtInfo = new JTextArea(30, 50);
+        txtInfo = new JTextArea(100, 50);
         txtInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         txtInfo.setFont(font3);
         rbtnCourseOne = new JRadioButton();
@@ -106,14 +105,19 @@ public class studyChoiceGui extends JFrame {
         domain = new UniversityDomain();
         dao = new DAO();
         lfg = new LoginFormGUI();
-        
+
     }
     String id;
     int submissionID;
 
-    public void setDiplomaText(String text) {
-        lblDiploma.setText(text);
+    public void updateChoiceLabe(String choice1, String choice2) {
+        lblDiploma.setText( choice1);
+        System.out.println("Choice 1:er " + choice2);
+
     }
+//    public void setDiplomaText(String text) {
+//        lblDiploma.setText(text);
+//    }
 
     public void setGui() {
 //        id = JOptionPane.showInputDialog("Please enter your ID to continue");
@@ -128,7 +132,7 @@ public class studyChoiceGui extends JFrame {
 //
 //        }
 //       submissionID = dao.submission();
-          
+
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
             cmbUniOne.addItem(universities[i]);
@@ -162,7 +166,6 @@ public class studyChoiceGui extends JFrame {
 //            }
 //
 //        });
-
         //Add array elements to combobox
         //combobox one action listener
         cmbUniOne.addActionListener(
@@ -176,7 +179,8 @@ public class studyChoiceGui extends JFrame {
                 String selected = (String) cmbUniOne.getSelectedItem();
                 txtInfo.setText("");
 
-////                if (facultyOne.equalsIgnoreCase("Faculty of Informatics and Design")) {
+              if (lblDiploma.getText().equals("Faculty of Informatics and Design")) {
+                  
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Mobile Application Development");
@@ -202,8 +206,11 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseTwo.setText("Information Security");
                     rbtnCourseThree.setVisible(true);
                     rbtnCourseThree.setText("Computer Graphics");
-                } //  }
-                else // if (facultyOne.equalsIgnoreCase("Faculty of Applied Sciences")) {
+                }  
+              
+              }
+                else if (lblDiploma.getText().equals("Faculty of Applied Sciences")) {
+                      
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Archaeology");
@@ -228,8 +235,10 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseTwo.setText("BSc Biotechnology");
                     rbtnCourseThree.setVisible(true);
                     rbtnCourseThree.setText("BSc Chemical Sciences");
-                } //  } 
-                else //if (facultyOne.equalsIgnoreCase("Faculty of Business and Management Sciences")) {
+                } 
+                
+                } 
+                else if (lblDiploma.getText().equals("Faculty of Business and Management Sciences")) {
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Commerce IT Support");
@@ -254,8 +263,10 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseTwo.setText("Financial Accounting");
                     rbtnCourseThree.setVisible(true);
                     rbtnCourseThree.setText("BCom in Information Systems");
-                } //      }
-                else //    if (facultyOne.equalsIgnoreCase("Faculty of Engineering & the Built Environment")) {
+                }
+                }
+                
+                else  if (lblDiploma.getText().equals("Faculty of Engineering & the Built Environment")) {
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Architecture and Planning");
@@ -280,8 +291,9 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseTwo.setText("Environmental Health");
                     rbtnCourseThree.setVisible(true);
                     rbtnCourseThree.setText("Environmental Science");
-                } //  } 
-                else //if (facultyOne.equalsIgnoreCase("Faculty of Education")) {
+                }
+                } 
+                else if (lblDiploma.getText().equals("Faculty of Education")) {
                 if (selected.equals("University of Cape Town")) {
                     rbtnCourseOne.setVisible(true);
                     rbtnCourseOne.setText("Education Development Unit");
@@ -308,7 +320,7 @@ public class studyChoiceGui extends JFrame {
                     rbtnCourseThree.setText("Language Education");
                 }
             }
-            // }
+             }
         }
         );
         //radio button one action listener
@@ -381,6 +393,10 @@ public class studyChoiceGui extends JFrame {
                 } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Foundation Phase")) {
                     txtInfo.setVisible(true);
                     txtInfo.setText("Focus on the early years of education, equipping students with the skills and knowledge to teach young learners in their formative years.");
+                    txtInfo.setEditable(false);
+                } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("Artificial Intelligence")) {
+                    txtInfo.setVisible(true);
+                    txtInfo.setText("This unit provides valuable resources and support to enhance educational programs, ensuring a nurturing environment for students' growth and development.");
                     txtInfo.setEditable(false);
                 } else if (rbtnCourseOne.isSelected() && rbtnCourseOne.getText().equals("BED Foundation studies")) {
                     txtInfo.setVisible(true);
@@ -571,27 +587,27 @@ public class studyChoiceGui extends JFrame {
 //            }
 //
 //        });
-//        btnHome.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(null, "Goes to Home page");
-//
-//                HomePage home = new HomePage();
-//                home.setSize(800, 800);
-//                home.setGui();
-//                home.setVisible(true);
-//                home.setTitle("Home Page");
-//                home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                home.setLocationRelativeTo(null);
+        btnHome.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Goes to Home page");
+
+                HomePage home = new HomePage();
+                home.setSize(800, 800);
+                home.setGui();
+                home.setVisible(true);
+                home.setTitle("Home Page");
+                home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                home.setLocationRelativeTo(null);
+                setVisible(false);
+//                ProjectHomePage faqs = new ProjectHomePage();
+//                faqs.setTitle("Home Page");
+//                faqs.setVisible(true);
+//                faqs.setLocationRelativeTo(null);
 //                setVisible(false);
-////                ProjectHomePage faqs = new ProjectHomePage();
-////                faqs.setTitle("Home Page");
-////                faqs.setVisible(true);
-////                faqs.setLocationRelativeTo(null);
-////                setVisible(false);
-//            }
-//
-//        });
+            }
+
+        });
 
         btnSave.addActionListener(new ActionListener() {
             @Override
@@ -683,7 +699,7 @@ public class studyChoiceGui extends JFrame {
 
         pnlC.add(btnSpace2);
 //
-//        pnlS.add(btnHome);
+        pnlS.add(btnHome);
 //
 //        pnlS.add(btnFaq);
 //
@@ -695,8 +711,7 @@ public class studyChoiceGui extends JFrame {
 
         add(pnlC, BorderLayout.CENTER);
         // add(pnlC, BorderLayout.CENTER);
-         
-        
+
     }
 
 //    public void displayText(String text) {
@@ -706,18 +721,16 @@ public class studyChoiceGui extends JFrame {
 //        lblDiploma.setText(text);
 //    }
     public void displayText(String text) {
-    System.out.println("Text received: " + text);
-    SwingUtilities.invokeLater(() -> {
-        lblDiploma.setText(text);
-    });
-}
-    
+        System.out.println("Text received: " + text);
+        SwingUtilities.invokeLater(() -> {
+            lblDiploma.setText(text);
+        });
+    }
 
     public static void main(String[] args) {
 
         studyChoiceGui scg = new studyChoiceGui();
         scg.setGui();
-        
 
     }
 }

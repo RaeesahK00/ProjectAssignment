@@ -6,6 +6,9 @@ package za.ac.cput.projectassignment1;
 
 //import DAO.APSdao;
 //import Domain.APSDomain;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author lefleur
  */
 public class APSGui extends javax.swing.JFrame {
-
+DAO dao;
 //    private static    APSdao dao ;
 //    private static    APSDomain domain;
     private static String ID;
@@ -25,6 +28,7 @@ public class APSGui extends javax.swing.JFrame {
         initComponents();
         ApsScorePage = new ApsScorePage();
 //        dao = new APSdao();
+dao = new DAO();
     }
 
     /**
@@ -356,8 +360,12 @@ public class APSGui extends javax.swing.JFrame {
 
         String APS = jTextField7.getText();
         String id = null;
-//         APSDomain dom = new APSDomain(id ,APS);
-//         domain = dao.save(dom);
+        
+    try {
+        dao.apsScore(id, APS);
+    } catch (SQLException ex) {
+        Logger.getLogger(APSGui.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed

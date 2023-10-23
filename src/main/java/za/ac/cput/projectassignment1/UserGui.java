@@ -28,6 +28,8 @@ public class UserGui extends JFrame {
     JPanel pnlN, pnlC, pnlS;
     JButton btnEdit, btnOK, btnUpdate, btnSpace;
     JLabel heading = new JLabel("Profile ");
+    JLabel contact = new JLabel("If you have any questions, feel free to contact us on: help.unilink@gmail.com");
+    
 
     Border border = BorderFactory.createBevelBorder(WIDTH, Color.black, Color.black);
 
@@ -229,6 +231,8 @@ public class UserGui extends JFrame {
         pnlC.add(btnUpdate);
         pnlS.add(btnEdit);
         pnlS.add(btnOK);
+        pnlS.add(contact);
+       
 
         add(pnlN, BorderLayout.NORTH);
         add(pnlS, BorderLayout.SOUTH);

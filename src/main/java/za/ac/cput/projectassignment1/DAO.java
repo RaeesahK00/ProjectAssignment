@@ -387,4 +387,14 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
     }
 
     //----------------------------------------------------------------------- Beurins methods
+    public void apsScore(String id,String apsScore) throws SQLException{
+        String query = "INSERT INTO APS_TABLE(STUDENT_ID,STUDENT_APSCORE) VALUES ( ?, ? )";
+        
+        PreparedStatement statement = this.con.prepareStatement(query);
+        
+        statement.setString(1, id);
+        statement.setString(2, apsScore);     
+        statement.executeUpdate();
+    }
+ 
 }
