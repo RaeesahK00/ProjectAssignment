@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,11 +15,15 @@ public class LoginFormGUI extends Form {
     JTextField usernameField;
     JTextField passwordField;
     DAO dao;
-    ArrayList<String> idd = new ArrayList<>();
+    String userId;
+//    WorkerLogin wl;
+//    studyChoiceGui scg = new studyChoiceGui();
+
     public LoginFormGUI() {
         super("Login"); // This sets the title of the JFrame
         addGuiComponents();
         dao = new DAO();
+//        wl = new WorkerLogin();
     }
 
     public void addGuiComponents() {
@@ -110,14 +113,22 @@ public class LoginFormGUI extends Form {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
-                UniversityGui ug = new UniversityGui();
-                ug.txt2Label.setText(username);
-                if (dao.authenticateUser(username, password)) {    
+                DAO userDAO = new DAO();
+                userId = userDAO.getUserId(username, password);
+                String idd = userId;
+                if (dao.authenticateUser(username, password)) {
                     JOptionPane.showMessageDialog(null, "Login Successful");
                     UniversityGui gui2 = new UniversityGui();
                     gui2.setGUI();
                     setVisible(false);
+                    if (userId != null) {
+                        WorkerLogin wl = new WorkerLogin();
+                        wl.setId(idd);
+                        System.out.println("User ID: " + userId);
 
+                    } else {
+                        System.out.println("Error: user not found");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
                 }
@@ -126,5 +137,13 @@ public class LoginFormGUI extends Form {
 
         });
 
+    }
+
+    public String getIdNum(String userId) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        DAO usDAO = new DAO();
+        userId = usDAO.getUserId(username, password);
+        return userId;
     }
 }

@@ -4,41 +4,52 @@
  */
 package za.ac.cput.projectassignment1;
 
+import java.io.Serializable;
+
 /**
  *
  * @author M.Masood Lamera
  */
-public class UniversityDomain {
+public class UniversityDomain implements Serializable {
 
     private int subID;
-    private String id;
+    private int id;
     private String university;
     private String course;
-    private String fName ;
+    private String fName;
     private String lName;
     private String mail;
     private String emergConName;
     private String emergConNum;
+    private String facultyID;
 
     public UniversityDomain() {
     }
-    public UniversityDomain(String name, String surname, String mail , String emergConName, String emergConNum) {
+
+    public UniversityDomain(String name, String surname, String mail, String emergConName, String emergConNum) {
         this.fName = name;
         this.lName = surname;
         this.mail = mail;
- 
+
         this.emergConName = emergConName;
         this.emergConNum = emergConNum;
     }
- public UniversityDomain(String id, String fName, String lName, String mail, String emergConName, String emergConNum) {
+
+    public UniversityDomain(int subID, int id, String university, String course, String facultyID) {
+        this.subID = subID;
         this.id = id;
-        this.fName = fName;
-        this.lName = lName;
-        this.mail = mail;
-        this.emergConName = emergConName;
-        this.emergConNum = emergConNum;
+        this.university = university;
+        this.course = course;
+        this.facultyID = facultyID;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getfName() {
         return fName;
@@ -64,8 +75,6 @@ public class UniversityDomain {
         this.mail = mail;
     }
 
- 
-
     public String getEmergConName() {
         return emergConName;
     }
@@ -82,29 +91,12 @@ public class UniversityDomain {
         this.emergConNum = emergConNum;
     }
 
-    public UniversityDomain(int subID, String id, String university, String course) {
-        this.subID = subID;
-        this.id = id;
-        this.university = university;
-        this.course = course;
-    }
-
-   
-
     public int getSubID() {
         return subID;
     }
 
     public void setSubID(int subID) {
         this.subID = subID;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getUniversity() {
@@ -122,14 +114,23 @@ public class UniversityDomain {
     public void setCourse(String course) {
         this.course = course;
     }
-    public String toString2(){
-        return fName + " " + lName + " " + mail + " "  + emergConName + " " + emergConNum ;
-        
-}
+
+    public String toString2() {
+        return fName + " " + lName + " " + mail + " " + emergConName + " " + emergConNum;
+
+    }
+
+    public String getFacultyID() {
+        return facultyID;
+    }
+
+    public void setFacultyID(String facultyID) {
+        this.facultyID = facultyID;
+    }
 
     @Override
     public String toString() {
-        return "UniversityDomain{" + "subID=" + subID + ", id=" + id + ", university=" + university + ", course=" + course + ", name=" + fName + ", email=" + lName + ", school=" + mail +  ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
+        return "UniversityDomain{" + "subID=" + subID + ", university=" + university + ", course=" + course + ", name=" + fName + ", email=" + lName + ", school=" + mail + ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
     }
-    
+
 }

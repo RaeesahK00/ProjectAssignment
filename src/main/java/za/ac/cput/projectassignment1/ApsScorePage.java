@@ -87,7 +87,8 @@ public class ApsScorePage extends JFrame {
             String c1 = lblChoice1.getText();
             String c2 = lblChoice2.getText();
             studyChoiceGui gui = new studyChoiceGui();
-            gui.lblDiploma.setText(c1);
+            gui.lblDiploma1.setText(c1);
+            //gui.lblDiploma2.setText(c2);
             gui.setTitle("University Selection");
             gui.setGui();
             gui.setDefaultCloseOperation(gui.EXIT_ON_CLOSE);

@@ -61,8 +61,8 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblHeading.setPreferredSize(new Dimension(300, 40));
         lblHeading.setFont(ft1);
         lblUser = new JLabel();
-
-//    //    ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
+        
+//    //  ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
 //        Image originalImage = originalIcon.getImage();
 //        Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
 //        ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -250,13 +250,6 @@ public class UniversityGui extends JFrame implements ActionListener {
                 btnSave.setEnabled(false);
 
                 // Save the choices to the database
-                Study_choice study_choice = new Study_choice(textField1Text, textField2Text);
-
-                try {
-                    dao.save(study_choice);
-                } catch (SQLException ex) {
-                    Logger.getLogger(UniversityGui.class.getName()).log(Level.SEVERE, null, ex);
-                }
 
                 JOptionPane.showMessageDialog(this, "Study choices saved.");
             }

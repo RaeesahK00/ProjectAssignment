@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -30,19 +33,23 @@ public class studyChoiceGui extends JFrame {
     // JTextArea courseInfoArea, courseInfoArea2, courseInfoArea3;
     JTextArea txtInfo;
     JLabel lblSelect, lblSpace;
-    JLabel lblDiploma;
+    JLabel lblDiploma1;
+    JLabel lblDiploma2;
+
     // private JTextField choice1, choice2;
     JComboBox cmbUniOne;
     //JButton btnFaq, btnProfile,  btnSave, btnSpace, btnSpace2
-    JButton btnSave, btnSpace, btnSpace2,btnHome;
+    JButton btnSave, btnSpace, btnSpace2, btnHome;
     JRadioButton rbtnCourseOne, rbtnCourseOne1, rbtnCourseTwo, rbtnCourseTwo2, rbtnCourseThree, rbtnCourseThree3, rbtnCourseThree4, rbtnCourseThree5, rbtnCourseThree6;
     FileWriter fw;
     BufferedWriter bw;
-    String txtFileHeadingOne, txtFileHeadingTwo;
+    String txtFileHeadingOne, txtFileHeadingTwo, faculty;
+    int id;
     UniversityGui uG;
     UniversityDomain domain;
     DAO dao;
     LoginFormGUI lfg;
+    WorkerLogin wl;
 
     public studyChoiceGui() {
         pnlN = new JPanel();
@@ -75,10 +82,16 @@ public class studyChoiceGui extends JFrame {
         lblSelect = new JLabel("Please select a University of your choice below.");
         lblSelect.setFont(font2);
         lblSelect.setHorizontalAlignment(JLabel.CENTER);
-        lblDiploma = new JLabel();
-        lblDiploma.setFont(font1);
-        lblDiploma.setHorizontalAlignment(JLabel.CENTER);
-        lblDiploma.setForeground(Color.blue);
+        lblDiploma1 = new JLabel();
+        lblDiploma1.setFont(font1);
+        lblDiploma1.setHorizontalAlignment(JLabel.CENTER);
+        lblDiploma1.setForeground(Color.blue);
+
+        lblDiploma2 = new JLabel();
+        lblDiploma2.setFont(font1);
+        lblDiploma2.setHorizontalAlignment(JLabel.CENTER);
+        lblDiploma2.setForeground(Color.blue);
+        lblDiploma2.setVisible(false);
 
         lblSpace = new JLabel();
         txtInfo = new JTextArea(100, 50);
@@ -103,13 +116,13 @@ public class studyChoiceGui extends JFrame {
         group.add(rbtnCourseThree);
 
         domain = new UniversityDomain();
+        wl = new WorkerLogin();
         dao = new DAO();
         lfg = new LoginFormGUI();
 
     }
-    String id;
-    int submissionID;
 
+    int submissionID;
 
     public void setGui() {
 //        id = JOptionPane.showInputDialog("Please enter your ID to continue");
@@ -160,8 +173,7 @@ public class studyChoiceGui extends JFrame {
 //        });
         //Add array elements to combobox
         //combobox one action listener
-        cmbUniOne.addActionListener(
-                new ActionListener() {
+        cmbUniOne.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e
             ) {
@@ -171,148 +183,145 @@ public class studyChoiceGui extends JFrame {
                 String selected = (String) cmbUniOne.getSelectedItem();
                 txtInfo.setText("");
 
-              if (lblDiploma.getText().equals("Faculty of Informatics and Design")) {
-                  
-                if (selected.equals("University of Cape Town")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Mobile Application Development");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Human-Computer Interaction");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Web Development ");
+                if (lblDiploma1.getText().equals("Faculty of Informatics and Design")) {
 
+                    if (selected.equals("University of Cape Town")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Mobile Application Development");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Human-Computer Interaction");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Web Development ");
+
+                    }
+                    if (selected.equals("Cape Peninsula University of Technology")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Application Development Foundation");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Communication Network Foundation");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Multimedia");
+
+                    }
+                    if (selected.equals("University of Western Cape")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Artificial Intelligence");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Information Security");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Computer Graphics");
+                    }
+
+                } else if (lblDiploma1.getText().equals("Faculty of Applied Sciences")) {
+
+                    if (selected.equals("University of Cape Town")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Archaeology");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Chemistry");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Environmental And Geographical Science");
+
+                    } else if (selected.equals("Cape Peninsula University of Technology")) {
+
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Biotechnology");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Marine Science");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Environmental Health");
+
+                    } else if (selected.equals("University of Western Cape")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Bachelor of Pharmacy");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("BSc Biotechnology");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("BSc Chemical Sciences");
+                    }
+
+                } else if (lblDiploma1.getText().equals("Faculty of Business and Management Sciences")) {
+                    if (selected.equals("University of Cape Town")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Commerce IT Support");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Management Studies");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("College of Accounting");
+
+                    } else if (selected.equals("Cape Peninsula University of Technology")) {
+
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Paralegal");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Hospitality");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Tourism and Sports");
+
+                    } else if (selected.equals("University of Western Cape")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Bachelor of Administration");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Financial Accounting");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("BCom in Information Systems");
+                    }
+                } else if (lblDiploma1.getText().equals("Faculty of Engineering & the Built Environment")) {
+                    if (selected.equals("University of Cape Town")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Architecture and Planning");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Construction Economics and Management");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Electronic Engineering");
+
+                    } else if (selected.equals("Cape Peninsula University of Technology")) {
+
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Chemical Engineering");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Civil Engineering");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Mechanical and Mechatronic Engineering");
+
+                    } else if (selected.equals("University of Western Cape")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Electrical Engineering");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Environmental Health");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Environmental Science");
+                    }
+                } else if (lblDiploma1.getText().equals("Faculty of Education")) {
+                    if (selected.equals("University of Cape Town")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Education Development Unit");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Eng Language Education");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Center faculty of Education");
+
+                    } else if (selected.equals("Cape Peninsula University of Technology")) {
+
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("Foundation Phase");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("Intermediate Phase");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Senior and further Education");
+
+                    } else if (selected.equals("University of Western Cape")) {
+                        rbtnCourseOne.setVisible(true);
+                        rbtnCourseOne.setText("BED Foundation studies");
+                        rbtnCourseTwo.setVisible(true);
+                        rbtnCourseTwo.setText("BEd FET");
+                        rbtnCourseThree.setVisible(true);
+                        rbtnCourseThree.setText("Language Education");
+                    }
                 }
-                if (selected.equals("Cape Peninsula University of Technology")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Application Development Foundation");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Communication Network Foundation");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Multimedia");
 
-                }
-                if (selected.equals("University of Western Cape")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Artificial Intelligence");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Information Security");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Computer Graphics");
-                }  
-              
-              }
-                else if (lblDiploma.getText().equals("Faculty of Applied Sciences")) {
-                      
-                if (selected.equals("University of Cape Town")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Archaeology");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Chemistry");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Environmental And Geographical Science");
-
-                } else if (selected.equals("Cape Peninsula University of Technology")) {
-
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Biotechnology");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Marine Science");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Environmental Health");
-
-                } else if (selected.equals("University of Western Cape")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Bachelor of Pharmacy");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("BSc Biotechnology");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("BSc Chemical Sciences");
-                } 
-                
-                } 
-                else if (lblDiploma.getText().equals("Faculty of Business and Management Sciences")) {
-                if (selected.equals("University of Cape Town")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Commerce IT Support");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Management Studies");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("College of Accounting");
-
-                } else if (selected.equals("Cape Peninsula University of Technology")) {
-
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Paralegal");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Hospitality");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Tourism and Sports");
-
-                } else if (selected.equals("University of Western Cape")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Bachelor of Administration");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Financial Accounting");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("BCom in Information Systems");
-                }
-                }
-                
-                else  if (lblDiploma.getText().equals("Faculty of Engineering & the Built Environment")) {
-                if (selected.equals("University of Cape Town")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Architecture and Planning");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Construction Economics and Management");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Electronic Engineering");
-
-                } else if (selected.equals("Cape Peninsula University of Technology")) {
-
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Chemical Engineering");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Civil Engineering");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Mechanical and Mechatronic Engineering");
-
-                } else if (selected.equals("University of Western Cape")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Electrical Engineering");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Environmental Health");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Environmental Science");
-                }
-                } 
-                else if (lblDiploma.getText().equals("Faculty of Education")) {
-                if (selected.equals("University of Cape Town")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Education Development Unit");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Eng Language Education");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Center faculty of Education");
-
-                } else if (selected.equals("Cape Peninsula University of Technology")) {
-
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("Foundation Phase");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("Intermediate Phase");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Senior and further Education");
-
-                } else if (selected.equals("University of Western Cape")) {
-                    rbtnCourseOne.setVisible(true);
-                    rbtnCourseOne.setText("BED Foundation studies");
-                    rbtnCourseTwo.setVisible(true);
-                    rbtnCourseTwo.setText("BEd FET");
-                    rbtnCourseThree.setVisible(true);
-                    rbtnCourseThree.setText("Language Education");
-                }
+                /*-----------------------------------------------------------------------------------------------------------------------------------*/
             }
-             }
         }
         );
         //radio button one action listener
@@ -604,10 +613,20 @@ public class studyChoiceGui extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //  id = Integer.parseInt(wl.getId());
+                String val = wl.getId();
+                if (val != null) {
+                    System.out.println(val + " moo say");
+                } else {
+                    System.out.println("wl.getId() returned null");
+                }
+
+                domain.setId(id);
 
                 String facultyOne = uG.txt1.getText();
-
-                System.out.println(facultyOne);
+                DAO facDao = new DAO();
+                faculty = facDao.getfacId(facultyOne);
+                System.out.println(facultyOne + "  sdc");
                 submissionID++;
                 System.out.println(
                         "Submission ID: " + submissionID);
@@ -629,7 +648,8 @@ public class studyChoiceGui extends JFrame {
                     // int response = JOptionPane.showConfirmDialog(null, "If you are satisfied with the chosen universities, click 'Save'." + " If you would like to choose more, click 'Save and Continue'");
                     int response = JOptionPane.showOptionDialog(null, "If you are satisfied with the chosen universities, click 'Save and continue'." + " If you would like to choose more, click 'Save'", "Save ", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
                     if (response == JOptionPane.YES_OPTION) {
-                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
+
+                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course, faculty);
 
                         domain = dao.save(dom);
                         if (domain.equals(dom)) {
@@ -646,7 +666,7 @@ public class studyChoiceGui extends JFrame {
                             //Move to Raeesah's SubSystem
                         }
                     } else {
-                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course);
+                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course, faculty);
                         domain = dao.save(dom);
                         if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Information Saved");
@@ -657,6 +677,7 @@ public class studyChoiceGui extends JFrame {
                     JOptionPane.showMessageDialog(null, "Please choose a course of your choice");
                 }
             }
+
         }
         );
 
@@ -668,7 +689,7 @@ public class studyChoiceGui extends JFrame {
                 new GridLayout(1, 3));
         pnlC.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
         pnlN.setBorder(BorderFactory.createEmptyBorder(40, 20, 0, 20));
-        pnlN.add(lblDiploma);
+        pnlN.add(lblDiploma1);
 
         pnlN.add(btnSpace);
 //        pnlN.add(choice1);
@@ -705,7 +726,6 @@ public class studyChoiceGui extends JFrame {
         // add(pnlC, BorderLayout.CENTER);
 
     }
-
 
     public static void main(String[] args) {
 

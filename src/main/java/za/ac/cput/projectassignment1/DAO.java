@@ -26,15 +26,62 @@ public class DAO {
         }
     }
     //----------------------------------------------------------------------- Lindas methods
+    private static final String SELECT_USER_ID = "SELECT ID FROM STUD_LOGIN_INFO WHERE USERNAME = ? AND PASSWORD = ?";
+
+    public String getUserId(String username, String password) {
+        try {
+            PreparedStatement statement = this.con.prepareStatement(SELECT_USER_ID);
+
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            try ( ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("ID");
+                } else {
+                    
+                    return null; 
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; 
+        }
+    }
     
+     private static final String SELECT_Faculty_ID = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
+
+    public String getfacId(String name) {
+        try {
+            PreparedStatement statement = this.con.prepareStatement(SELECT_Faculty_ID);
+
+            statement.setString(1, name);
+            
+
+            try ( ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("FACULTY_ID");
+                } else {
+                    
+                    return null; 
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; 
+        }
+    }
+
     public boolean authenticateID(String id) {
 
         String query = "SELECT * FROM STUD_LOGIN_INFO WHERE ID=?";
         try {
             PreparedStatement statement = this.con.prepareStatement(query);
-            statement.setString(1,id );
+            statement.setString(1, id);
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try ( ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return true;
                 } else {
@@ -47,14 +94,15 @@ public class DAO {
             return false;
         }
     }
-public boolean authenticateUsername(String username) {
+
+    public boolean authenticateUsername(String username) {
 
         String query = "SELECT * FROM STUD_LOGIN_INFO WHERE USERNAME=?";
         try {
             PreparedStatement statement = this.con.prepareStatement(query);
-            statement.setString(1,username );
+            statement.setString(1, username);
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try ( ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return true;
                 } else {
@@ -67,34 +115,34 @@ public boolean authenticateUsername(String username) {
             return false;
         }
     }
-public void enrollStudent(String id, String name,String surname, String email, String username, String password) throws SQLException{
+
+    public void enrollStudent(String id, String name, String surname, String email, String username, String password) throws SQLException {
         String query = "INSERT INTO STUD_LOGIN_INFO(ID,NAME,SURNAME,EMAIL,USERNAME,PASSWORD) VALUES (?, ?, ? , ? , ?,?)";
-        
+
         PreparedStatement statement = this.con.prepareStatement(query);
-        
+
         statement.setString(1, id);
         statement.setString(2, name);
         statement.setString(3, surname);
         statement.setString(4, email);
         statement.setString(5, username);
         statement.setString(6, password);
-        
-        
+
         statement.executeUpdate();
     }
-public void saveUserProfile(String id, String name,String surname) throws SQLException{
+
+    public void saveUserProfile(String id, String name, String surname) throws SQLException {
         String query = "INSERT INTO USER_TABLE(USER_ID,USER_NAME,USER_SURNAME) VALUES (?, ?, ? )";
-        
+
         PreparedStatement statement = this.con.prepareStatement(query);
-        
+
         statement.setString(1, id);
         statement.setString(2, name);
         statement.setString(3, surname);
-        
-        
+
         statement.executeUpdate();
     }
-    
+
 //    public static boolean checkUser(String username) {
 //        try {
 //            Connection connection = DriverManager.getConnection(CommonConstrants.DB_URL,
@@ -121,7 +169,6 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
 //        }
 //        return true;
 //    }
-    
     public boolean authenticateUser(String username, String password) {
 
         String query = "SELECT * FROM STUD_LOGIN_INFO WHERE USERNAME=? AND PASSWORD=?";
@@ -130,7 +177,7 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
             statement.setString(1, username);
             statement.setString(2, password);
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try ( ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return true;
                 } else {
@@ -144,25 +191,71 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
         }
     }
     //----------------------------------------------------------------------- Masoods methods
-    
-    public List<String> getID(String username) throws SQLException{
-      List<String> userID = new ArrayList<>();
-        String query = "SELECT ID FROM STUD_LOGIN_INFO WHERE USERNAME = ?";
-        PreparedStatement statement = this.con.prepareStatement(query);
-        statement.setString(1, username);
-        ResultSet result = statement.executeQuery();
-        while (result.next()) {
-            String id = result.getString("ID");
-            userID.add(id);
-        }
-        return userID;
-    }
-    public UniversityDomain save(UniversityDomain dao) {
 
-        String sql = "INSERT INTO UniversityCourseChoice(SubmissionID,ID,University,Course) VALUES('%s','%s','%s','%s')";
+
+//    public String getFacultyId(String name) throws SQLException {
+//    String id = null; // Initialize id to null
+//    
+//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
+//    PreparedStatement statement = this.con.prepareStatement(query);
+//    statement.setString(1, name);
+//    ResultSet result = statement.executeQuery();
+//    
+//    if (result.next()) {
+//        id = result.getString("FACULTY_ID"); // Set id if a match is found
+//    }
+//    
+//    // Close the resources (e.g., statement and result) here
+//    
+//    return id; // Return id, which might be null or a valid value
+//}
+//   public String getFacultyId(String name) {
+//    String id = null;
+//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
+//    
+//    try (Connection connection = this.con;
+//         PreparedStatement statement = connection.prepareStatement(query)) {
+//        statement.setString(1, name);
+//        try (ResultSet result = statement.executeQuery()) {
+//            if (result.next()) {
+//                id = result.getString("FACULTY_ID");
+//            }
+//        }
+//    } catch (SQLException e) {
+//        // Log or handle the exception here
+//        e.printStackTrace();
+//    }
+//    
+//    return id;
+//} 
+//    public List<UniversityDomain> getFaculty() throws SQLException {
+//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
+//    
+//    List<UniversityDomain> students = new ArrayList<>();
+//
+//    PreparedStatement statement = this.con.prepareStatement(query);
+//
+//    ResultSet results = statement.executeQuery();
+//
+//    while (results.next()) {
+//        String studentId = results.getString("FACULTY_ID");
+//
+//        UniversityDomain ws = new UniversityDomain();
+//        ws.setFacultyID(studentId);
+//        students.add(ws);
+//    }
+//    results.close();
+//    statement.close();
+//    
+//    return students;
+//}
+//    
+    public UniversityDomain save(UniversityDomain dao) {
+WorkerLogin wl  = new WorkerLogin();
+        String sql = "INSERT INTO UniversityCourseChoice(SubmissionID,ID,University,Course,faculty_id) VALUES('%s','%s','%s','%s')";
 
         try {
-            sql = String.format(sql, dao.getSubID(), dao.getId(), dao.getUniversity(), dao.getCourse());
+            sql = String.format(sql, dao.getSubID(),wl.getId(),  dao.getUniversity(), dao.getCourse());
             pstmt = this.con.prepareStatement(sql);
             ok = pstmt.executeUpdate();
             if (ok > 0) {
@@ -183,11 +276,9 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
         }
         return null;
     }
-    
 
-    public ArrayList<UniversityDomain> getUserProfileInfo(String User_ID) throws SQLException {        
+    public ArrayList<UniversityDomain> getUserProfileInfo(String User_ID) throws SQLException {
         ArrayList<UniversityDomain> userInfo = new ArrayList<>();
-        
 
         String query = "SELECT USER_NAME, USER_SURNAME, USER_EMAIL, USER_EMERGENCY_CON_NAME, USER_EMERGENCY_CON_NUM FROM USER_TABLE WHERE USER_ID = ?";
 
@@ -203,45 +294,44 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
             String emergName = result.getString("USER_EMERGENCY_CON_NAME");
             String emergNum = result.getString("USER_EMERGENCY_CON_NUM");
 
-             userInfo.add(new UniversityDomain(name, surname, email, emergName, emergNum));
+            userInfo.add(new UniversityDomain(name, surname, email, emergName, emergNum));
         }
         return userInfo;
     }
 
-    
     public UniversityDomain updateUserInfo(UniversityDomain dao) {
-    String sql = "UPDATE User_Table SET User_name=?, USER_SURNAME = ?,  User_email=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
+        String sql = "UPDATE User_Table SET User_name=?, USER_SURNAME = ?,  User_email=?, User_emergency_Con_Name=?, User_Emergency_Con_Num=? WHERE User_ID = ?";
 
-    try {
-        pstmt = this.con.prepareStatement(sql);
-        pstmt.setString(1, dao.getfName());
-        pstmt.setString(2, dao.getlName());
-        pstmt.setString(3, dao.getMail());
-        pstmt.setString(4, dao.getEmergConName());
-        pstmt.setString(5, dao.getEmergConNum());
-        pstmt.setString(6, "9907015149088");//id where to read the ID from to make dem edits
-
-        int rowsUpdated = pstmt.executeUpdate();
-
-        if (rowsUpdated > 0) {
-            return dao;
-        } else {
-            return null;
-        }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error: Cannot save your update");
-        ex.printStackTrace();
-    } finally {
         try {
-            if (pstmt != null) {
-                pstmt.close();
+            pstmt = this.con.prepareStatement(sql);
+            pstmt.setString(1, dao.getfName());
+            pstmt.setString(2, dao.getlName());
+            pstmt.setString(3, dao.getMail());
+            pstmt.setString(4, dao.getEmergConName());
+            pstmt.setString(5, dao.getEmergConNum());
+            pstmt.setString(6, "9907015149088");//id where to read the ID from to make dem edits
+
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                return dao;
+            } else {
+                return null;
             }
-        } catch (Exception exc) {
-            JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: Cannot save your update");
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (Exception exc) {
+                JOptionPane.showMessageDialog(null, "There has been an error closing the program.");
+            }
         }
+        return null;
     }
-    return null;
-}
 
     public Integer submission() {
         int lastValue = 0;
@@ -288,30 +378,14 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
         return study_choice;
     }
 
-    public Study_choice save(Study_choice study_choice) throws SQLException {
-        int ok;
-        String sql = "INSERT INTO Study_choice (study_choice1, study_choice2) VALUES(?, ?)";
+    public void save(String faculty) throws SQLException {
+        String query = "INSERT INTO UNIVERSITYCOURSECHOICE(FACULTY_ID) VALUES (?,)";
 
-        try {
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, study_choice.getStudy_choice1());
-            pstmt.setString(2, study_choice.getStudy_choice2());
+        PreparedStatement statement = this.con.prepareStatement(query);
 
-            ok = pstmt.executeUpdate();
+        statement.setString(1, faculty);
 
-            if (ok > 0) {
-                con.commit();
-                return study_choice;
-            } else {
-                return null;
-            }
-        } catch (SQLException sqlException) {
-            con.rollback(); // Rollback the transaction
-            // Handle SQL exception appropriately
-        } finally {
-            // ...
-        }
-        return null;
+        statement.executeUpdate();
     }
 
     //----------------------------------------------------------------------- Raeesahs methods
@@ -340,7 +414,7 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
     }
 
     public Student addGaurdianToDB(Student student) throws IOException, SQLException {
-        String query = "INSERT INTO Stud_Guardian_Info (ID, LEGAL_GUARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Stud_Guardian_Info (ID, LEAGAL_GUARDIAN, NAME,SURNAME, EMAIL, NATIONALITY, ADDRESS, PROVINCE, POSTAL_CODE, PHONE_NUMBER) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = con.prepareStatement(query);
 
         statement.setString(1, student.getGardianId());
@@ -387,14 +461,14 @@ public void saveUserProfile(String id, String name,String surname) throws SQLExc
     }
 
     //----------------------------------------------------------------------- Beurins methods
-    public void apsScore(String id,String apsScore) throws SQLException{
+    public void apsScore(String id, String apsScore) throws SQLException {
         String query = "INSERT INTO APS_TABLE(STUDENT_ID,STUDENT_APSCORE) VALUES ( ?, ? )";
-        
+
         PreparedStatement statement = this.con.prepareStatement(query);
-        
+
         statement.setString(1, id);
-        statement.setString(2, apsScore);     
+        statement.setString(2, apsScore);
         statement.executeUpdate();
     }
- 
+
 }
