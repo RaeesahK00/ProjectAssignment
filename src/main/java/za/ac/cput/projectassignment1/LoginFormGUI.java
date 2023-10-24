@@ -139,11 +139,4 @@ public class LoginFormGUI extends Form {
 
     }
 
-    public String getIdNum(String userId) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        DAO usDAO = new DAO();
-        userId = usDAO.getUserId(username, password);
-        return userId;
-    }
 }
