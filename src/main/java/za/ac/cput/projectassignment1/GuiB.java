@@ -209,7 +209,8 @@ public class GuiB extends JFrame {
                     if (result == JOptionPane.YES_OPTION) {
 
                      
-                            // try {
+                        try {
+                            
                             String parent1 = parent.getSelectedItem().toString();
                             String surname = surnameTxt.getText();
                             String firstName = nameTxt.getText();
@@ -223,68 +224,69 @@ public class GuiB extends JFrame {
                             String number = numberTxt.getText();
                             
                             
-//                            Student stud = new Student(id,parent1,firstName,surname,email,nationality,address,province,code,number);
-//                            stud = dao.addGaurdianToDB(stud);
-//                            
-                            /*            if (surname.isEmpty() || !surname.matches("[a-zA-Z]+")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid last name.");
-                            surnameTxt.setText("");
-                            surnameTxt.requestFocus();
-                            return;
+                            Student stud = new Student(id,parent1,firstName,surname,email,nationality,address,province,code,number);
+                            stud = dao.addGaurdianToDB(stud);
+                            
+                            if (surname.isEmpty() || !surname.matches("[a-zA-Z]+")) {
+                                JOptionPane.showMessageDialog(null, "Please enter a valid last name.");
+                                surnameTxt.setText("");
+                                surnameTxt.requestFocus();
+                                return;
                             }
 
                             if (firstName.isEmpty() || !firstName.matches("[a-zA-Z]+")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
-                            nameTxt.setText("");;
-                            nameTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid first name.");
+                                nameTxt.setText("");;
+                                nameTxt.requestFocus();
+                                return;
                             }
 
                             if (email.isEmpty() || !email.endsWith("@gmail.com")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
-                            emailTxt.setText("");;
-                            emailTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+                                emailTxt.setText("");;
+                                emailTxt.requestFocus();
+                                return;
                             }
                             if (id.isEmpty() || id.matches("[a-zA-Z]+") || !id.matches("\\d{13}")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid ID/Passport number.");
-                            idTxt.setText("");
-                            idTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid ID/Passport number.");
+                                idTxt.setText("");
+                                idTxt.requestFocus();
+                                return;
                             }
 
                             if (nationality.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid nationality.");
-                            nationalityTxt.setText("");
-                            nationalityTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid nationality.");
+                                nationalityTxt.setText("");
+                                nationalityTxt.requestFocus();
+                                return;
                             }
 
                             if (address.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid address.");
-                            addressTxt1.setText("");;
-                            addressTxt1.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid address.");
+                                addressTxt1.setText("");;
+                                addressTxt1.requestFocus();
+                                return;
                             }
 
                             if (code.isEmpty() || code.matches("[a-zA-Z]+") || !code.matches("\\d{4}")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid postal code.");
-                            codeTxt.setText("");
-                            codeTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid postal code.");
+                                codeTxt.setText("");
+                                codeTxt.requestFocus();
+                                return;
                             }
 
                             if (number.isEmpty() || number.matches("[a-zA-Z]+") || !number.matches("\\d{10}")) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
-                            numberTxt.setText("");
-                            numberTxt.requestFocus();
-                            return;
+                                JOptionPane.showMessageDialog(null, "Please enter a valid phone number.");
+                                numberTxt.setText("");
+                                numberTxt.requestFocus();
+                                return;
                             }
-                            */
-//                           
-//                        } catch (IOException ex) {
-//                            JOptionPane.showMessageDialog(null, "Error cannot write to file");
-//                        }
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(GuiB.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(GuiB.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         } 
                     
 

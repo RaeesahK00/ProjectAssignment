@@ -22,13 +22,14 @@ public class UniversityGui extends JFrame implements ActionListener {
     private final JButton btnNext, btnExternalTest, btnSave, btnClear;
     String selectedOption;
     private final JComboBox<String> comboFaculty;
-     JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
+    JLabel lblMessage1, lblMessage2, lblMessage3, lblMessage4, lblHeading, txt1Label, txt2Label;
     public JTextField txt1, txt2;
     public JLabel lblUser;
     private final Font ft1, ft2, ft3, ft4;
     private final DAO dao;
     private studyChoiceGui classB;
     public String choice1, choice2;
+    public JLabel usernameTxt;
 
     public void updateChoiceLabels(String choice1, String choice2) {
         ApsScorePage.updateChoiceLabels(choice1, choice2);
@@ -44,7 +45,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         panelCombo = new JPanel();
         panelLeft = new JPanel();
         panelRight = new JPanel();
-
+        usernameTxt = new JLabel();
         ft1 = new Font("Arial", Font.BOLD, 18);
         ft2 = new Font("Arial", Font.BOLD, 16);
         ft3 = new Font("Arail", Font.PLAIN, 16);
@@ -61,7 +62,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         lblHeading.setPreferredSize(new Dimension(300, 40));
         lblHeading.setFont(ft1);
         lblUser = new JLabel();
-        
+
 //    //  ImageIcon originalIcon = new ImageIcon(UniversityGui.class.getResource("/images/UniLinkLogo.JPG"));
 //        Image originalImage = originalIcon.getImage();
 //        Image scaledImage = originalImage.getScaledInstance(300, 300, Image.SCALE_SMOOTH);
@@ -104,7 +105,7 @@ public class UniversityGui extends JFrame implements ActionListener {
     }
 
     public void setGUI() {
-        
+
         String test = txt2Label.getText();
         System.out.println(test);
         panelNorth.setLayout(new GridLayout(1, 1));
@@ -120,8 +121,8 @@ public class UniversityGui extends JFrame implements ActionListener {
 
         comboFaculty.addItem("Choose a faculty of your choice");
         comboFaculty.addItem("Faculty of Applied Sciences");
-        comboFaculty.addItem("Faculty of Business and Management Sciences");
-        comboFaculty.addItem("Faculty of Engineering & the Built Environment");
+        comboFaculty.addItem("Faculty of Business Management Sciences");
+        comboFaculty.addItem("Faculty of Engineering and the Build Environment");
         comboFaculty.addItem("Faculty of Informatics and Design");
         comboFaculty.addItem("Faculty of Education");
 
@@ -168,6 +169,7 @@ public class UniversityGui extends JFrame implements ActionListener {
         panelRight.add(txt2Label);
         panelRight.add(Box.createVerticalStrut(5));
         panelRight.add(txt2);
+        panelRight.add(usernameTxt);
         panelRight.add(Box.createVerticalStrut(10));
         panelCenter.add(panelLeft);
         panelCenter.add(panelRight);
@@ -250,7 +252,6 @@ public class UniversityGui extends JFrame implements ActionListener {
                 btnSave.setEnabled(false);
 
                 // Save the choices to the database
-
                 JOptionPane.showMessageDialog(this, "Study choices saved.");
             }
         } else if (e.getSource() == btnClear) {
@@ -258,7 +259,6 @@ public class UniversityGui extends JFrame implements ActionListener {
             txt2.setText("");
         }
     }
-   
 
     public void showMainPage() {
         setVisible(true);

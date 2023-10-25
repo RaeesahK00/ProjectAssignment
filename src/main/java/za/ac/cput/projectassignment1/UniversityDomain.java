@@ -13,17 +13,25 @@ import java.io.Serializable;
 public class UniversityDomain implements Serializable {
 
     private int subID;
-    private int id;
+    private String identity;
     private String university;
-    private String course;
+    private String courses;
     private String fName;
     private String lName;
     private String mail;
     private String emergConName;
     private String emergConNum;
-    private String facultyID;
+    private String facultyId;
 
     public UniversityDomain() {
+    }
+
+    public UniversityDomain(int subID, String id, String university, String course, String facultyID) {
+        this.subID = subID;
+        this.identity = id;
+        this.university = university;
+        this.courses = course;
+        this.facultyId = facultyID;
     }
 
     public UniversityDomain(String name, String surname, String mail, String emergConName, String emergConNum) {
@@ -35,20 +43,12 @@ public class UniversityDomain implements Serializable {
         this.emergConNum = emergConNum;
     }
 
-    public UniversityDomain(int subID, int id, String university, String course, String facultyID) {
-        this.subID = subID;
-        this.id = id;
-        this.university = university;
-        this.course = course;
-        this.facultyID = facultyID;
+    public String getIdentity() {
+        return identity;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
     public String getfName() {
@@ -107,12 +107,12 @@ public class UniversityDomain implements Serializable {
         this.university = university;
     }
 
-    public String getCourse() {
-        return course;
+    public String getCourses() {
+        return courses;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setCourses(String courses) {
+        this.courses = courses;
     }
 
     public String toString2() {
@@ -120,17 +120,30 @@ public class UniversityDomain implements Serializable {
 
     }
 
-    public String getFacultyID() {
-        return facultyID;
+    public String getFacultyId() {
+        return facultyId;
     }
 
-    public void setFacultyID(String facultyID) {
-        this.facultyID = facultyID;
+    public void setFacultyId(String facultyId) {
+        this.facultyId = facultyId;
     }
 
     @Override
-    public String toString() {
-        return "UniversityDomain{" + "subID=" + subID + ", university=" + university + ", course=" + course + ", name=" + fName + ", email=" + lName + ", school=" + mail + ", emergConName=" + emergConName + ", emergConNum=" + emergConNum + '}';
+     public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        UniversityDomain other = (UniversityDomain) obj;
+
+        // Compare attributes for equality
+        return subID == other.subID && identity.equals(other.identity)
+                && university.equals(other.university) && courses.equals(other.courses)
+                && facultyId.equals(other.facultyId);
     }
 
 }

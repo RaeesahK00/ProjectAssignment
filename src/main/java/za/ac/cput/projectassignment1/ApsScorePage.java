@@ -11,6 +11,7 @@ public class ApsScorePage extends JFrame {
     private JButton btnNext, btnCalculateAps, btnBack;
     private JButton btnSave;
     private Font ft1, ft2, ft3, ft4;
+    //public JLabel usernameTxt;
 //    private UniversityGui universityGui;
 
     public void updateChoiceLabels(String choice1, String choice2) {
@@ -52,7 +53,7 @@ public class ApsScorePage extends JFrame {
         panelNorth.setBackground(Color.LIGHT_GRAY);
         lblHeading.setForeground(Color.black);
         lblHeading.setFont(ft1);
-
+       //  usernameTxt = new JLabel();
         lblChoice1 = new JLabel("Choice 1: ");
         lblChoice1.setFont(ft2);
 
@@ -69,7 +70,7 @@ public class ApsScorePage extends JFrame {
 
         panelCenter.add(choicesPanel, BorderLayout.NORTH);
 //        panelCenter.add(lblImage, BorderLayout.CENTER);
-
+  //  panelSouth.add(usernameTxt);
         panelSouth.add(btnCalculateAps);
         panelSouth.add(btnSave);
         panelSouth.add(btnBack);
@@ -88,7 +89,7 @@ public class ApsScorePage extends JFrame {
             String c2 = lblChoice2.getText();
             studyChoiceGui gui = new studyChoiceGui();
             gui.lblDiploma1.setText(c1);
-            //gui.lblDiploma2.setText(c2);
+            //gui.lblUsername.setText(c2);
             gui.setTitle("University Selection");
             gui.setGui();
             gui.setDefaultCloseOperation(gui.EXIT_ON_CLOSE);
@@ -114,7 +115,7 @@ public class ApsScorePage extends JFrame {
         add(panelSouth, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 800);
+        setSize(400, 400);
         setLocationRelativeTo(null);
         setVisible(false);
     }

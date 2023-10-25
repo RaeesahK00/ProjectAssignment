@@ -503,5 +503,11 @@ public class GuiA extends JFrame implements ActionListener {
 
         }
     }
-
+    public static void main(String[] args) {
+        GuiA a = new GuiA();
+        a.setGuiA();
+        a.setSize(800,800);
+        a.setVisible(true);
+        a.setLocationRelativeTo(null);
+    }
 }

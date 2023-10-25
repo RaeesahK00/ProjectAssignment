@@ -9,14 +9,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import static java.awt.SystemColor.text;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -30,11 +26,11 @@ public class studyChoiceGui extends JFrame {
     Font font2 = new Font("Arial", Font.BOLD, 16);
     Font font3 = new Font("Arial", Font.PLAIN, 16);
     JPanel pnlN, pnlC, pnlS;
-    // JTextArea courseInfoArea, courseInfoArea2, courseInfoArea3;
+
     JTextArea txtInfo;
     JLabel lblSelect, lblSpace;
     JLabel lblDiploma1;
-    JLabel lblDiploma2;
+    JLabel lblUsername;
 
     // private JTextField choice1, choice2;
     JComboBox cmbUniOne;
@@ -43,8 +39,8 @@ public class studyChoiceGui extends JFrame {
     JRadioButton rbtnCourseOne, rbtnCourseOne1, rbtnCourseTwo, rbtnCourseTwo2, rbtnCourseThree, rbtnCourseThree3, rbtnCourseThree4, rbtnCourseThree5, rbtnCourseThree6;
     FileWriter fw;
     BufferedWriter bw;
-    String txtFileHeadingOne, txtFileHeadingTwo, faculty;
-    int id;
+    String txtFileHeadingOne, txtFileHeadingTwo;
+    String identity;
     UniversityGui uG;
     UniversityDomain domain;
     DAO dao;
@@ -87,16 +83,17 @@ public class studyChoiceGui extends JFrame {
         lblDiploma1.setHorizontalAlignment(JLabel.CENTER);
         lblDiploma1.setForeground(Color.blue);
 
-        lblDiploma2 = new JLabel();
-        lblDiploma2.setFont(font1);
-        lblDiploma2.setHorizontalAlignment(JLabel.CENTER);
-        lblDiploma2.setForeground(Color.blue);
-        lblDiploma2.setVisible(false);
+        lblUsername = new JLabel();
+        lblUsername.setFont(font1);
+        lblUsername.setHorizontalAlignment(JLabel.CENTER);
+        lblUsername.setForeground(Color.blue);
+        lblUsername.setVisible(false);
 
         lblSpace = new JLabel();
         txtInfo = new JTextArea(100, 50);
         txtInfo.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         txtInfo.setFont(font3);
+
         rbtnCourseOne = new JRadioButton();
         rbtnCourseOne.setPreferredSize(new Dimension(55, 55));
         rbtnCourseOne.setVisible(false);
@@ -125,18 +122,19 @@ public class studyChoiceGui extends JFrame {
     int submissionID;
 
     public void setGui() {
-//        id = JOptionPane.showInputDialog("Please enter your ID to continue");
-//
-//        if (id.equals(JOptionPane.CANCEL_OPTION)) {
-//            System.exit(0);
-//        }
-//        while (id.length() != 13 || !(id.matches("[0-9]+"))) {
-//
-//            JOptionPane.showMessageDialog(null, "Please enter a valid ID");
-//            id = JOptionPane.showInputDialog("Please enter your ID to continue");
-//
-//        }
-//       submissionID = dao.submission();
+
+         identity = JOptionPane.showInputDialog("For information integrity,Please enter your ID to continue");
+
+        if (identity.equals(JOptionPane.CANCEL_OPTION)) {
+            return;
+        }
+        while (identity.length() != 13 || !(identity.matches("[0-9]+"))) {
+
+            JOptionPane.showMessageDialog(null, "Please enter a valid ID");
+            identity = JOptionPane.showInputDialog("Please enter your ID to continue");
+
+        }
+        submissionID = dao.submission();
 
         String[] universities = {"University of Cape Town", "Cape Peninsula University of Technology", "University of Western Cape"};
         for (int i = 0; i < 3; i++) {
@@ -240,7 +238,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setText("BSc Chemical Sciences");
                     }
 
-                } else if (lblDiploma1.getText().equals("Faculty of Business and Management Sciences")) {
+                } else if (lblDiploma1.getText().equals("Faculty of Business Management Sciences")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Commerce IT Support");
@@ -266,7 +264,7 @@ public class studyChoiceGui extends JFrame {
                         rbtnCourseThree.setVisible(true);
                         rbtnCourseThree.setText("BCom in Information Systems");
                     }
-                } else if (lblDiploma1.getText().equals("Faculty of Engineering & the Built Environment")) {
+                } else if (lblDiploma1.getText().equals("Faculty of Engineering and the Build Environment")) {
                     if (selected.equals("University of Cape Town")) {
                         rbtnCourseOne.setVisible(true);
                         rbtnCourseOne.setText("Architecture and Planning");
@@ -613,32 +611,23 @@ public class studyChoiceGui extends JFrame {
         btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //  id = Integer.parseInt(wl.getId());
-                String val = wl.getId();
-                if (val != null) {
-                    System.out.println(val + " moo say");
-                } else {
-                    System.out.println("wl.getId() returned null");
-                }
-
-                domain.setId(id);
 
                 String facultyOne = uG.txt1.getText();
-                DAO facDao = new DAO();
-                faculty = facDao.getfacId(facultyOne);
+//                DAO facDao = new DAO();
+//                facultyId = facDao.getfacId(facultyOne);
                 System.out.println(facultyOne + "  sdc");
                 submissionID++;
                 System.out.println(
                         "Submission ID: " + submissionID);
                 String University = (String) cmbUniOne.getSelectedItem();
-                String course = "";
+                String courses = "";
 
                 if (rbtnCourseOne.isSelected()) {
-                    course = (String) rbtnCourseOne.getText();
+                    courses = (String) rbtnCourseOne.getText();
                 } else if (rbtnCourseTwo.isSelected()) {
-                    course = (String) rbtnCourseTwo.getText();
+                    courses = (String) rbtnCourseTwo.getText();
                 } else if (rbtnCourseThree.isSelected()) {
-                    course = (String) rbtnCourseThree.getText();
+                    courses = (String) rbtnCourseThree.getText();
                 }
                 String[] options = new String[2];
                 options[0] = "Save and Continue";
@@ -648,10 +637,35 @@ public class studyChoiceGui extends JFrame {
                     // int response = JOptionPane.showConfirmDialog(null, "If you are satisfied with the chosen universities, click 'Save'." + " If you would like to choose more, click 'Save and Continue'");
                     int response = JOptionPane.showOptionDialog(null, "If you are satisfied with the chosen universities, click 'Save and continue'." + " If you would like to choose more, click 'Save'", "Save ", 0, JOptionPane.INFORMATION_MESSAGE, null, options, null);
                     if (response == JOptionPane.YES_OPTION) {
+                        String facultyId = "";
+                        String fac = lblDiploma1.getText();
+                        switch (fac) {
+                            case "Faculty of Informatics and Design":
+                                facultyId = "FICT";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Applied Sciences":
+                                facultyId = "FAC";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Business Management Sciences":
+                                facultyId = "FBMC";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Engineering and the Build Environment":
+                                facultyId = "FEBE";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Education":
+                                facultyId = "FOE";
+                                System.out.println(facultyId);
+                                break;
 
-                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course, faculty);
+                        }
+                        UniversityDomain dom = new UniversityDomain(submissionID,identity,University,courses,facultyId);
 
-                        domain = dao.save(dom);
+                        domain = dao.saveInfo(dom);
+                        System.out.println(dom);
                         if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Information Saved, please proceed");
                             GuiPOP1 run = new GuiPOP1();
@@ -666,11 +680,37 @@ public class studyChoiceGui extends JFrame {
                             //Move to Raeesah's SubSystem
                         }
                     } else {
-                        UniversityDomain dom = new UniversityDomain(submissionID, id, University, course, faculty);
-                        domain = dao.save(dom);
+                        String facultyId = "";
+                        String fac = lblDiploma1.getText();
+                        switch (fac) {
+                            case "Faculty of Informatics and Design":
+                                facultyId = "FICT";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Applied Sciences":
+                                facultyId = "FAC";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Business Management Sciences":
+                                facultyId = "FBMC";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Engineering and the Build Environment":
+                                facultyId = "FEBE";
+                                System.out.println(facultyId);
+                                break;
+                            case "Faculty of Education":
+                                facultyId = "FOE";
+                                System.out.println(facultyId);
+                                break;
+
+                        }
+                        UniversityDomain dom = new UniversityDomain(submissionID, identity, University, courses, facultyId);
+                        
+                        domain = dao.saveInfo(dom);
+                        System.out.println(domain);
                         if (domain.equals(dom)) {
                             JOptionPane.showMessageDialog(null, "Information Saved");
-
                         }
                     }
                 } else {
@@ -686,7 +726,7 @@ public class studyChoiceGui extends JFrame {
         pnlC.setLayout(
                 new GridLayout(8, 3));
         pnlS.setLayout(
-                new GridLayout(1, 3));
+                new GridLayout(2, 3));
         pnlC.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
         pnlN.setBorder(BorderFactory.createEmptyBorder(40, 20, 0, 20));
         pnlN.add(lblDiploma1);
@@ -712,12 +752,10 @@ public class studyChoiceGui extends JFrame {
 
         pnlC.add(btnSpace2);
 //
-        pnlS.add(btnHome);
-//
+
 //        pnlS.add(btnFaq);
 //
 //        pnlS.add(btnProfile);
-
         add(pnlN, BorderLayout.NORTH);
 
         add(pnlS, BorderLayout.SOUTH);

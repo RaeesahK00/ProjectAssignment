@@ -193,69 +193,12 @@ public class DAO {
     //----------------------------------------------------------------------- Masoods methods
 
 
-//    public String getFacultyId(String name) throws SQLException {
-//    String id = null; // Initialize id to null
-//    
-//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
-//    PreparedStatement statement = this.con.prepareStatement(query);
-//    statement.setString(1, name);
-//    ResultSet result = statement.executeQuery();
-//    
-//    if (result.next()) {
-//        id = result.getString("FACULTY_ID"); // Set id if a match is found
-//    }
-//    
-//    // Close the resources (e.g., statement and result) here
-//    
-//    return id; // Return id, which might be null or a valid value
-//}
-//   public String getFacultyId(String name) {
-//    String id = null;
-//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
-//    
-//    try (Connection connection = this.con;
-//         PreparedStatement statement = connection.prepareStatement(query)) {
-//        statement.setString(1, name);
-//        try (ResultSet result = statement.executeQuery()) {
-//            if (result.next()) {
-//                id = result.getString("FACULTY_ID");
-//            }
-//        }
-//    } catch (SQLException e) {
-//        // Log or handle the exception here
-//        e.printStackTrace();
-//    }
-//    
-//    return id;
-//} 
-//    public List<UniversityDomain> getFaculty() throws SQLException {
-//    String query = "SELECT FACULTY_ID FROM FACULTY_TABLE WHERE FACULTY_NAME = ?";
-//    
-//    List<UniversityDomain> students = new ArrayList<>();
-//
-//    PreparedStatement statement = this.con.prepareStatement(query);
-//
-//    ResultSet results = statement.executeQuery();
-//
-//    while (results.next()) {
-//        String studentId = results.getString("FACULTY_ID");
-//
-//        UniversityDomain ws = new UniversityDomain();
-//        ws.setFacultyID(studentId);
-//        students.add(ws);
-//    }
-//    results.close();
-//    statement.close();
-//    
-//    return students;
-//}
-//    
-    public UniversityDomain save(UniversityDomain dao) {
-WorkerLogin wl  = new WorkerLogin();
-        String sql = "INSERT INTO UniversityCourseChoice(SubmissionID,ID,University,Course,faculty_id) VALUES('%s','%s','%s','%s')";
+
+    public UniversityDomain saveInfo(UniversityDomain dao) {
+            String sql = "INSERT INTO UNIVERSITYCOURSECHOICE(SUBMISSIONID,ID,UNIVERSITY,COURSE,FACULTY_ID) VALUES('%s','%s','%s','%s','%s')";
 
         try {
-            sql = String.format(sql, dao.getSubID(),wl.getId(),  dao.getUniversity(), dao.getCourse());
+            sql = String.format(sql, dao.getSubID(),dao.getIdentity(),  dao.getUniversity(), dao.getCourses(),dao.getFacultyId());
             pstmt = this.con.prepareStatement(sql);
             ok = pstmt.executeUpdate();
             if (ok > 0) {
@@ -349,7 +292,7 @@ WorkerLogin wl  = new WorkerLogin();
                 System.out.println("No data found in the table.");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error with count");
         }
         return lastValue;
 

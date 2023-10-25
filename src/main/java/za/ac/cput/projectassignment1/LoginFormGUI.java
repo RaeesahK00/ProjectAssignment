@@ -17,7 +17,7 @@ public class LoginFormGUI extends Form {
     DAO dao;
     String userId;
 //    WorkerLogin wl;
-//    studyChoiceGui scg = new studyChoiceGui();
+    studyChoiceGui scg;
 
     public LoginFormGUI() {
         super("Login"); // This sets the title of the JFrame
@@ -111,20 +111,25 @@ public class LoginFormGUI extends Form {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String password = passwordField.getText();
+                String username1 = usernameField.getText();
+                String password1 = passwordField.getText();
+                
+                String username2 = username1;
+                String password2 = password1;
+                UniversityGui gui = new UniversityGui();
+                gui.lblMessage4.setText(username1);
                 DAO userDAO = new DAO();
-                userId = userDAO.getUserId(username, password);
+                userId = userDAO.getUserId(username1, password1);
                 String idd = userId;
-                if (dao.authenticateUser(username, password)) {
+                studyChoiceGui scg = new studyChoiceGui();
+                scg.lblUsername.setText(idd);
+                if (dao.authenticateUser(username1, password1)) {
                     JOptionPane.showMessageDialog(null, "Login Successful");
                     UniversityGui gui2 = new UniversityGui();
                     gui2.setGUI();
                     setVisible(false);
                     if (userId != null) {
-                        WorkerLogin wl = new WorkerLogin();
-                        wl.setId(idd);
-                        System.out.println("User ID: " + userId);
+                        System.out.println("User ID: " + idd);
 
                     } else {
                         System.out.println("Error: user not found");
